@@ -1,0 +1,11 @@
+/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Services/bin/Debug/net8.0/TaskFlow.Services.dll
+/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Services/bin/Debug/net8.0/TaskFlow.Services.pdb
+/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Services/obj/Debug/net8.0/TaskFlow.Services.csproj.AssemblyReference.cache
+/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Services/obj/Debug/net8.0/TaskFlow.Services.GeneratedMSBuildEditorConfig.editorconfig
+/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Services/obj/Debug/net8.0/TaskFlow.Services.AssemblyInfoInputs.cache
+/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Services/obj/Debug/net8.0/TaskFlow.Services.AssemblyInfo.cs
+/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Services/obj/Debug/net8.0/TaskFlow.Services.csproj.CoreCompileInputs.cache
+/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Services/obj/Debug/net8.0/TaskFlow.Services.sourcelink.json
+/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Services/obj/Debug/net8.0/TaskFlow.Services.dll
+/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Services/obj/Debug/net8.0/refint/TaskFlow.Services.dll
+/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Services/obj/Debug/net8.0/TaskFlow.Services.pdb

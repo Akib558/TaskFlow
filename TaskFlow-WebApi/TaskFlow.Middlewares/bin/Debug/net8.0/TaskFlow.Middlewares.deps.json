@@ -1,0 +1,56 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "TaskFlow.Middlewares/1.0.0": {
+        "dependencies": {
+          "TaskFlow.Core": "1.0.0",
+          "TaskFlow.Helpers": "1.0.0"
+        },
+        "runtime": {
+          "TaskFlow.Middlewares.dll": {}
+        }
+      },
+      "TaskFlow.Core/1.0.0": {
+        "runtime": {
+          "TaskFlow.Core.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "TaskFlow.Helpers/1.0.0": {
+        "dependencies": {
+          "TaskFlow.Core": "1.0.0"
+        },
+        "runtime": {
+          "TaskFlow.Helpers.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TaskFlow.Middlewares/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TaskFlow.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TaskFlow.Helpers/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

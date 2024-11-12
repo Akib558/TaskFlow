@@ -1,0 +1,111 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0": {
+      "TaskFlow.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/TaskFlow.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TaskFlow.Core.dll": {}
+        }
+      },
+      "TaskFlow.Helpers/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "TaskFlow.Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TaskFlow.Helpers.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TaskFlow.Helpers.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TaskFlow.Core/1.0.0": {
+      "type": "project",
+      "path": "../TaskFlow.Core/TaskFlow.Core.csproj",
+      "msbuildProject": "../../../../../Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Core/TaskFlow.Core.csproj"
+    },
+    "TaskFlow.Helpers/1.0.0": {
+      "type": "project",
+      "path": "../TaskFlow.Helpers/TaskFlow.Helpers.csproj",
+      "msbuildProject": "../../../../../Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Helpers/TaskFlow.Helpers.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0": [
+      "TaskFlow.Core >= 1.0.0",
+      "TaskFlow.Helpers >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "/home/akib/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Middlewares/TaskFlow.Middlewares.csproj",
+      "projectName": "TaskFlow.Middlewares",
+      "projectPath": "/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Middlewares/TaskFlow.Middlewares.csproj",
+      "packagesPath": "/home/akib/.nuget/packages/",
+      "outputPath": "/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Middlewares/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/home/akib/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Core/TaskFlow.Core.csproj": {
+              "projectPath": "/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Core/TaskFlow.Core.csproj"
+            },
+            "/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Helpers/TaskFlow.Helpers.csproj": {
+              "projectPath": "/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Helpers/TaskFlow.Helpers.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+2024-11-14 00:46:33.717 +06:00 [INF] Now listening on: http://localhost:5109
+2024-11-14 00:46:33.779 +06:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-14 00:46:33.780 +06:00 [INF] Hosting environment: Development
+2024-11-14 00:46:33.780 +06:00 [INF] Content root path: /home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.WebAPI
+2024-11-14 00:46:34.018 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/swagger/index.html - null null
+2024-11-14 00:46:34.145 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/swagger/index.html - 200 null text/html;charset=utf-8 127.8698ms
+2024-11-14 00:46:34.545 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/swagger/v1/swagger.json - null null
+2024-11-14 00:46:34.553 +06:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-14 00:46:34.575 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 30.5321ms
+2024-11-14 00:46:46.588 +06:00 [INF] Application is shutting down...

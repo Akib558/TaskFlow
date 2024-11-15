@@ -1,0 +1,562 @@
+2024-11-16 01:19:35.048 +06:00 [INF] Test log entry outside middleware
+2024-11-16 01:19:35.556 +06:00 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2024-11-16 01:19:35.753 +06:00 [INF] Now listening on: https://localhost:7029
+2024-11-16 01:19:35.754 +06:00 [INF] Now listening on: http://localhost:5109
+2024-11-16 01:19:35.755 +06:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-16 01:19:35.756 +06:00 [INF] Hosting environment: Development
+2024-11-16 01:19:35.756 +06:00 [INF] Content root path: /home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.WebAPI
+2024-11-16 01:19:38.239 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger - null null
+2024-11-16 01:19:38.313 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger - 301 0 null 85.2605ms
+2024-11-16 01:19:38.397 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/index.html - null null
+2024-11-16 01:19:38.484 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/index.html - 200 null text/html;charset=utf-8 86.9305ms
+2024-11-16 01:19:38.500 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - null null
+2024-11-16 01:19:38.502 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - null null
+2024-11-16 01:19:38.502 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - null null
+2024-11-16 01:19:38.827 +06:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-11-16 01:19:38.828 +06:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-11-16 01:19:38.828 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - 200 143943 text/css 328.2372ms
+2024-11-16 01:19:38.829 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 326.5126ms
+2024-11-16 01:19:38.833 +06:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-11-16 01:19:38.833 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 331.3697ms
+2024-11-16 01:19:39.213 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - null null
+2024-11-16 01:19:39.275 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - null null
+2024-11-16 01:19:39.276 +06:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-11-16 01:19:39.277 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - 200 628 image/png 22.4574ms
+2024-11-16 01:19:39.279 +06:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-16 01:19:39.373 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 180.6026ms
+2024-11-16 01:19:47.962 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/test - null null
+2024-11-16 01:19:47.972 +06:00 [INF] Request: GET /test
+2024-11-16 01:19:47.989 +06:00 [INF] Executing endpoint 'HTTP: GET /test'
+2024-11-16 01:19:47.990 +06:00 [INF] Executed endpoint 'HTTP: GET /test'
+2024-11-16 01:19:47.991 +06:00 [INF] Response: Hello from /test!
+2024-11-16 01:19:47.991 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/test - 200 null text/plain; charset=utf-8 49.4664ms
+2024-11-16 01:20:36.912 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/index.html - null null
+2024-11-16 01:20:37.016 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/index.html - 200 null text/html;charset=utf-8 101.04ms
+2024-11-16 01:20:37.031 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - null null
+2024-11-16 01:20:37.097 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - null null
+2024-11-16 01:20:37.097 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - null null
+2024-11-16 01:20:37.231 +06:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-11-16 01:20:37.252 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - 200 143943 text/css 221.2482ms
+2024-11-16 01:20:37.257 +06:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-11-16 01:20:37.258 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 203.3739ms
+2024-11-16 01:20:37.264 +06:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-11-16 01:20:37.264 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 167.4776ms
+2024-11-16 01:20:37.400 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - null null
+2024-11-16 01:20:37.402 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 2.9404ms
+2024-11-16 01:20:37.409 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - null null
+2024-11-16 01:20:37.410 +06:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-11-16 01:20:37.410 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - 200 628 image/png 1.969ms
+2024-11-16 01:20:41.857 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/test - null null
+2024-11-16 01:20:41.858 +06:00 [INF] Request: GET /test
+2024-11-16 01:20:41.859 +06:00 [INF] Executing endpoint 'HTTP: GET /test'
+2024-11-16 01:20:41.859 +06:00 [INF] Executed endpoint 'HTTP: GET /test'
+2024-11-16 01:20:41.859 +06:00 [INF] Response: Hello from /test!
+2024-11-16 01:20:41.859 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/test - 200 null text/plain; charset=utf-8 2.8892ms
+2024-11-16 01:21:17.513 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/index.html - null null
+2024-11-16 01:21:17.565 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/index.html - 200 null text/html;charset=utf-8 62.1218ms
+2024-11-16 01:21:17.577 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - null null
+2024-11-16 01:21:17.605 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - null null
+2024-11-16 01:21:17.605 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - null null
+2024-11-16 01:21:17.856 +06:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-11-16 01:21:17.878 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - 200 143943 text/css 301.1606ms
+2024-11-16 01:21:17.899 +06:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-11-16 01:21:17.900 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 319.8968ms
+2024-11-16 01:21:17.906 +06:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-11-16 01:21:17.907 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 326.6644ms
+2024-11-16 01:21:18.278 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - null null
+2024-11-16 01:21:18.280 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1.859ms
+2024-11-16 01:21:18.307 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - null null
+2024-11-16 01:21:18.308 +06:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-11-16 01:21:18.308 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - 200 628 image/png 21.9522ms
+2024-11-16 01:21:22.286 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/test - null null
+2024-11-16 01:21:22.288 +06:00 [INF] Request: GET /test
+2024-11-16 01:21:22.288 +06:00 [INF] Executing endpoint 'HTTP: GET /test'
+2024-11-16 01:21:22.288 +06:00 [INF] Executed endpoint 'HTTP: GET /test'
+2024-11-16 01:21:22.288 +06:00 [INF] Response: Hello from /test!
+2024-11-16 01:21:22.289 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/test - 200 null text/plain; charset=utf-8 23.4398ms
+2024-11-16 01:21:58.361 +06:00 [INF] Test log entry outside middleware
+2024-11-16 01:21:58.783 +06:00 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2024-11-16 01:21:58.967 +06:00 [INF] Now listening on: https://localhost:7029
+2024-11-16 01:21:58.968 +06:00 [INF] Now listening on: http://localhost:5109
+2024-11-16 01:21:58.969 +06:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-16 01:21:58.969 +06:00 [INF] Hosting environment: Development
+2024-11-16 01:21:58.969 +06:00 [INF] Content root path: /home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.WebAPI
+2024-11-16 01:22:01.529 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger - null null
+2024-11-16 01:22:01.611 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger - 301 0 null 93.4794ms
+2024-11-16 01:22:01.651 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/index.html - null null
+2024-11-16 01:22:01.764 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/index.html - 200 null text/html;charset=utf-8 112.8271ms
+2024-11-16 01:22:01.777 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - null null
+2024-11-16 01:22:01.779 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - null null
+2024-11-16 01:22:01.779 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - null null
+2024-11-16 01:22:02.005 +06:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-11-16 01:22:02.005 +06:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-11-16 01:22:02.006 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - 200 143943 text/css 228.7129ms
+2024-11-16 01:22:02.006 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 226.768ms
+2024-11-16 01:22:02.008 +06:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-11-16 01:22:02.008 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 229.2224ms
+2024-11-16 01:22:02.351 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - null null
+2024-11-16 01:22:02.356 +06:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-16 01:22:02.397 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - null null
+2024-11-16 01:22:02.398 +06:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-11-16 01:22:02.399 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - 200 628 image/png 21.9277ms
+2024-11-16 01:22:02.473 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 121.4323ms
+2024-11-16 01:22:07.576 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/test - null null
+2024-11-16 01:22:07.585 +06:00 [INF] Request: GET /test
+2024-11-16 01:22:07.603 +06:00 [INF] Executing endpoint 'HTTP: GET /test'
+2024-11-16 01:22:07.604 +06:00 [INF] Executed endpoint 'HTTP: GET /test'
+2024-11-16 01:22:07.604 +06:00 [INF] Response: Hello from /test! Checking hot reload
+2024-11-16 01:22:07.604 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/test - 200 null text/plain; charset=utf-8 48.8627ms
+2024-11-16 01:26:13.651 -08:00 [INF] Test log entry outside middleware
+2024-11-16 01:26:14.090 -08:00 [INF] Now listening on: https://localhost:7029
+2024-11-16 01:26:14.093 -08:00 [INF] Now listening on: http://localhost:5109
+2024-11-16 01:26:14.106 -08:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-16 01:26:14.240 -08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-16 01:26:14.266 -08:00 [INF] Hosting environment: Development
+2024-11-16 01:26:14.269 -08:00 [INF] Content root path: Z:\Dotnet\TaskFlow\TaskFlow-WebApi\TaskFlow.WebAPI
+2024-11-16 01:26:15.207 -08:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger - null null
+2024-11-16 01:26:15.422 -08:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger - 301 0 null 225.5131ms
+2024-11-16 01:26:15.428 -08:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/index.html - null null
+2024-11-16 01:26:15.512 -08:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/index.html - 200 null text/html;charset=utf-8 84.07ms
+2024-11-16 01:26:15.573 -08:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - null null
+2024-11-16 01:26:15.574 -08:00 [INF] Request starting HTTP/2 GET https://localhost:7029/_framework/aspnetcore-browser-refresh.js - null null
+2024-11-16 01:26:15.574 -08:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - null null
+2024-11-16 01:26:15.574 -08:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - null null
+2024-11-16 01:26:15.589 -08:00 [INF] Request starting HTTP/2 GET https://localhost:7029/_vs/browserLink - null null
+2024-11-16 01:26:15.617 -08:00 [INF] Request finished HTTP/2 GET https://localhost:7029/_framework/aspnetcore-browser-refresh.js - 200 13782 application/javascript; charset=utf-8 42.6208ms
+2024-11-16 01:26:15.632 -08:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-11-16 01:26:15.644 -08:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - 200 143943 text/css 70.7151ms
+2024-11-16 01:26:15.659 -08:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-11-16 01:26:15.681 -08:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 106.4291ms
+2024-11-16 01:26:15.696 -08:00 [INF] Request finished HTTP/2 GET https://localhost:7029/_vs/browserLink - 200 null text/javascript; charset=UTF-8 107.5811ms
+2024-11-16 01:26:15.707 -08:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-11-16 01:26:15.709 -08:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 135.407ms
+2024-11-16 01:26:15.863 -08:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - null null
+2024-11-16 01:26:15.893 -08:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - null null
+2024-11-16 01:26:15.897 -08:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 33.7538ms
+2024-11-16 01:26:15.906 -08:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-11-16 01:26:15.911 -08:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - 200 628 image/png 17.6519ms
+2024-11-16 01:26:20.661 -08:00 [INF] Request starting HTTP/2 GET https://localhost:7029/test - null null
+2024-11-16 01:26:20.675 -08:00 [INF] Request: GET /test
+2024-11-16 01:26:20.690 -08:00 [INF] Executing endpoint 'HTTP: GET /test'
+2024-11-16 01:26:20.692 -08:00 [INF] Executed endpoint 'HTTP: GET /test'
+2024-11-16 01:26:20.693 -08:00 [INF] Response: Hello from /test! Checking hot reload
+2024-11-16 01:26:20.694 -08:00 [INF] Request finished HTTP/2 GET https://localhost:7029/test - 200 null text/plain; charset=utf-8 33.4632ms
+2024-11-16 01:27:02.874 -08:00 [INF] Request starting HTTP/2 GET https://localhost:7029/test - null null
+2024-11-16 01:27:02.883 -08:00 [INF] Request: GET /test
+2024-11-16 01:27:02.885 -08:00 [INF] Executing endpoint 'HTTP: GET /test'
+2024-11-16 01:27:02.887 -08:00 [INF] Executed endpoint 'HTTP: GET /test'
+2024-11-16 01:27:02.889 -08:00 [INF] Response: Hello from /test! Checking hot reload
+2024-11-16 01:27:02.890 -08:00 [INF] Request finished HTTP/2 GET https://localhost:7029/test - 200 null text/plain; charset=utf-8 16.4451ms
+2024-11-16 01:27:05.169 -08:00 [INF] Request starting HTTP/2 GET https://localhost:7029/test - null null
+2024-11-16 01:27:05.178 -08:00 [INF] Request: GET /test
+2024-11-16 01:27:05.181 -08:00 [INF] Executing endpoint 'HTTP: GET /test'
+2024-11-16 01:27:05.183 -08:00 [INF] Executed endpoint 'HTTP: GET /test'
+2024-11-16 01:27:05.185 -08:00 [INF] Response: Hello from /test! Checking hot reload
+2024-11-16 01:27:05.186 -08:00 [INF] Request finished HTTP/2 GET https://localhost:7029/test - 200 null text/plain; charset=utf-8 16.9766ms
+2024-11-16 01:27:08.650 -08:00 [INF] Request starting HTTP/2 GET https://localhost:7029/test - null null
+2024-11-16 01:27:08.659 -08:00 [INF] Request: GET /test
+2024-11-16 01:27:08.661 -08:00 [INF] Executing endpoint 'HTTP: GET /test'
+2024-11-16 01:27:08.662 -08:00 [INF] Executed endpoint 'HTTP: GET /test'
+2024-11-16 01:27:08.667 -08:00 [INF] Response: Hello from /test! Checking hot reload
+2024-11-16 01:27:08.668 -08:00 [INF] Request finished HTTP/2 GET https://localhost:7029/test - 200 null text/plain; charset=utf-8 18.2769ms
+2024-11-16 01:28:32.333 +06:00 [INF] Test log entry outside middleware
+2024-11-16 01:28:32.490 +06:00 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2024-11-16 01:28:32.676 +06:00 [INF] Now listening on: https://localhost:7029
+2024-11-16 01:28:32.677 +06:00 [INF] Now listening on: http://localhost:5109
+2024-11-16 01:28:32.678 +06:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-16 01:28:32.678 +06:00 [INF] Hosting environment: Development
+2024-11-16 01:28:32.679 +06:00 [INF] Content root path: /home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.WebAPI
+2024-11-16 01:28:33.024 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger - null null
+2024-11-16 01:28:33.066 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger - 301 0 null 47.9307ms
+2024-11-16 01:28:33.071 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/index.html - null null
+2024-11-16 01:28:33.140 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/index.html - 200 null text/html;charset=utf-8 68.8279ms
+2024-11-16 01:28:33.149 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - null null
+2024-11-16 01:28:33.154 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - null null
+2024-11-16 01:28:33.154 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - null null
+2024-11-16 01:28:33.170 +06:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-11-16 01:28:33.171 +06:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-11-16 01:28:33.170 +06:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-11-16 01:28:33.171 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 16.8844ms
+2024-11-16 01:28:33.171 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 17.0804ms
+2024-11-16 01:28:33.172 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - 200 143943 text/css 22.6809ms
+2024-11-16 01:28:33.576 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - null null
+2024-11-16 01:28:33.580 +06:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-16 01:28:33.644 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 68.1705ms
+2024-11-16 01:28:37.291 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/test - null null
+2024-11-16 01:28:37.299 +06:00 [INF] Request: GET /test
+2024-11-16 01:28:37.302 +06:00 [INF] Executing endpoint 'HTTP: GET /test'
+2024-11-16 01:28:37.303 +06:00 [INF] Executed endpoint 'HTTP: GET /test'
+2024-11-16 01:28:37.303 +06:00 [INF] Response: Hello from /test! Checking hot reload, now its from windwos
+2024-11-16 01:28:37.304 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/test - 200 null text/plain; charset=utf-8 13.2595ms
+2024-11-16 01:28:44.450 +06:00 [INF] Application is shutting down...
+2024-11-16 01:30:28.780 +06:00 [INF] Test log entry outside middleware
+2024-11-16 01:30:29.167 +06:00 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2024-11-16 01:30:29.368 +06:00 [INF] Now listening on: https://localhost:7029
+2024-11-16 01:30:29.369 +06:00 [INF] Now listening on: http://localhost:5109
+2024-11-16 01:30:29.370 +06:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-16 01:30:29.371 +06:00 [INF] Hosting environment: Development
+2024-11-16 01:30:29.371 +06:00 [INF] Content root path: /home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.WebAPI
+2024-11-16 01:30:31.828 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger - null null
+2024-11-16 01:30:31.907 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger - 301 0 null 64.4432ms
+2024-11-16 01:30:31.915 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/index.html - null null
+2024-11-16 01:30:31.993 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/index.html - 200 null text/html;charset=utf-8 78.9906ms
+2024-11-16 01:30:32.025 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - null null
+2024-11-16 01:30:32.033 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - null null
+2024-11-16 01:30:32.033 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - null null
+2024-11-16 01:30:32.168 +06:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-11-16 01:30:32.168 +06:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-11-16 01:30:32.168 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - 200 143943 text/css 163.5189ms
+2024-11-16 01:30:32.168 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 136.0343ms
+2024-11-16 01:30:32.171 +06:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-11-16 01:30:32.171 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 138.8783ms
+2024-11-16 01:30:32.577 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - null null
+2024-11-16 01:30:32.578 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - null null
+2024-11-16 01:30:32.579 +06:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-11-16 01:30:32.580 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - 200 628 image/png 1.6186ms
+2024-11-16 01:30:32.584 +06:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-11-16 01:30:32.689 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 132.4129ms
+2024-11-16 01:33:49.630 +06:00 [INF] Test log entry outside middleware
+2024-11-16 01:33:50.226 +06:00 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2024-11-16 01:33:50.406 +06:00 [INF] Now listening on: https://localhost:7029
+2024-11-16 01:33:50.406 +06:00 [INF] Now listening on: http://localhost:5109
+2024-11-16 01:33:50.407 +06:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-16 01:33:50.408 +06:00 [INF] Hosting environment: Development
+2024-11-16 01:33:50.408 +06:00 [INF] Content root path: /home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.WebAPI
+2024-11-16 01:33:52.619 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger - null null
+2024-11-16 01:33:52.676 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger - 301 0 null 53.5779ms
+2024-11-16 01:33:52.703 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/index.html - null null
+2024-11-16 01:33:52.783 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/index.html - 200 null text/html;charset=utf-8 100.9664ms
+2024-11-16 01:33:52.791 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - null null
+2024-11-16 01:33:52.813 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - null null
+2024-11-16 01:33:52.813 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - null null
+2024-11-16 01:33:53.037 +06:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-11-16 01:33:53.037 +06:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-11-16 01:33:53.038 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 225.1875ms
+2024-11-16 01:33:53.038 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - 200 143943 text/css 246.9854ms
+2024-11-16 01:33:53.044 +06:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-11-16 01:33:53.045 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 232.0702ms
+2024-11-16 01:33:53.388 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - null null
+2024-11-16 01:33:53.434 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - null null
+2024-11-16 01:33:53.436 +06:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-11-16 01:33:53.436 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - 200 628 image/png 23.4011ms
+2024-11-16 01:33:53.503 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 114.567ms
+2024-11-16 01:33:59.756 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:33:59.775 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:33:59.777 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:33:59.810 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:33:59.827 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:33:59.832 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.4194ms.
+2024-11-16 01:33:59.845 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:33:59.850 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 33.1157ms
+2024-11-16 01:33:59.850 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:33:59.851 +06:00 [INF] Response: Good
+2024-11-16 01:33:59.851 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 95.7004ms
+2024-11-16 01:34:18.543 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:34:18.545 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:34:18.545 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:18.545 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:34:18.548 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:34:18.548 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.0113ms.
+2024-11-16 01:34:18.549 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:34:18.549 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 2.6222ms
+2024-11-16 01:34:18.549 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:18.550 +06:00 [INF] Response: Good
+2024-11-16 01:34:18.550 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 7.2615ms
+2024-11-16 01:34:19.558 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:34:19.560 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:34:19.560 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:19.560 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:34:19.563 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:34:19.563 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.0094ms.
+2024-11-16 01:34:19.564 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:34:19.564 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 2.3468ms
+2024-11-16 01:34:19.565 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:19.565 +06:00 [INF] Response: Good
+2024-11-16 01:34:19.565 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 7.2689ms
+2024-11-16 01:34:21.152 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/index.html - null null
+2024-11-16 01:34:21.204 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/index.html - 200 null text/html;charset=utf-8 51.6453ms
+2024-11-16 01:34:21.204 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - null null
+2024-11-16 01:34:21.245 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - null null
+2024-11-16 01:34:21.245 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - null null
+2024-11-16 01:34:21.642 +06:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-11-16 01:34:21.643 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - 200 143943 text/css 439.722ms
+2024-11-16 01:34:21.644 +06:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-11-16 01:34:21.645 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 441.435ms
+2024-11-16 01:34:21.651 +06:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-11-16 01:34:21.652 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 447.6743ms
+2024-11-16 01:34:21.785 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - null null
+2024-11-16 01:34:21.787 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 2.6031ms
+2024-11-16 01:34:21.793 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - null null
+2024-11-16 01:34:21.795 +06:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-11-16 01:34:21.795 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - 200 628 image/png 2.113ms
+2024-11-16 01:34:27.971 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:34:28.322 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:34:28.322 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:28.322 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:34:28.324 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:34:28.324 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.0071ms.
+2024-11-16 01:34:28.325 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:34:28.325 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 1.6506ms
+2024-11-16 01:34:28.325 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:28.325 +06:00 [INF] Response: Good
+2024-11-16 01:34:28.325 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 354.7096ms
+2024-11-16 01:34:50.034 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:34:50.076 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:34:50.076 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:50.076 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:34:50.078 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:34:50.078 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.0081ms.
+2024-11-16 01:34:50.079 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:34:50.079 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 1.7159ms
+2024-11-16 01:34:50.079 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:50.079 +06:00 [INF] Response: Good
+2024-11-16 01:34:50.080 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 45.2689ms
+2024-11-16 01:34:50.841 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:34:50.862 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:34:50.863 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:50.863 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:34:50.864 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:34:50.865 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.0073ms.
+2024-11-16 01:34:50.866 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:34:50.866 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 1.8561ms
+2024-11-16 01:34:50.866 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:50.866 +06:00 [INF] Response: Good
+2024-11-16 01:34:50.866 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 26.2074ms
+2024-11-16 01:34:51.450 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:34:51.472 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:34:51.472 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:51.473 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:34:51.474 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:34:51.474 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.0076ms.
+2024-11-16 01:34:51.476 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:34:51.476 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 2.0506ms
+2024-11-16 01:34:51.476 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:51.476 +06:00 [INF] Response: Good
+2024-11-16 01:34:51.476 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 46.522ms
+2024-11-16 01:34:51.608 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:34:51.610 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:34:51.610 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:51.610 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:34:51.612 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:34:51.612 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.008ms.
+2024-11-16 01:34:51.613 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:34:51.613 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 1.7136ms
+2024-11-16 01:34:51.613 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:51.613 +06:00 [INF] Response: Good
+2024-11-16 01:34:51.613 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 25.6729ms
+2024-11-16 01:34:51.661 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:34:51.663 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:34:51.663 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:51.663 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:34:51.665 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:34:51.665 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.0091ms.
+2024-11-16 01:34:51.667 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:34:51.667 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 2.6984ms
+2024-11-16 01:34:51.667 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:51.667 +06:00 [INF] Response: Good
+2024-11-16 01:34:51.668 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 6.787ms
+2024-11-16 01:34:51.755 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:34:51.756 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:34:51.756 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:51.757 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:34:51.758 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:34:51.758 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.0081ms.
+2024-11-16 01:34:51.759 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:34:51.760 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 1.7395ms
+2024-11-16 01:34:51.760 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:51.760 +06:00 [INF] Response: Good
+2024-11-16 01:34:51.760 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 5.5563ms
+2024-11-16 01:34:51.840 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:34:51.841 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:34:51.841 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:51.841 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:34:51.843 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:34:51.843 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.0087ms.
+2024-11-16 01:34:51.844 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:34:51.844 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 1.6983ms
+2024-11-16 01:34:51.844 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:51.845 +06:00 [INF] Response: Good
+2024-11-16 01:34:51.845 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 25.4482ms
+2024-11-16 01:34:51.936 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:34:51.938 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:34:51.938 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:51.938 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:34:51.940 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:34:51.941 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.0094ms.
+2024-11-16 01:34:51.942 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:34:51.942 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 2.5365ms
+2024-11-16 01:34:51.942 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:51.943 +06:00 [INF] Response: Good
+2024-11-16 01:34:51.943 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 7.2696ms
+2024-11-16 01:34:52.001 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:34:52.023 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:34:52.023 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:52.023 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:34:52.025 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:34:52.026 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.0085ms.
+2024-11-16 01:34:52.027 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:34:52.027 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 2.3703ms
+2024-11-16 01:34:52.027 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:52.028 +06:00 [INF] Response: Good
+2024-11-16 01:34:52.028 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 27.6199ms
+2024-11-16 01:34:52.182 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:34:52.184 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:34:52.184 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:52.184 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:34:52.186 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:34:52.186 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.0079ms.
+2024-11-16 01:34:52.187 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:34:52.187 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 1.7343ms
+2024-11-16 01:34:52.187 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:34:52.187 +06:00 [INF] Response: Good
+2024-11-16 01:34:52.188 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 5.3623ms
+2024-11-16 01:35:06.316 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:35:06.317 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:35:06.317 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:35:06.318 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:35:06.320 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:36:09.693 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 63372.7976ms.
+2024-11-16 01:36:09.710 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:36:09.710 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 63391.1207ms
+2024-11-16 01:36:09.710 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:36:09.711 +06:00 [INF] Response: Good
+2024-11-16 01:36:09.711 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 63395.3983ms
+2024-11-16 01:36:16.367 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:36:16.369 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:36:16.369 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:36:16.369 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:36:16.371 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:36:22.124 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 5752.5338ms.
+2024-11-16 01:36:22.130 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:36:22.130 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 5759.9357ms
+2024-11-16 01:36:22.130 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:36:22.131 +06:00 [INF] Response: Good
+2024-11-16 01:36:22.131 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 5763.7851ms
+2024-11-16 01:36:53.785 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/index.html - null null
+2024-11-16 01:36:53.865 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/index.html - 200 null text/html;charset=utf-8 120.8594ms
+2024-11-16 01:36:53.865 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - null null
+2024-11-16 01:36:53.907 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - null null
+2024-11-16 01:36:53.962 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - null null
+2024-11-16 01:36:54.339 +06:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-11-16 01:36:54.370 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - 200 143943 text/css 484.4699ms
+2024-11-16 01:36:54.372 +06:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-11-16 01:36:54.373 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 438.6563ms
+2024-11-16 01:36:54.379 +06:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-11-16 01:36:54.379 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 513.7724ms
+2024-11-16 01:36:54.757 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - null null
+2024-11-16 01:36:54.758 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 2.0634ms
+2024-11-16 01:36:54.766 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - null null
+2024-11-16 01:36:54.768 +06:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-11-16 01:36:54.769 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - 200 628 image/png 2.6589ms
+2024-11-16 01:37:00.422 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:37:00.424 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:37:00.424 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:37:00.425 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:37:00.427 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:37:03.795 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 3368.426ms.
+2024-11-16 01:37:03.797 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:37:03.797 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 3371.1671ms
+2024-11-16 01:37:03.798 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:37:03.798 +06:00 [INF] Response: Good
+2024-11-16 01:37:03.798 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 3396.2916ms
+2024-11-16 01:40:32.695 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/index.html - null null
+2024-11-16 01:40:32.780 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/index.html - 200 null text/html;charset=utf-8 85.2368ms
+2024-11-16 01:40:32.808 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - null null
+2024-11-16 01:40:32.808 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - null null
+2024-11-16 01:40:32.851 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - null null
+2024-11-16 01:40:33.201 +06:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-11-16 01:40:33.202 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - 200 143943 text/css 417.751ms
+2024-11-16 01:40:33.204 +06:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-11-16 01:40:33.204 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 395.289ms
+2024-11-16 01:40:33.211 +06:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-11-16 01:40:33.211 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 427.1456ms
+2024-11-16 01:40:33.599 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - null null
+2024-11-16 01:40:33.601 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 2.0895ms
+2024-11-16 01:40:33.605 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - null null
+2024-11-16 01:40:33.606 +06:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-11-16 01:40:33.607 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - 200 628 image/png 1.8534ms
+2024-11-16 01:40:38.547 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:40:38.549 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:40:38.549 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:40:38.549 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:40:38.551 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:40:48.529 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 9977.4794ms.
+2024-11-16 01:40:48.530 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:40:48.530 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 9979.8279ms
+2024-11-16 01:40:48.531 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:40:48.531 +06:00 [INF] Response: Good
+2024-11-16 01:40:48.531 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 9984.008ms
+2024-11-16 01:40:54.054 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:40:54.056 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:40:54.056 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:40:54.056 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:40:54.058 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:40:54.059 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.0115ms.
+2024-11-16 01:40:54.060 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:40:54.060 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 2.2918ms
+2024-11-16 01:40:54.060 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:40:54.060 +06:00 [INF] Response: Good
+2024-11-16 01:40:54.061 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 7.0966ms
+2024-11-16 01:41:31.064 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/index.html - null null
+2024-11-16 01:41:31.129 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/index.html - 200 null text/html;charset=utf-8 89.518ms
+2024-11-16 01:41:31.193 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - null null
+2024-11-16 01:41:31.192 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - null null
+2024-11-16 01:41:31.205 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - null null
+2024-11-16 01:41:31.715 +06:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-11-16 01:41:31.717 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - 200 143943 text/css 566.1244ms
+2024-11-16 01:41:31.718 +06:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-11-16 01:41:31.719 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 569.0743ms
+2024-11-16 01:41:31.725 +06:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-11-16 01:41:31.725 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 532.9601ms
+2024-11-16 01:41:32.097 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - null null
+2024-11-16 01:41:32.099 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 2.5687ms
+2024-11-16 01:41:32.107 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - null null
+2024-11-16 01:41:32.108 +06:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-11-16 01:41:32.109 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - 200 628 image/png 2.4759ms
+2024-11-16 01:41:37.339 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:41:37.340 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:41:37.340 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:41:37.341 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:41:37.342 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:41:37.342 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.0084ms.
+2024-11-16 01:41:37.343 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:41:37.343 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 1.6356ms
+2024-11-16 01:41:37.343 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:41:37.343 +06:00 [INF] Response: Good
+2024-11-16 01:41:37.344 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 5.4665ms
+2024-11-16 01:44:21.325 +06:00 [INF] Test log entry outside middleware
+2024-11-16 01:44:21.875 +06:00 [WRN] The ASP.NET Core developer certificate is not trusted. For information about trusting the ASP.NET Core developer certificate, see https://aka.ms/aspnet/https-trust-dev-cert.
+2024-11-16 01:44:22.049 +06:00 [INF] Now listening on: https://localhost:7029
+2024-11-16 01:44:22.050 +06:00 [INF] Now listening on: http://localhost:5109
+2024-11-16 01:44:22.050 +06:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-16 01:44:22.051 +06:00 [INF] Hosting environment: Development
+2024-11-16 01:44:22.051 +06:00 [INF] Content root path: /home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.WebAPI
+2024-11-16 01:44:24.375 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger - null null
+2024-11-16 01:44:24.426 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger - 301 0 null 60.0301ms
+2024-11-16 01:44:24.446 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/index.html - null null
+2024-11-16 01:44:24.555 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/index.html - 200 null text/html;charset=utf-8 109.1964ms
+2024-11-16 01:44:24.566 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - null null
+2024-11-16 01:44:24.588 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - null null
+2024-11-16 01:44:24.588 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - null null
+2024-11-16 01:44:24.935 +06:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-11-16 01:44:24.935 +06:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-11-16 01:44:24.936 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui.css - 200 143943 text/css 369.4121ms
+2024-11-16 01:44:24.936 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 347.5801ms
+2024-11-16 01:44:24.937 +06:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-11-16 01:44:24.938 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 349.9352ms
+2024-11-16 01:44:25.292 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - null null
+2024-11-16 01:44:25.301 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - null null
+2024-11-16 01:44:25.303 +06:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-11-16 01:44:25.303 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/favicon-32x32.png - 200 628 image/png 1.8569ms
+2024-11-16 01:44:25.369 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 77.25ms
+2024-11-16 01:44:30.529 +06:00 [INF] Request starting HTTP/2 GET https://localhost:7029/api/Demo - null null
+2024-11-16 01:44:30.543 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:44:30.545 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:44:30.571 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:44:30.588 +06:00 [INF] Executing action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) - Validation state: "Valid"
+2024-11-16 01:44:30.593 +06:00 [INF] Executed action method TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 0.4255ms.
+2024-11-16 01:44:30.610 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:44:30.616 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 37.8807ms
+2024-11-16 01:44:30.616 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:44:30.616 +06:00 [INF] Response: Good Job 
+2024-11-16 01:44:30.617 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 108.4259ms

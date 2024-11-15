@@ -8,3 +8,15 @@
 /home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Core/obj/Debug/net8.0/TaskFlow.Core.dll
 /home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Core/obj/Debug/net8.0/refint/TaskFlow.Core.dll
 /home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Core/obj/Debug/net8.0/TaskFlow.Core.pdb
+Z:\Dotnet\TaskFlow\TaskFlow-WebApi\TaskFlow.Core\bin\Debug\net8.0\TaskFlow.Core.deps.json
+Z:\Dotnet\TaskFlow\TaskFlow-WebApi\TaskFlow.Core\bin\Debug\net8.0\TaskFlow.Core.dll
+Z:\Dotnet\TaskFlow\TaskFlow-WebApi\TaskFlow.Core\bin\Debug\net8.0\TaskFlow.Core.pdb
+Z:\Dotnet\TaskFlow\TaskFlow-WebApi\TaskFlow.Core\obj\Debug\net8.0\TaskFlow.Core.GeneratedMSBuildEditorConfig.editorconfig
+Z:\Dotnet\TaskFlow\TaskFlow-WebApi\TaskFlow.Core\obj\Debug\net8.0\TaskFlow.Core.AssemblyInfoInputs.cache
+Z:\Dotnet\TaskFlow\TaskFlow-WebApi\TaskFlow.Core\obj\Debug\net8.0\TaskFlow.Core.AssemblyInfo.cs
+Z:\Dotnet\TaskFlow\TaskFlow-WebApi\TaskFlow.Core\obj\Debug\net8.0\TaskFlow.Core.csproj.CoreCompileInputs.cache
+Z:\Dotnet\TaskFlow\TaskFlow-WebApi\TaskFlow.Core\obj\Debug\net8.0\TaskFlow.Core.sourcelink.json
+Z:\Dotnet\TaskFlow\TaskFlow-WebApi\TaskFlow.Core\obj\Debug\net8.0\TaskFlow.Core.dll
+Z:\Dotnet\TaskFlow\TaskFlow-WebApi\TaskFlow.Core\obj\Debug\net8.0\refint\TaskFlow.Core.dll
+Z:\Dotnet\TaskFlow\TaskFlow-WebApi\TaskFlow.Core\obj\Debug\net8.0\TaskFlow.Core.pdb
+Z:\Dotnet\TaskFlow\TaskFlow-WebApi\TaskFlow.Core\obj\Debug\net8.0\ref\TaskFlow.Core.dll

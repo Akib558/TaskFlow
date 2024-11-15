@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
 namespace TaskFlow.Middlewares;
-
 public class LoggingMiddleware
 {
     private readonly RequestDelegate _next;
@@ -16,7 +15,6 @@ public class LoggingMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
-
         _logger.LogInformation($"Request: {context.Request.Method} {context.Request.Path}");
 
         var originalBodyStream = context.Response.Body;

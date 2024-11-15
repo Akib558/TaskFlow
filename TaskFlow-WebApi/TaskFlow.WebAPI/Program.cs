@@ -34,7 +34,7 @@ app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseMiddleware<LoggingMiddleware>();
 app.MapGet("/test", () =>
 {
-    return "Hello from /test! Checking hot reload, now its from windwos";
+    return "Hello from /test! Checking hot reload, n windwos";
 });
 
 

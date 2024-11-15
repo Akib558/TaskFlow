@@ -560,3 +560,109 @@
 2024-11-16 01:44:30.616 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
 2024-11-16 01:44:30.616 +06:00 [INF] Response: Good Job 
 2024-11-16 01:44:30.617 +06:00 [INF] Request finished HTTP/2 GET https://localhost:7029/api/Demo - 200 null text/plain; charset=utf-8 108.4259ms
+2024-11-16 01:57:12.387 +06:00 [INF] Test log entry outside middleware
+2024-11-16 01:57:12.849 +06:00 [INF] Now listening on: http://localhost:5109
+2024-11-16 01:57:12.850 +06:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-16 01:57:12.851 +06:00 [INF] Hosting environment: Development
+2024-11-16 01:57:12.851 +06:00 [INF] Content root path: /home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.WebAPI
+2024-11-16 01:57:13.024 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/swagger/index.html - null null
+2024-11-16 01:57:13.122 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/swagger/index.html - 200 null text/html;charset=utf-8 98.3854ms
+2024-11-16 01:57:13.518 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/swagger/v1/swagger.json - null null
+2024-11-16 01:57:13.601 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 82.3345ms
+2024-11-16 01:57:17.987 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/api/Demo - null null
+2024-11-16 01:57:18.000 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:57:18.001 +06:00 [WRN] Failed to determine the https port for redirect.
+2024-11-16 01:57:18.002 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:57:18.019 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:57:18.030 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:57:18.035 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 9.1492ms
+2024-11-16 01:57:18.035 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:57:18.036 +06:00 [INF] Response: Good Job 
+2024-11-16 01:57:18.036 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/api/Demo - 200 null text/plain; charset=utf-8 49.1073ms
+2024-11-16 01:57:20.154 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/api/Demo - null null
+2024-11-16 01:57:20.156 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:57:20.156 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:57:20.156 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:57:20.157 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:57:20.158 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 1.1048ms
+2024-11-16 01:57:20.158 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:57:20.158 +06:00 [INF] Response: Good Job 
+2024-11-16 01:57:20.158 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/api/Demo - 200 null text/plain; charset=utf-8 3.8391ms
+2024-11-16 01:57:46.381 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/swagger/index.html - null null
+2024-11-16 01:57:46.382 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/swagger/index.html - 200 null text/html;charset=utf-8 1.0271ms
+2024-11-16 01:57:46.547 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/swagger/v1/swagger.json - null null
+2024-11-16 01:57:46.549 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1.7805ms
+2024-11-16 01:57:50.727 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/api/Demo - null null
+2024-11-16 01:57:50.728 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:57:50.728 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:57:50.728 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:57:50.729 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:57:50.729 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 0.4134ms
+2024-11-16 01:57:50.729 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:57:50.729 +06:00 [INF] Response: Good Job 
+2024-11-16 01:57:50.729 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/api/Demo - 200 null text/plain; charset=utf-8 1.8689ms
+2024-11-16 01:58:25.947 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/api/Demo - null null
+2024-11-16 01:58:25.947 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:58:25.948 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:58:25.948 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:58:25.948 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:58:25.948 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 0.4004ms
+2024-11-16 01:58:25.948 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:58:25.949 +06:00 [INF] Response: Good Job 
+2024-11-16 01:58:25.949 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/api/Demo - 200 null text/plain; charset=utf-8 2.0234ms
+2024-11-16 01:58:27.724 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/api/Demo - null null
+2024-11-16 01:58:27.724 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:58:27.724 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:58:27.724 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:58:27.725 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:58:27.725 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 0.4179ms
+2024-11-16 01:58:27.725 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:58:27.725 +06:00 [INF] Response: Good Job 
+2024-11-16 01:58:27.725 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/api/Demo - 200 null text/plain; charset=utf-8 1.9512ms
+2024-11-16 01:58:42.791 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/api/Demo - null null
+2024-11-16 01:58:42.792 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:58:42.792 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:58:42.792 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:58:42.793 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:58:42.793 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 0.5774ms
+2024-11-16 01:58:42.793 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:58:42.793 +06:00 [INF] Response: Good Job 
+2024-11-16 01:58:42.793 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/api/Demo - 200 null text/plain; charset=utf-8 1.8493ms
+2024-11-16 01:58:43.555 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/api/Demo - null null
+2024-11-16 01:58:43.556 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:58:43.556 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:58:43.556 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:58:43.556 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:58:43.557 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 0.4715ms
+2024-11-16 01:58:43.557 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:58:43.557 +06:00 [INF] Response: Good Job 
+2024-11-16 01:58:43.557 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/api/Demo - 200 null text/plain; charset=utf-8 1.7788ms
+2024-11-16 01:59:04.991 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/swagger/index.html - null null
+2024-11-16 01:59:04.991 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/swagger/index.html - 200 null text/html;charset=utf-8 0.8245ms
+2024-11-16 01:59:05.401 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/swagger/v1/swagger.json - null null
+2024-11-16 01:59:05.402 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1.4ms
+2024-11-16 01:59:09.208 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/test - null null
+2024-11-16 01:59:09.209 +06:00 [INF] Request: GET /test
+2024-11-16 01:59:09.209 +06:00 [INF] Executing endpoint 'HTTP: GET /test'
+2024-11-16 01:59:12.642 +06:00 [INF] Executed endpoint 'HTTP: GET /test'
+2024-11-16 01:59:12.642 +06:00 [INF] Response: Hello from /test! Checking hot reload, now its from windwos
+2024-11-16 01:59:12.642 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/test - 200 null text/plain; charset=utf-8 3433.5151ms
+2024-11-16 01:59:27.039 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/swagger/index.html - null null
+2024-11-16 01:59:27.046 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/swagger/index.html - 200 null text/html;charset=utf-8 13.4211ms
+2024-11-16 01:59:27.194 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/swagger/v1/swagger.json - null null
+2024-11-16 01:59:27.195 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1.1421ms
+2024-11-16 01:59:31.608 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/api/Demo - null null
+2024-11-16 01:59:31.609 +06:00 [INF] Request: GET /api/Demo
+2024-11-16 01:59:31.609 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:59:31.609 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-16 01:59:31.609 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-16 01:59:31.610 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 0.4345ms
+2024-11-16 01:59:31.610 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-16 01:59:31.610 +06:00 [INF] Response: Good Job 
+2024-11-16 01:59:31.610 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/api/Demo - 200 null text/plain; charset=utf-8 1.4615ms
+2024-11-16 01:59:51.519 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/test - null null
+2024-11-16 01:59:51.520 +06:00 [INF] Request: GET /test
+2024-11-16 01:59:51.520 +06:00 [INF] Executing endpoint 'HTTP: GET /test'
+2024-11-16 01:59:53.793 +06:00 [INF] Executed endpoint 'HTTP: GET /test'
+2024-11-16 01:59:53.793 +06:00 [INF] Response: Hello from /test! Checking hot reload, now its from windwos
+2024-11-16 01:59:53.794 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/test - 200 null text/plain; charset=utf-8 2274.4812ms

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TaskFlow.Middlewares")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b277525295109378fe4360039be79341688c7bcf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c7abfe8f9cecbb12b35bdf607da1515645cca038")]
 [assembly: System.Reflection.AssemblyProductAttribute("TaskFlow.Middlewares")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TaskFlow.Middlewares")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

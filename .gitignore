@@ -1,0 +1,82 @@
+# Ignore Visual Studio and Rider IDE files
+.vs/
+.idea/
+
+# Ignore Rider-specific files
+*.iml
+.idea/
+.idea_modules/
+*.sln.iml
+*.sln.docstates
+
+# Ignore temporary build results
+bin/
+obj/
+
+# Ignore sensitive configuration files
+appsettings.json
+appsettings.Development.json
+appsettings.Production.json
+*.secret.json
+
+# Ignore user-specific settings and generated files
+*.user
+*.suo
+*.gen.cs
+*.g.cs
+*.Generated.cs
+
+# Ignore logs and crash dumps
+*.log
+*.out
+*.dmp
+
+# Ignore package management files
+packages/
+*.nupkg
+*.snupkg
+
+# Ignore testing and coverage files
+TestResults/
+coverage/
+*.trx
+*.coverage
+
+# Ignore Entity Framework migration files
+Migrations/
+
+# Ignore OS-specific files
+*.DS_Store
+Thumbs.db
+
+# Ignore environment variables
+.env
+.env.local
+.env.*
+
+# Ignore Docker-related files
+*.dockerfile
+docker-compose.override.yml
+
+# Ignore Rider caches
+.idea/
+*.ipr
+*.iws
+.idea/workspace.xml
+.idea/gradle.xml
+.idea/libraries/
+.idea/tasks.xml
+.idea/runConfigurations/
+.idea/assetWizardSettings.xml
+.idea/markdown-navigator.xml
+.idea/markdown-navigator.ignore
+.idea/shelf/
+
+# Ignore custom IDE config folders
+.idea/codeStyles/
+.idea/inspectionProfiles/
+.idea/scopes/
+
+# Ignore tooling and build caches
+*.tmp
+*.cache

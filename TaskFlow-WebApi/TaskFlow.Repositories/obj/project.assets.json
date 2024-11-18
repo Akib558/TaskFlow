@@ -1139,8 +1139,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "9.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.0",
-          "Microsoft.Extensions.Logging.Console": "9.0.0",
-          "TaskFlow.Core": "1.0.0"
+          "Microsoft.Extensions.Logging.Console": "9.0.0"
         },
         "compile": {
           "bin/placeholder/TaskFlow.Data.dll": {}
@@ -3092,12 +3091,12 @@
     "TaskFlow.Core/1.0.0": {
       "type": "project",
       "path": "../TaskFlow.Core/TaskFlow.Core.csproj",
-      "msbuildProject": "../../../../../Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Core/TaskFlow.Core.csproj"
+      "msbuildProject": "../TaskFlow.Core/TaskFlow.Core.csproj"
     },
     "TaskFlow.Data/1.0.0": {
       "type": "project",
       "path": "../TaskFlow.Data/TaskFlow.Data.csproj",
-      "msbuildProject": "../../../../../Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Data/TaskFlow.Data.csproj"
+      "msbuildProject": "../TaskFlow.Data/TaskFlow.Data.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3144,6 +3143,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {

@@ -1,6 +1,7 @@
+
 using TaskFlow.Middlewares;
 using Serilog;
-using Microsoft.Extensions.Logging;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddLogging();
@@ -17,6 +18,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
+
 
 var app = builder.Build();
 

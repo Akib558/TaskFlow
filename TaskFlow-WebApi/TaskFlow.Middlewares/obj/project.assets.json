@@ -640,12 +640,12 @@
     "TaskFlow.Core/1.0.0": {
       "type": "project",
       "path": "../TaskFlow.Core/TaskFlow.Core.csproj",
-      "msbuildProject": "../../../../../Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Core/TaskFlow.Core.csproj"
+      "msbuildProject": "../TaskFlow.Core/TaskFlow.Core.csproj"
     },
     "TaskFlow.Helpers/1.0.0": {
       "type": "project",
       "path": "../TaskFlow.Helpers/TaskFlow.Helpers.csproj",
-      "msbuildProject": "../../../../../Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Helpers/TaskFlow.Helpers.csproj"
+      "msbuildProject": "../TaskFlow.Helpers/TaskFlow.Helpers.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -697,6 +697,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {

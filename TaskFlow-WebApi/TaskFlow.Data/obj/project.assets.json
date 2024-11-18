@@ -1720,16 +1720,6 @@
             "rid": "win"
           }
         }
-      },
-      "TaskFlow.Core/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/TaskFlow.Core.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/TaskFlow.Core.dll": {}
-        }
       }
     }
   },
@@ -4996,11 +4986,6 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
-    },
-    "TaskFlow.Core/1.0.0": {
-      "type": "project",
-      "path": "../TaskFlow.Core/TaskFlow.Core.csproj",
-      "msbuildProject": "../../../../../Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Core/TaskFlow.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -5009,8 +4994,7 @@
       "Microsoft.EntityFrameworkCore.Design >= 9.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.0",
-      "Microsoft.Extensions.Logging.Console >= 9.0.0",
-      "TaskFlow.Core >= 1.0.0"
+      "Microsoft.Extensions.Logging.Console >= 9.0.0"
     ]
   },
   "packageFolders": {
@@ -5037,17 +5021,18 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {
-            "/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Core/TaskFlow.Core.csproj": {
-              "projectPath": "/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Core/TaskFlow.Core.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {

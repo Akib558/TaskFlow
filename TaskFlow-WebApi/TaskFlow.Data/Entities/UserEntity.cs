@@ -1,4 +1,4 @@
-namespace TaskFlow.Core.Models.Entities;
+namespace TaskFlow.Data.Entities;
 
 public class UserEntity
 {

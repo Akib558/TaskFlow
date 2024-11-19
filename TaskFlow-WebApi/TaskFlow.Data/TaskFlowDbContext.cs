@@ -5,7 +5,8 @@ namespace TaskFlow.Data;
 
 public class TaskFlowDbContext : DbContext
 {
-    public TaskFlowDbContext(DbContextOptions<TaskFlowDbContext> options) : base(options){}
+    public TaskFlowDbContext(DbContextOptions<TaskFlowDbContext> options) : base(options) { }
+
 
     public DbSet<UserEntity> Users { get; set; }
 
@@ -14,9 +15,5 @@ public class TaskFlowDbContext : DbContext
         modelBuilder.Entity<UserEntity>()
             .HasIndex(ind => ind.Username)
             .IsUnique();
-    }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer("Server=localhost, 4001;Database=TaskFlow;User ID=sa;Password=@M1janinaok;Trusted_Connection=False;Encrypt=True;TrustServerCertificate=True;");
     }
 }

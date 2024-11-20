@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TaskFlow.Core.DTOs;
 using TaskFlow.Data.Entities;
 using TaskFlow.Repositories;
 
@@ -20,7 +21,7 @@ namespace TaskFlow.Services
             return await _userRepository.GetUserByUsername(username);
         }
 
-        public async Task<UserEntity> GetUserById(int id)
+        public async Task<UserInfoResponseDto> GetUserById(int id)
         {
             return await _userRepository.GetUserById(id);
         }

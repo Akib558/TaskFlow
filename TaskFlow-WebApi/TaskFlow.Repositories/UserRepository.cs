@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using TaskFlow.Core.DTOs;
 using TaskFlow.Data;
 using TaskFlow.Data.Entities;
 
@@ -23,9 +24,18 @@ namespace TaskFlow.Repositories
         }
 
 
-        public async Task<UserEntity> GetUserById(int id)
+        public async Task<UserInfoResponseDto> GetUserById(int id)
         {
-            return await _context.Set<UserEntity>().FindAsync(id);
+            var res = await _context.Set<UserEntity>().FindAsync(id);
+
+            return new UserInfoResponseDto
+            {
+                Id = res.Id,
+                Username = res.Username,
+                PasswordHash = res.PasswordHash,
+                Role = res.Role,
+                CreatedDate = res.CreatedDate
+            };
         }
 
         public async Task<UserEntity> CreateUser(UserEntity user)
@@ -45,7 +55,7 @@ namespace TaskFlow.Repositories
         public async Task DeleteUser(int id)
         {
             var user = await GetUserById(id);
-            _context.Set<UserEntity>().Remove(user);
+            _context.Set<UserEntity>().Remove(new UserEntity { Id = id });
             await _context.SaveChangesAsync();
         }
 

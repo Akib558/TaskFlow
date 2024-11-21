@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TaskFlow.Core.DTOs;
 using TaskFlow.Data.Entities;
+using TaskFlow.Helpers;
 using TaskFlow.Repositories;
 
 namespace TaskFlow.Services
@@ -28,6 +29,7 @@ namespace TaskFlow.Services
 
         public async Task<UserEntity> CreateUser(UserEntity user)
         {
+            user.PasswordHash = PasswordHelper.HashPassword(user.PasswordHash);
             return await _userRepository.CreateUser(user);
         }
 

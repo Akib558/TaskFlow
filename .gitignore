@@ -10,9 +10,8 @@
 *.sln.docstates
 
 # Ignore temporary build results
-bin/
-obj/
-
+**/bin/
+**/obj/
 # Ignore sensitive configuration files
 appsettings.json
 appsettings.Development.json

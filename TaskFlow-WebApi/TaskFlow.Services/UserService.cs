@@ -27,10 +27,19 @@ namespace TaskFlow.Services
             return await _userRepository.GetUserById(id);
         }
 
-        public async Task<UserEntity> CreateUser(UserEntity user)
+        public async Task<UserEntity> CreateUser(UserAddRequestDto user)
         {
-            user.PasswordHash = PasswordHelper.HashPassword(user.PasswordHash);
-            return await _userRepository.CreateUser(user);
+            var addUserObj = new UserAddModifiedRequestDto
+            {
+                GuidId = Guid.NewGuid().ToString(),
+                Username = user.Username,
+                Password = PasswordHelper.HashPassword(user.Password),
+                Email = user.Email,
+                Role = user.Role,
+                CreatedDate = DateTime.Now
+            };
+
+            return await _userRepository.CreateUser(addUserObj);
         }
 
         public async Task<UserEntity> UpdateUser(UserEntity user)

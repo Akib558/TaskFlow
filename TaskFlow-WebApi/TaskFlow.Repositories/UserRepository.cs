@@ -38,9 +38,18 @@ namespace TaskFlow.Repositories
             };
         }
 
-        public async Task<UserEntity> CreateUser(UserEntity user)
+        public async Task<UserEntity> CreateUser(UserAddModifiedRequestDto user)
         {
-            var entity = await _context.Set<UserEntity>().AddAsync(user);
+            var userAddObject = new UserEntity
+            {
+                GuidId = user.GuidId,
+                Username = user.Username,
+                PasswordHash = user.Password,
+                Email = user.Email,
+                Role = user.Role,
+                CreatedDate = user.CreatedDate
+            };
+            var entity = await _context.Set<UserEntity>().AddAsync(userAddObject);
             await _context.SaveChangesAsync();
             return entity.Entity;
         }

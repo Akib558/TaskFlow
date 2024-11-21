@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using TaskFlow.Core.DTOs;
 using TaskFlow.Data.Entities;
 using TaskFlow.Services;
 
@@ -23,7 +24,7 @@ namespace TaskFlow.WebAPI.Controllers
         }
 
         // Get user by username
-        [HttpGet("username/{username}")]
+        [HttpGet("GetUserByName/{username}")]
         public async Task<IActionResult> GetUserByUsername(string username)
         {
             var user = await _userService.GetUserByUsername(username);
@@ -35,7 +36,7 @@ namespace TaskFlow.WebAPI.Controllers
         }
 
         // Get user by id
-        [HttpGet("id/{id}")]
+        [HttpGet("GetUserById/{id}")]
         public async Task<IActionResult> GetUserById(int id)
         {
             var user = await _userService.GetUserById(id);
@@ -46,21 +47,21 @@ namespace TaskFlow.WebAPI.Controllers
             return Ok(user);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateUser([FromBody] UserEntity user)
+        [HttpPost("AddUser")]
+        public async Task<IActionResult> CreateUser([FromBody] UserAddRequestDto user)
         {
             var createdUser = await _userService.CreateUser(user);
             return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, createdUser);
         }
 
-        [HttpPut]
+        [HttpPut("UpdateUser")]
         public async Task<IActionResult> UpdateUser([FromBody] UserEntity user)
         {
             var updatedUser = await _userService.UpdateUser(user);
             return Ok(updatedUser);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteUser")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             await _userService.DeleteUser(id);

@@ -1245,3 +1245,12 @@ System.IO.IOException: Failed to bind to address http://127.0.0.1:5109: address 
    at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
    at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
    at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2024-11-21 19:06:48.551 +06:00 [INF] Test log entry outside middleware
+2024-11-21 19:06:48.723 +06:00 [INF] Now listening on: http://localhost:5109
+2024-11-21 19:06:48.724 +06:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-21 19:06:48.724 +06:00 [INF] Hosting environment: Development
+2024-11-21 19:06:48.724 +06:00 [INF] Content root path: /home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.WebAPI
+2024-11-21 19:06:48.870 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/swagger/index.html - null null
+2024-11-21 19:06:48.967 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/swagger/index.html - 200 null text/html;charset=utf-8 97.3937ms
+2024-11-21 19:06:49.324 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/swagger/v1/swagger.json - null null
+2024-11-21 19:06:49.398 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 74.1619ms

@@ -8,6 +8,7 @@ namespace TaskFlow.Core.DTOs
     public class UserInfoResponseDto
     {
         public int Id { get; set; }
+        public string GuidId { get; set; }
         public string Username { get; set; }
         public string PasswordHash { get; set; }
         public string Role { get; set; }

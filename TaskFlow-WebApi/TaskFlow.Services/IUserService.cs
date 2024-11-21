@@ -11,7 +11,7 @@ namespace TaskFlow.Services
     {
         Task<UserEntity> GetUserByUsername(string username);
         Task<UserInfoResponseDto> GetUserById(int id);
-        Task<UserEntity> CreateUser(UserEntity user);
+        Task<UserEntity> CreateUser(UserAddRequestDto user);
         Task<UserEntity> UpdateUser(UserEntity user);
         Task DeleteUser(int id);
 

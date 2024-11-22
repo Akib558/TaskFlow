@@ -1,0 +1,69 @@
+2024-11-19 00:01:00.222 +06:00 [INF] Application is shutting down...
+2024-11-19 00:15:30.092 +06:00 [INF] Test log entry outside middleware
+2024-11-19 00:15:44.022 +06:00 [INF] Now listening on: http://localhost:5109
+2024-11-19 00:15:44.023 +06:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-19 00:15:44.023 +06:00 [INF] Hosting environment: Development
+2024-11-19 00:15:44.023 +06:00 [INF] Content root path: /home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.WebAPI
+2024-11-19 00:15:44.184 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/swagger/index.html - null null
+2024-11-19 00:15:44.299 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/swagger/index.html - 200 null text/html;charset=utf-8 115.0273ms
+2024-11-19 00:15:44.684 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/swagger/v1/swagger.json - null null
+2024-11-19 00:15:44.755 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 70.6044ms
+2024-11-19 00:15:52.640 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/api/Demo - null null
+2024-11-19 00:15:52.656 +06:00 [INF] Request: GET /api/Demo
+2024-11-19 00:15:52.658 +06:00 [WRN] Failed to determine the https port for redirect.
+2024-11-19 00:15:52.659 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-19 00:15:52.683 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-19 00:16:01.053 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-19 00:16:01.063 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 8370.6558ms
+2024-11-19 00:16:01.063 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-19 00:16:01.063 +06:00 [INF] Response: Good Job 
+2024-11-19 00:16:01.064 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/api/Demo - 200 null text/plain; charset=utf-8 8424.4191ms
+2024-11-19 00:23:29.350 +06:00 [INF] Test log entry outside middleware
+2024-11-19 00:23:29.734 +06:00 [INF] Now listening on: http://localhost:5109
+2024-11-19 00:23:29.735 +06:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-19 00:23:29.735 +06:00 [INF] Hosting environment: Development
+2024-11-19 00:23:29.735 +06:00 [INF] Content root path: /home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.WebAPI
+2024-11-19 00:23:29.921 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/swagger/index.html - null null
+2024-11-19 00:23:30.032 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/swagger/index.html - 200 null text/html;charset=utf-8 111.8084ms
+2024-11-19 00:23:30.369 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/swagger/v1/swagger.json - null null
+2024-11-19 00:23:30.436 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 67.5624ms
+2024-11-19 00:23:58.769 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/api/Demo - null null
+2024-11-19 00:23:58.787 +06:00 [INF] Request: GET /api/Demo
+2024-11-19 00:23:58.788 +06:00 [WRN] Failed to determine the https port for redirect.
+2024-11-19 00:23:58.789 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-19 00:23:58.814 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-19 00:23:58.833 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-19 00:23:58.843 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 18.2805ms
+2024-11-19 00:23:58.844 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-19 00:23:58.844 +06:00 [INF] Response: Good Job 
+2024-11-19 00:23:58.845 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/api/Demo - 200 null text/plain; charset=utf-8 75.6558ms
+2024-11-19 00:25:36.505 +06:00 [INF] Test log entry outside middleware
+2024-11-19 00:25:48.164 +06:00 [INF] Now listening on: http://localhost:5109
+2024-11-19 00:25:48.166 +06:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-11-19 00:25:48.167 +06:00 [INF] Hosting environment: Development
+2024-11-19 00:25:48.167 +06:00 [INF] Content root path: /home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.WebAPI
+2024-11-19 00:25:48.487 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/swagger/index.html - null null
+2024-11-19 00:25:48.724 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/swagger/index.html - 200 null text/html;charset=utf-8 239.2124ms
+2024-11-19 00:25:49.387 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/swagger/v1/swagger.json - null null
+2024-11-19 00:25:49.509 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 122.238ms
+2024-11-19 00:25:54.357 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/api/Demo - null null
+2024-11-19 00:25:54.376 +06:00 [INF] Logging Middleware Entered
+2024-11-19 00:25:54.376 +06:00 [INF] Request: GET /api/Demo
+2024-11-19 00:25:54.378 +06:00 [WRN] Failed to determine the https port for redirect.
+2024-11-19 00:25:54.380 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-19 00:25:54.408 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-19 00:25:54.427 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-19 00:25:54.438 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 19.6324ms
+2024-11-19 00:25:54.439 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-19 00:25:54.439 +06:00 [INF] Response: Good Job 
+2024-11-19 00:25:54.440 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/api/Demo - 200 null text/plain; charset=utf-8 82.5092ms
+2024-11-19 00:26:42.169 +06:00 [INF] Request starting HTTP/1.1 GET http://localhost:5109/api/Demo - null null
+2024-11-19 00:26:42.170 +06:00 [INF] Logging Middleware Entered
+2024-11-19 00:26:47.030 +06:00 [INF] Request: GET /api/Demo
+2024-11-19 00:26:52.399 +06:00 [INF] Executing endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-19 00:26:52.399 +06:00 [INF] Route matched with {action = "Index", controller = "Demo"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller TaskFlow.WebAPI.Controllers.DemoController (TaskFlow.WebAPI).
+2024-11-19 00:26:55.820 +06:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-11-19 00:26:55.821 +06:00 [INF] Executed action TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI) in 3421.0814ms
+2024-11-19 00:26:55.821 +06:00 [INF] Executed endpoint 'TaskFlow.WebAPI.Controllers.DemoController.Index (TaskFlow.WebAPI)'
+2024-11-19 00:27:06.739 +06:00 [INF] Response: Good Job 
+2024-11-19 00:27:11.828 +06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5109/api/Demo - 200 null text/plain; charset=utf-8 29659.3635ms

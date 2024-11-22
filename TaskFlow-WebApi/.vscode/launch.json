@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "coreclr",
+            "request": "launch",
+            "name": "Launch with Hot Reload",
+            "program": "${workspaceFolder}/TaskFlow.WebAPI/bin/Debug/net8.0/TaskFlow.WebAPI.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/TaskFlow.WebAPI",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "preLaunchTask": "dotnet watch run --project /home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow-WebApi.csproj"
+        }
+    ]
+}

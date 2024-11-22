@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Lx+nKWVA1VI=",
+  "dgSpecHash": "z4wyRe0OyVs=",
   "success": true,
   "projectFilePath": "/home/akib/Basic/Documents/WindowsTransfer/Dotnet/TaskFlow/TaskFlow-WebApi/TaskFlow.Middlewares/TaskFlow.Middlewares.csproj",
   "expectedPackageFiles": [
+    "/home/akib/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/home/akib/.nuget/packages/microsoft.aspnetcore.http.abstractions/2.2.0/microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "/home/akib/.nuget/packages/microsoft.aspnetcore.http.features/2.2.0/microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "/home/akib/.nuget/packages/microsoft.extensions.dependencyinjection/9.0.0/microsoft.extensions.dependencyinjection.9.0.0.nupkg.sha512",

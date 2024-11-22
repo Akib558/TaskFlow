@@ -1,6 +1,11 @@
+
 using TaskFlow.Middlewares;
 using Serilog;
-using Microsoft.Extensions.Logging;
+using TaskFlow.Services;
+using TaskFlow.Repositories;
+using Microsoft.EntityFrameworkCore;
+using TaskFlow.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddLogging();
@@ -13,10 +18,18 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
+builder.Services.AddDbContext<TaskFlowDbContext>(options =>
+    options.UseSqlServer("Server=localhost, 4001;Database=TaskFlow;User ID=sa;Password=@M1janinaok;Trusted_Connection=False;Encrypt=True;TrustServerCertificate=True;"));
+
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
+
 
 var app = builder.Build();
 
@@ -30,8 +43,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseMiddleware<ExceptionHandlingMiddleware>();
-app.UseMiddleware<LoggingMiddleware>();
+// app.UseMiddleware<ExceptionHandlingMiddleware>();
+// app.UseMiddleware<LoggingMiddleware>();
 app.MapGet("/test", () =>
 {
     return "Hello from /test! Checking hot reload, n windwos";

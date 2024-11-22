@@ -15,6 +15,7 @@ public class LoggingMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
+        _logger.LogInformation("Logging Middleware Entered");
         _logger.LogInformation($"Request: {context.Request.Method} {context.Request.Path}");
 
         var originalBodyStream = context.Response.Body;

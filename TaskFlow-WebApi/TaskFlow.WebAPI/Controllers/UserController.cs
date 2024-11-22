@@ -36,16 +36,17 @@ namespace TaskFlow.WebAPI.Controllers
         }
 
         // Get user by id
-        [HttpGet("GetUserById/{id}")]
-        public async Task<IActionResult> GetUserById(int id)
+        [HttpPost("GetUserById")]
+        public async Task<IActionResult> GetUserById(string GuidId)
         {
-            var user = await _userService.GetUserById(id);
+            var user = await _userService.GetUserById(GuidId);
             if (user == null)
             {
                 return NotFound();
             }
             return Ok(user);
         }
+
 
         [HttpPost("AddUser")]
         public async Task<IActionResult> CreateUser([FromBody] UserAddRequestDto user)

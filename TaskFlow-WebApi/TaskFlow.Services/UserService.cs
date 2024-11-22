@@ -22,18 +22,18 @@ namespace TaskFlow.Services
             return await _userRepository.GetUserByUsername(username);
         }
 
-        public async Task<UserInfoResponseDto> GetUserById(int id)
+        public async Task<UserInfoResponseDto> GetUserById(string GuidId)
         {
-            return await _userRepository.GetUserById(id);
+            return await _userRepository.GetUserById(GuidId);
         }
 
         public async Task<UserEntity> CreateUser(UserAddRequestDto user)
         {
-            var addUserObj = new UserAddModifiedRequestDto
+            var addUserObj = new UserEntity
             {
                 GuidId = Guid.NewGuid().ToString(),
                 Username = user.Username,
-                Password = PasswordHelper.HashPassword(user.Password),
+                PasswordHash = PasswordHelper.HashPassword(user.Password),
                 Email = user.Email,
                 Role = user.Role,
                 CreatedDate = DateTime.Now

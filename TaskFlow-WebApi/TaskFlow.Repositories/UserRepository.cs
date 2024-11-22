@@ -24,32 +24,23 @@ namespace TaskFlow.Repositories
         }
 
 
-        public async Task<UserInfoResponseDto> GetUserById(int id)
+        public async Task<UserInfoResponseDto> GetUserById(string GuidId)
         {
-            var res = await _context.Set<UserEntity>().FindAsync(id);
+            var res = await _context.Set<UserEntity>().FirstOrDefaultAsync(u => u.GuidId == GuidId);
 
             return new UserInfoResponseDto
             {
                 Id = res.Id,
+                GuidId = res.GuidId,
                 Username = res.Username,
-                PasswordHash = res.PasswordHash,
                 Role = res.Role,
                 CreatedDate = res.CreatedDate
             };
         }
 
-        public async Task<UserEntity> CreateUser(UserAddModifiedRequestDto user)
+        public async Task<UserEntity> CreateUser(UserEntity user)
         {
-            var userAddObject = new UserEntity
-            {
-                GuidId = user.GuidId,
-                Username = user.Username,
-                PasswordHash = user.Password,
-                Email = user.Email,
-                Role = user.Role,
-                CreatedDate = user.CreatedDate
-            };
-            var entity = await _context.Set<UserEntity>().AddAsync(userAddObject);
+            var entity = await _context.Set<UserEntity>().AddAsync(user);
             await _context.SaveChangesAsync();
             return entity.Entity;
         }
@@ -63,7 +54,7 @@ namespace TaskFlow.Repositories
 
         public async Task DeleteUser(int id)
         {
-            var user = await GetUserById(id);
+            var user = await GetUserById("");
             _context.Set<UserEntity>().Remove(new UserEntity { Id = id });
             await _context.SaveChangesAsync();
         }

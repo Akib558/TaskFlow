@@ -10,7 +10,7 @@ namespace TaskFlow.Services
     public interface IUserService
     {
         Task<UserEntity> GetUserByUsername(string username);
-        Task<UserInfoResponseDto> GetUserById(int id);
+        Task<UserInfoResponseDto> GetUserById(string GuidId);
         Task<UserEntity> CreateUser(UserAddRequestDto user);
         Task<UserEntity> UpdateUser(UserEntity user);
         Task DeleteUser(int id);

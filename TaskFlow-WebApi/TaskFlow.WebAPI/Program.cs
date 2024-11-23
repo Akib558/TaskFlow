@@ -5,6 +5,7 @@ using TaskFlow.Services;
 using TaskFlow.Repositories;
 using Microsoft.EntityFrameworkCore;
 using TaskFlow.Data;
+using TaskFlow.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,12 +19,17 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
+// builder.Services.AddSingleton<JwtHelper>(options => new JwtHelper(builder.Configuration));
+
+
 builder.Services.AddDbContext<TaskFlowDbContext>(options =>
     options.UseSqlServer("Server=localhost, 4001;Database=TaskFlow;User ID=sa;Password=@M1janinaok;Trusted_Connection=False;Encrypt=True;TrustServerCertificate=True;"));
 
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -45,11 +51,6 @@ if (app.Environment.IsDevelopment())
 
 // app.UseMiddleware<ExceptionHandlingMiddleware>();
 // app.UseMiddleware<LoggingMiddleware>();
-app.MapGet("/test", () =>
-{
-    return "Hello from /test! Checking hot reload, now its from windwos";
-});
-
 
 app.MapControllers();
 app.UseHttpsRedirection();

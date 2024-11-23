@@ -24,6 +24,12 @@ namespace TaskFlow.Repositories
         }
 
 
+        public async Task<List<string>> GetUserRoles(string GuidId)
+        {
+            var user = await _context.Set<UserEntity>().Where(u => u.GuidId == GuidId).Select(u => u.Role).ToListAsync();
+            return user;
+        }
+
         public async Task<UserInfoResponseDto> GetUserById(string GuidId)
         {
             var res = await _context.Set<UserEntity>().FirstOrDefaultAsync(u => u.GuidId == GuidId);

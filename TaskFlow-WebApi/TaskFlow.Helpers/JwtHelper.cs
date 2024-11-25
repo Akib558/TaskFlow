@@ -46,29 +46,29 @@ public static class JwtHelper
         return tokenHandler.WriteToken(token);
     }
 
-    public static ClaimsPrincipal ValidateToken(string token)
-    {
-        var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_secret));
-        var tokenHandler = new JwtSecurityTokenHandler();
+    // public static ClaimsPrincipal ValidateToken(string token)
+    // {
+    //     var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_secret));
+    //     var tokenHandler = new JwtSecurityTokenHandler();
 
-        try
-        {
-            var principal = tokenHandler.ValidateToken(token, new TokenValidationParameters
-            {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
-                ValidIssuer = "http://localhost:5109",
-                ValidAudience = "http://localhost:5000",
-                IssuerSigningKey = key
-            }, out var validatedToken);
+    //     try
+    //     {
+    //         var principal = tokenHandler.ValidateToken(token, new TokenValidationParameters
+    //         {
+    //             ValidateIssuer = true,
+    //             ValidateAudience = true,
+    //             ValidateLifetime = true,
+    //             ValidateIssuerSigningKey = true,
+    //             ValidIssuer = "http://localhost:5109",
+    //             ValidAudience = "http://localhost:5000",
+    //             IssuerSigningKey = key
+    //         }, out var validatedToken);
 
-            return principal;
-        }
-        catch (Exception ex)
-        {
-            throw new Exception(message: "Invalid token", innerException: ex);
-        }
-    }
+    //         return principal;
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         throw new Exception(message: "Invalid token", innerException: ex);
+    //     }
+    // }
 }

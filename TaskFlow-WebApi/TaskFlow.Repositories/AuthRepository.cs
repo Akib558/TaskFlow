@@ -21,6 +21,7 @@ public class AuthRepository : IAuthRepository
         return entity.Entity;
     }
 
+
     public async Task<UserEntity> Login(string email, string password)
     {
         var res = await _context.Set<UserEntity>().FirstOrDefaultAsync(u => u.Email == email);

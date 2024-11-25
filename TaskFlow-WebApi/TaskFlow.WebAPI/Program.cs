@@ -1,4 +1,3 @@
-
 using TaskFlow.Middlewares;
 using Serilog;
 using TaskFlow.Services;
@@ -12,73 +11,74 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddLogging();
-
+// Configure Logging
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .WriteTo.File("logs/myapp.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information)
-    .MinimumLevel.Debug()
-    .CreateLogger();
+	.WriteTo.Console()
+	.WriteTo.File("logs/myapp.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information)
+	.MinimumLevel.Debug()
+	.CreateLogger();
 
 builder.Host.UseSerilog();
 
-// builder.Services.AddSingleton<JwtHelper>(options => new JwtHelper(builder.Configuration));
-
-
+// Add Database Context
 builder.Services.AddDbContext<TaskFlowDbContext>(options =>
-    options.UseSqlServer("Server=localhost, 4001;Database=TaskFlow;User ID=sa;Password=@M1janinaok;Trusted_Connection=False;Encrypt=True;TrustServerCertificate=True;"));
+	options.UseSqlServer("Server=localhost,4001;Database=TaskFlow;User ID=sa;Password=@M1janinaok;Trusted_Connection=False;Encrypt=True;TrustServerCertificate=True;"));
 
-
+// Register Services and Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
+// Add Authentication and Authorization
 builder.Services.AddAuthentication(opt =>
 {
-    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+	opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+	opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(opt =>
 {
-    opt.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = "http://localhost:5109",
-        ValidAudience = "http://localhost:5100",
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"]))
-    };
+	opt.TokenValidationParameters = new TokenValidationParameters
+	{
+		ValidateIssuer = true,
+		ValidateAudience = true,
+		ValidateLifetime = true,
+		ValidateIssuerSigningKey = true,
+		ValidIssuer = "http://localhost:5109",
+		ValidAudience = "http://localhost:5000",
+		IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"]))
+	};
 });
 
 builder.Services.AddAuthorization();
 
-
+// Add Controllers and Swagger
 builder.Services.AddControllers();
-
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-
-Log.Information("Test log entry outside middleware");
-
-
-if (app.Environment.IsDevelopment())
+// Exception Handling and HTTPS Redirection
+if (!app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+	app.UseExceptionHandler("/error");
+	app.UseHsts();
 }
 
-// app.UseMiddleware<ExceptionHandlingMiddleware>();
-// app.UseMiddleware<LoggingMiddleware>();
+app.UseHttpsRedirection();
 
+// Enable Swagger
+if (app.Environment.IsDevelopment())
+{
+	app.UseSwagger();
+	app.UseSwaggerUI();
+}
+
+// Use Authentication and Authorization
 app.UseAuthentication();
 app.UseAuthorization();
+
+// Map Controllers
 app.MapControllers();
-app.UseHttpsRedirection();
 
 app.Run();

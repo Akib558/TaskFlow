@@ -39,7 +39,7 @@ public static class JwtHelper
             issuer: "http://localhost:5109",
             audience: "http://localhost:5000",
             claims: claims,
-            expires: DateTime.Now.AddSeconds(60),
+            expires: DateTime.UtcNow.AddDays(10),
             signingCredentials: creds
         );
 

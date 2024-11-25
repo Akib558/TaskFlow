@@ -17,7 +17,7 @@ namespace TaskFlow.Services
             _userRepository = userRepository;
         }
 
-        public async Task<UserEntity> GetUserByUsername(string username)
+        public async Task<UserInfoResponseDto> GetUserByUsername(string username)
         {
             return await _userRepository.GetUserByUsername(username);
         }
@@ -42,7 +42,7 @@ namespace TaskFlow.Services
             return await _userRepository.CreateUser(addUserObj);
         }
 
-        public async Task<UserEntity> UpdateUser(UserEntity user)
+        public async Task<UserInfoResponseDto> UpdateUser(UserUpdateRequestDto user)
         {
             return await _userRepository.UpdateUser(user);
         }

@@ -18,9 +18,19 @@ namespace TaskFlow.Repositories
             _context = dbContext;
         }
 
-        public async Task<UserEntity> GetUserByUsername(string username)
+        public async Task<UserInfoResponseDto> GetUserByUsername(string username)
         {
-            return await _context.Set<UserEntity>().FirstOrDefaultAsync(u => u.Username == username);
+            var res = await _context.Set<UserEntity>().FirstOrDefaultAsync(u => u.Username == username);
+
+            return new UserInfoResponseDto
+            {
+                Id = res.Id,
+                GuidId = res.GuidId,
+                Username = res.Username,
+                Email = res.Email,
+                Role = res.Role,
+                CreatedDate = res.CreatedDate
+            };
         }
 
 
@@ -39,6 +49,7 @@ namespace TaskFlow.Repositories
                 Id = res.Id,
                 GuidId = res.GuidId,
                 Username = res.Username,
+                Email = res.Email,
                 Role = res.Role,
                 CreatedDate = res.CreatedDate
             };
@@ -51,11 +62,26 @@ namespace TaskFlow.Repositories
             return entity.Entity;
         }
 
-        public async Task<UserEntity> UpdateUser(UserEntity user)
+        public async Task<UserInfoResponseDto> UpdateUser(UserUpdateRequestDto user)
         {
-            var entity = _context.Set<UserEntity>().Update(user);
+            var entity = await _context.Set<UserEntity>().FirstOrDefaultAsync(u => u.GuidId == user.GuidId);
+            if (entity == null)
+            {
+                return null;
+            }
+            entity.Username = user.Username;
+            entity.Email = user.Email;
+            entity.Role = user.Role;
+            // entity.UpdatedDate = DateTime.Now;
             await _context.SaveChangesAsync();
-            return entity.Entity;
+            return new UserInfoResponseDto
+            {
+                Id = entity.Id,
+                GuidId = entity.GuidId,
+                Username = entity.Username,
+                Role = entity.Role,
+                CreatedDate = entity.CreatedDate
+            };
         }
 
         public async Task DeleteUser(int id)

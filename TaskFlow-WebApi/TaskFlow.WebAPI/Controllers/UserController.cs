@@ -13,6 +13,7 @@ using TaskFlow.Services;
 namespace TaskFlow.WebAPI.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class UserController : Controller
     {
         private readonly ILogger<UserController> _logger;
@@ -24,11 +25,10 @@ namespace TaskFlow.WebAPI.Controllers
             _userService = userService;
         }
 
-        // Get user by username
         [HttpGet("GetUserByName/{username}")]
-        public async Task<IActionResult> GetUserByUsername(string username)
+        public async Task<IActionResult> GetUserByUsername(UserGetByUsernameRequestDto userGetByUsernameRequestDto)
         {
-            var user = await _userService.GetUserByUsername(username);
+            var user = await _userService.GetUserByUsername(userGetByUsernameRequestDto.Username);
             if (user == null)
             {
                 return NotFound();
@@ -38,9 +38,9 @@ namespace TaskFlow.WebAPI.Controllers
 
         // Get user by id
         [HttpPost("GetUserById")]
-        public async Task<IActionResult> GetUserById(string GuidId)
+        public async Task<IActionResult> GetUserById([FromBody] UserGetByGuidRequestDto userGetByGuidRequestDto)
         {
-            var user = await _userService.GetUserById(GuidId);
+            var user = await _userService.GetUserById(userGetByGuidRequestDto.GuidId);
             if (user == null)
             {
                 return NotFound();
@@ -48,17 +48,16 @@ namespace TaskFlow.WebAPI.Controllers
             return Ok(user);
         }
 
-
-        [HttpPost("AddUser")]
-        public async Task<IActionResult> CreateUser([FromBody] UserAddRequestDto user)
-        {
-            var createdUser = await _userService.CreateUser(user);
-            return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, createdUser);
-        }
+        // [HttpPost("AddUser")]
+        // public async Task<IActionResult> CreateUser([FromBody] UserAddRequestDto user)
+        // {
+        //     var createdUser = await _userService.CreateUser(user);
+        //     return CreatedAtAction(nameof(GetUserById), new { id = createdUser.Id }, createdUser);
+        // }
 
         [Authorize]
-        [HttpPut("UpdateUser")]
-        public async Task<IActionResult> UpdateUser([FromBody] UserEntity user)
+        [HttpPost("UpdateUser")]
+        public async Task<IActionResult> UpdateUser(UserUpdateRequestDto user)
         {
             var updatedUser = await _userService.UpdateUser(user);
             return Ok(updatedUser);

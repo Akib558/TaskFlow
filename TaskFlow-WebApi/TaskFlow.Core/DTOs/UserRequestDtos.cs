@@ -23,6 +23,22 @@ namespace TaskFlow.Core.DTOs
 		public string GuidId { get; set; }
 	}
 
+	public class UserGetByUsernameRequestDto
+	{
+		public string Username { get; set; }
+	}
+
+	public class UserUpdateRequestDto
+	{
+		public string Username { get; set; }
+		// public string Password { get; set; }
+		public string Email { get; set; }
+		public string Role { get; set; }
+		public string GuidId { get; set; }
+		public DateTime CreatedDate { get; set; }
+	}
+
+
 	public class UserAddModifiedRequestDto : UserAddRequestDto
 	{
 		public string Role { get; set; }

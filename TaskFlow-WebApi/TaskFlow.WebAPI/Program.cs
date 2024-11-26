@@ -11,14 +11,25 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure Logging
+var logFilePath = $"logs/{DateTime.Now:yyyy-MM-dd}-myapp-development.log";
+var outputTemplate = "{Timestamp:yyyy-MM-dd HH:mm:ss}-[{Level}]-{Message:lj}{NewLine}{Exception}{NewLine}---------------------{NewLine}";
+
 Log.Logger = new LoggerConfiguration()
 	.WriteTo.Console()
-	.WriteTo.File("logs/myapp.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information)
+	.WriteTo.File(
+		logFilePath,
+		outputTemplate: outputTemplate, //output format of each log
+		rollingInterval: RollingInterval.Day,
+		restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information
+	)
 	.MinimumLevel.Debug()
+	.MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning) // Override logging for specific namespaces
+	.Enrich.WithProperty("Application", "TaskFlow API") // Add custom property
+	.Enrich.FromLogContext() // Include contextual data
 	.CreateLogger();
 
 builder.Host.UseSerilog();
+
 
 // Add Database Context
 builder.Services.AddDbContext<TaskFlowDbContext>(options =>
@@ -77,6 +88,8 @@ if (app.Environment.IsDevelopment())
 // Use Authentication and Authorization
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseMiddleware<LoggingMiddleware>();
 
 // Map Controllers
 app.MapControllers();

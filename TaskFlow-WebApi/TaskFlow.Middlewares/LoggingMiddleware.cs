@@ -15,22 +15,40 @@ public class LoggingMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
-        _logger.LogInformation("Logging Middleware Entered");
-        _logger.LogInformation($"Request: {context.Request.Method} {context.Request.Path}");
+        _logger.LogInformation($"Incoming Request: {context.Request.Method} {context.Request.Path}");
 
         var originalBodyStream = context.Response.Body;
-        using var responseBody = new MemoryStream();
-        context.Response.Body = responseBody;
 
-        await _next(context);
+        try
+        {
+            // Use a memory stream to capture the response
+            using var responseBody = new MemoryStream();
+            context.Response.Body = responseBody;
 
-        context.Response.Body.Seek(0, SeekOrigin.Begin);
-        var responseText = await new StreamReader(context.Response.Body).ReadToEndAsync();
-        context.Response.Body.Seek(0, SeekOrigin.Begin);
+            // Call the next middleware in the pipeline
+            await _next(context);
 
-        _logger.LogInformation($"Response: {responseText}");
+            // Read the response body
+            context.Response.Body.Seek(0, SeekOrigin.Begin);
+            var responseText = await new StreamReader(context.Response.Body).ReadToEndAsync();
+            context.Response.Body.Seek(0, SeekOrigin.Begin);
 
-        await responseBody.CopyToAsync(originalBodyStream);
+            _logger.LogInformation($"Outgoing Response: {context.Response.StatusCode} {responseText}");
+
+            // Copy the content of the new stream to the original stream
+            await responseBody.CopyToAsync(originalBodyStream);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occurred in the LoggingMiddleware.");
+            throw; // Re-throw the exception to ensure the pipeline is aware of the error
+        }
+        finally
+        {
+            // Restore the original response body stream
+            context.Response.Body = originalBodyStream;
+        }
     }
+
 
 }

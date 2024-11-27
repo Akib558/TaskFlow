@@ -1,54 +1,67 @@
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace TaskFlow.Middlewares;
-public class LoggingMiddleware
+namespace TaskFlow.Middlewares
 {
-    private readonly RequestDelegate _next;
-    private readonly ILogger<LoggingMiddleware> _logger;
-
-    public LoggingMiddleware(RequestDelegate next, ILogger<LoggingMiddleware> logger)
+    public class LoggingMiddleware
     {
-        _next = next;
-        _logger = logger;
-    }
+        private readonly RequestDelegate _next;
+        private readonly ILogger<LoggingMiddleware> _logger;
 
-    public async Task InvokeAsync(HttpContext context)
-    {
-        _logger.LogInformation($"Incoming Request: {context.Request.Method} {context.Request.Path}");
-
-        var originalBodyStream = context.Response.Body;
-
-        try
+        public LoggingMiddleware(RequestDelegate next, ILogger<LoggingMiddleware> logger)
         {
-            // Use a memory stream to capture the response
+            _next = next;
+            _logger = logger;
+        }
+
+        public async Task InvokeAsync(HttpContext context)
+        {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            var originalBodyStream = context.Response.Body;
             using var responseBody = new MemoryStream();
             context.Response.Body = responseBody;
 
-            // Call the next middleware in the pipeline
-            await _next(context);
+            var logBuilder = new StringBuilder();
 
-            // Read the response body
-            context.Response.Body.Seek(0, SeekOrigin.Begin);
-            var responseText = await new StreamReader(context.Response.Body).ReadToEndAsync();
-            context.Response.Body.Seek(0, SeekOrigin.Begin);
+            try
+            {
+                logBuilder.Append($"[Method: {context.Request.Method}] | [Path: {context.Request.Path}]");
+                var userIdentity = context.User?.Identity?.Name ?? "Anonymous";
+                logBuilder.Append($" | [User: {userIdentity}]");
 
-            _logger.LogInformation($"Outgoing Response: {context.Response.StatusCode} {responseText}");
+                await _next(context);
 
-            // Copy the content of the new stream to the original stream
-            await responseBody.CopyToAsync(originalBodyStream);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "An error occurred in the LoggingMiddleware.");
-            throw; // Re-throw the exception to ensure the pipeline is aware of the error
-        }
-        finally
-        {
-            // Restore the original response body stream
-            context.Response.Body = originalBodyStream;
+                stopwatch.Stop();
+
+                logBuilder.Append($" | [Response Time: {stopwatch.ElapsedMilliseconds}ms]");
+                logBuilder.Append($" | [Status Code: {context.Response.StatusCode}]");
+
+                context.Response.Body.Seek(0, SeekOrigin.Begin);
+                var responseContent = await new StreamReader(context.Response.Body).ReadToEndAsync();
+                context.Response.Body.Seek(0, SeekOrigin.Begin);
+
+#if DEBUG
+                logBuilder.Append($" | [Response: {responseContent}]");
+#endif
+
+            }
+            catch (Exception ex)
+            {
+                logBuilder.Append($" | [Exception: {ex.Message}]");
+                _logger.LogError(logBuilder.ToString());
+                throw;
+            }
+            finally
+            {
+                await responseBody.CopyToAsync(originalBodyStream);
+            }
+
+            _logger.LogInformation(logBuilder.ToString());
         }
     }
-
-
 }

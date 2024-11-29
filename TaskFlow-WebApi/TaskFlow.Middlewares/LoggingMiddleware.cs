@@ -23,7 +23,7 @@ namespace TaskFlow.Middlewares
             stopwatch.Start();
 
             var originalBodyStream = context.Response.Body;
-            using var responseBody = new MemoryStream();
+            var responseBody = new MemoryStream();
             context.Response.Body = responseBody;
 
             var logBuilder = new StringBuilder();
@@ -58,7 +58,9 @@ namespace TaskFlow.Middlewares
             }
             finally
             {
+                context.Response.Body = originalBodyStream;
                 await responseBody.CopyToAsync(originalBodyStream);
+                responseBody.Dispose();
             }
 
             _logger.LogInformation(logBuilder.ToString());

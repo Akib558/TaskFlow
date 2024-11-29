@@ -4,10 +4,11 @@ using TaskFlow.Services;
 using TaskFlow.Repositories;
 using Microsoft.EntityFrameworkCore;
 using TaskFlow.Data;
-using TaskFlow.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Mvc;
+using TaskFlow.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,14 @@ Log.Logger = new LoggerConfiguration()
 	.CreateLogger();
 
 builder.Host.UseSerilog();
+builder.Services.AddControllers(options =>
+{
+	options.Filters.Add<ValidationFilter>();
+});
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+	options.SuppressModelStateInvalidFilter = true;
+});
 
 
 // Add Database Context
@@ -63,7 +72,9 @@ builder.Services.AddAuthentication(opt =>
 builder.Services.AddAuthorization();
 
 // Add Controllers and Swagger
-builder.Services.AddControllers();
+// builder.Services.AddControllers();
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -86,9 +97,9 @@ if (app.Environment.IsDevelopment())
 }
 
 // Use Authentication and Authorization
+app.UseMiddleware<ApiResponseMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.UseMiddleware<LoggingMiddleware>();
 
 // Map Controllers

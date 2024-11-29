@@ -25,7 +25,7 @@ namespace TaskFlow.WebAPI.Controllers
             _userService = userService;
         }
 
-        [HttpGet("GetUserByName/{username}")]
+        [HttpGet("GetUserByName")]
         public async Task<IActionResult> GetUserByUsername(UserGetByUsernameRequestDto userGetByUsernameRequestDto)
         {
             var user = await _userService.GetUserByUsername(userGetByUsernameRequestDto.Username);

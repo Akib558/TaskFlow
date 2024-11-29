@@ -1,4 +1,5 @@
 using System;
+using BCrypt.Net;
 using TaskFlow.Data.Entities;
 using TaskFlow.Helpers;
 using TaskFlow.Repositories;
@@ -52,7 +53,7 @@ public class AuthService : IAuthService
     {
         var res = _authRepository.Login(user.Email, PasswordHelper.HashPassword(user.Password));
 
-        if (res == null && PasswordHelper.VerifyPassword(user.Password, res.Result.PasswordHash))
+        if (res == null || !PasswordHelper.VerifyPassword(user.Password, res.Result.PasswordHash))
         {
             throw new Exception("User login failed");
         }

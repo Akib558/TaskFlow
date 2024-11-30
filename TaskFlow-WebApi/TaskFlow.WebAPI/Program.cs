@@ -32,7 +32,7 @@ Log.Logger = new LoggerConfiguration()
 builder.Host.UseSerilog();
 builder.Services.AddControllers(options =>
 {
-	options.Filters.Add<ValidationFilter>();
+	options.Filters.Add<ValidationModelFilter>();
 });
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
@@ -97,9 +97,9 @@ if (app.Environment.IsDevelopment())
 }
 
 // Use Authentication and Authorization
-app.UseMiddleware<ApiResponseMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseMiddleware<ApiResponseMiddleware>();
 app.UseMiddleware<LoggingMiddleware>();
 
 // Map Controllers

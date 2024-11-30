@@ -15,9 +15,9 @@ public class AuthRequestDto
 
     public class UserLoginAuthRequestDto
     {
-        [Required(ErrorMessage = "Email is Required")]
+        // [Required(ErrorMessage = "Email is Required")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Password is Required")]
+        // [Required(ErrorMessage = "Password is Required")]
         public string Password { get; set; }
     }
 }

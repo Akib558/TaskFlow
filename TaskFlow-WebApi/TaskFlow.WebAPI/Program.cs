@@ -7,8 +7,11 @@ using TaskFlow.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.AspNetCore.Mvc;
-using TaskFlow.Utilities;
+using FluentValidation;
+using TaskFlow.Core.Validators;
+using FluentValidation.AspNetCore;
+
+using TaskFlow.Utilites;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,28 +22,24 @@ Log.Logger = new LoggerConfiguration()
 	.WriteTo.Console()
 	.WriteTo.File(
 		logFilePath,
-		outputTemplate: outputTemplate, //output format of each log
+		outputTemplate: outputTemplate,
 		rollingInterval: RollingInterval.Day,
 		restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information
 	)
 	.MinimumLevel.Debug()
-	.MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning) // Override logging for specific namespaces
-	.Enrich.WithProperty("Application", "TaskFlow API") // Add custom property
-	.Enrich.FromLogContext() // Include contextual data
+	.MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
+	.Enrich.WithProperty("Application", "TaskFlow API")
+	.Enrich.FromLogContext()
 	.CreateLogger();
 
 builder.Host.UseSerilog();
-builder.Services.AddControllers(options =>
-{
-	options.Filters.Add<ValidationModelFilter>();
-});
-builder.Services.Configure<ApiBehaviorOptions>(options =>
-{
-	options.SuppressModelStateInvalidFilter = true;
-});
+builder.Services.AddControllers();
+builder.Services.AddFluentValidationAutoValidation()
+				.AddFluentValidationClientsideAdapters();
 
+builder.Services.AddValidatorsFromAssemblyContaining<UserLoginAuthValidator>();
+ApiModelValidation.AddValidationForModel(builder.Services);
 
-// Add Database Context
 builder.Services.AddDbContext<TaskFlowDbContext>(options =>
 	options.UseSqlServer("Server=localhost,4001;Database=TaskFlow;User ID=sa;Password=@M1janinaok;Trusted_Connection=False;Encrypt=True;TrustServerCertificate=True;"));
 
@@ -71,16 +70,11 @@ builder.Services.AddAuthentication(opt =>
 
 builder.Services.AddAuthorization();
 
-// Add Controllers and Swagger
-// builder.Services.AddControllers();
-
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Exception Handling and HTTPS Redirection
 if (!app.Environment.IsDevelopment())
 {
 	app.UseExceptionHandler("/error");

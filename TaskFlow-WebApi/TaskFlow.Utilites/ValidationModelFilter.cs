@@ -3,6 +3,9 @@ using Microsoft.Extensions.Logging;
 using TaskFlow.Helpers; // Add this if you plan to log
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TaskFlow.Core.Validators;
+using System.ComponentModel.DataAnnotations;
+using FluentValidation;
 
 namespace TaskFlow.Utilities
 {
@@ -28,7 +31,7 @@ namespace TaskFlow.Utilities
                     );
 
                 var errorResponse = ApiResponse<object>.ErrorResponse(errors, "Form Validation Failed");
-                context.HttpContext.Response.Headers.Add("X-Skip-Middleware", "true");
+                context.HttpContext.Response?.Headers?.Add("X-Skip-Middleware", "true");
 
                 context.Result = new ObjectResult(errorResponse)
                 {

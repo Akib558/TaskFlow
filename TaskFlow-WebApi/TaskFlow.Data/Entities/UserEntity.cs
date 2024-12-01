@@ -1,12 +1,16 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace TaskFlow.Data.Entities;
 
 public class UserEntity
 {
+    [Key]
     public int Id { get; set; }
-    public string GuidId { get; set; }
-    public string Username { get; set; }
-    public string Email { get; set; }
-    public string PasswordHash { get; set; }
-    public string Role { get; set; }
+    public string UserGuidId { get; set; }
+    public string UserName { get; set; }
+    public string UserEmail { get; set; }
+    public string UserPasswordHash { get; set; }
+    public string UserRole { get; set; }
+    public int UserDeleted { get; set; } = 0;
     public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
 }

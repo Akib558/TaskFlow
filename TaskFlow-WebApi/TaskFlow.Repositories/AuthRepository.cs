@@ -24,7 +24,7 @@ public class AuthRepository : IAuthRepository
 
     public async Task<UserEntity> Login(string email, string password)
     {
-        var res = await _context.Set<UserEntity>().FirstOrDefaultAsync(u => u.Email == email);
+        var res = await _context.Set<UserEntity>().FirstOrDefaultAsync(u => u.UserEmail == email);
         return res;
     }
 }

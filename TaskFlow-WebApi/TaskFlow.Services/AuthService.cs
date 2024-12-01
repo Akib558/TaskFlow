@@ -21,11 +21,11 @@ public class AuthService : IAuthService
     {
         var addUserObj = new UserEntity
         {
-            GuidId = Guid.NewGuid().ToString(),
-            Username = user.Username,
-            PasswordHash = PasswordHelper.HashPassword(user.Password),
-            Email = user.Email,
-            Role = user.Role,
+            UserGuidId = Guid.NewGuid().ToString(),
+            UserName = user.Username,
+            UserPasswordHash = PasswordHelper.HashPassword(user.Password),
+            UserEmail = user.Email,
+            UserRole = user.Role,
             CreatedDate = DateTime.Now
         };
         var res = _authRepository.Register(addUserObj);
@@ -34,18 +34,18 @@ public class AuthService : IAuthService
             throw new Exception("User registration failed");
         }
 
-        var roleList = new List<string> { res.Result.Role };
+        var roleList = new List<string> { res.Result.UserRole };
 
         return Task.FromResult(new UserRegisterAuthResponseDto
         {
             UserInfo = new UserInfoResponseDto
             {
-                Username = res.Result.Username,
-                Email = res.Result.Email,
-                Role = res.Result.Role,
-                GuidId = res.Result.GuidId
+                Username = res.Result.UserName,
+                Email = res.Result.UserEmail,
+                Role = res.Result.UserRole,
+                GuidId = res.Result.UserGuidId
             },
-            Token = JwtHelper.GenerateToken(res.Result.Username, res.Result.GuidId, roleList)
+            Token = JwtHelper.GenerateToken(res.Result.UserName, res.Result.UserGuidId, roleList)
         });
     }
 
@@ -53,7 +53,7 @@ public class AuthService : IAuthService
     {
         var res = _authRepository.Login(user.Email, PasswordHelper.HashPassword(user.Password));
 
-        if (res == null || !PasswordHelper.VerifyPassword(user.Password, res.Result.PasswordHash))
+        if (res == null || !PasswordHelper.VerifyPassword(user.Password, res.Result.UserPasswordHash))
         {
             throw new Exception("User login failed");
         }
@@ -62,12 +62,12 @@ public class AuthService : IAuthService
         {
             UserInfo = new UserInfoResponseDto
             {
-                Username = res.Result.Username,
-                Email = res.Result.Email,
-                Role = res.Result.Role,
-                GuidId = res.Result.GuidId
+                Username = res.Result.UserName,
+                Email = res.Result.UserEmail,
+                Role = res.Result.UserRole,
+                GuidId = res.Result.UserGuidId
             },
-            Token = JwtHelper.GenerateToken(res.Result.Username, res.Result.GuidId, new List<string> { res.Result.Role })
+            Token = JwtHelper.GenerateToken(res.Result.UserName, res.Result.UserGuidId, new List<string> { res.Result.UserRole })
         });
     }
 

@@ -31,11 +31,11 @@ namespace TaskFlow.Services
         {
             var addUserObj = new UserEntity
             {
-                GuidId = Guid.NewGuid().ToString(),
-                Username = user.Username,
-                PasswordHash = PasswordHelper.HashPassword(user.Password),
-                Email = user.Email,
-                Role = user.Role,
+                UserGuidId = Guid.NewGuid().ToString(),
+                UserName = user.Username,
+                UserPasswordHash = PasswordHelper.HashPassword(user.Password),
+                UserEmail = user.Email,
+                UserRole = user.Role,
                 CreatedDate = DateTime.Now
             };
 

@@ -10,19 +10,15 @@ namespace TaskFlow.Data
 {
     public class TaskFlowDbContextFactory : IDesignTimeDbContextFactory<TaskFlowDbContext>
     {
-        private readonly IConfiguration _configuration;
-        public TaskFlowDbContextFactory(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
         public TaskFlowDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<TaskFlowDbContext>();
-            optionsBuilder.UseSqlServer(
-                _configuration["ConnectionStrings:DefaultConnection"]
-            );
+
+            // Manually specify the connection string here
+            optionsBuilder.UseSqlServer("Server=localhost,4001;Database=TaskFlow;User ID=sa;Password=@M1janinaok;Trusted_Connection=False;Encrypt=True;TrustServerCertificate=True;");
 
             return new TaskFlowDbContext(optionsBuilder.Options);
         }
     }
+
 }

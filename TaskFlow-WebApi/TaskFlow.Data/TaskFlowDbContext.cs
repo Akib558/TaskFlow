@@ -9,11 +9,12 @@ public class TaskFlowDbContext : DbContext
 
 
     public DbSet<UserEntity> Users { get; set; }
+    public DbSet<TaskEntity> Tasks { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<UserEntity>()
-            .HasIndex(ind => ind.Username)
+            .HasIndex(ind => ind.UserName)
             .IsUnique();
     }
 }

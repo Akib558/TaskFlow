@@ -21,6 +21,27 @@ public class TaskEntity
     public DateTime TaskCreatedDate { get; set; }
     public DateTime TaskUpdatedDate { get; set; }
     public DateTime TaskDueDate { get; set; }
-
 }
 
+public class TaskAssignmentsEntity
+{
+    [Key]
+    public int Id { get; set; }
+    public string TaskAssignmentGuidId { get; set; }
+    public string UserGuidId { get; set; }
+    public string TaskGuidId { get; set; }
+    public string Role { get; set; }
+}
+
+
+public class TaskUpdate
+{
+    [Key]
+    public int Id { get; set; }
+    public string TaskUpdateGuidId { get; set; }
+    public string TaskGuidId { get; set; }
+    public string UpdatedBy { get; set; }
+    public string UpdateType { get; set; }
+    public string TaskUpdateDescrition { get; set; }
+    public DateTime TaskUpdateTime { get; set; }
+}

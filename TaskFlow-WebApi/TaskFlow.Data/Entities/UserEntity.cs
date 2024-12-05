@@ -13,4 +13,6 @@ public class UserEntity
     public string UserRole { get; set; }
     public int UserDeleted { get; set; } = 0;
     public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
+    public ICollection<TaskAssignmentsEntity> TaskAssignments { get; set; }
+
 }

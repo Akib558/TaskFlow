@@ -21,6 +21,7 @@ public class TaskEntity
     public DateTime TaskCreatedDate { get; set; }
     public DateTime TaskUpdatedDate { get; set; }
     public DateTime TaskDueDate { get; set; }
+    public ICollection<TaskAssignmentsEntity> TaskAssignments { get; set; }
 }
 
 public class TaskAssignmentsEntity
@@ -29,7 +30,9 @@ public class TaskAssignmentsEntity
     public int Id { get; set; }
     public string TaskAssignmentGuidId { get; set; }
     public string UserGuidId { get; set; }
+    public UserEntity UserEntity { get; set; }
     public string TaskGuidId { get; set; }
+    public TaskEntity TaskEntity { get; set; }
     public string Role { get; set; }
 }
 

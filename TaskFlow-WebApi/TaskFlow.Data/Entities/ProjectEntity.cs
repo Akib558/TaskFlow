@@ -14,6 +14,7 @@ public class ProjectEntity
     public DateTime EndDate { get; set; }
     public string ProjectStatus { get; set; }
     public string CreatedBy { get; set; }
+    public ICollection<ProjectMembers> Members { get; set; }
 }
 
 
@@ -32,4 +33,8 @@ public class ProjectMembers
     public string UserGuidId { get; set; }
     public string ProjectGuidId { get; set; }
     public string ProjectRoleGuidId { get; set; }
+
+    public ProjectEntity ProjectEntity { get; set; }
+    public UserEntity UserEntity { get; set; }
+
 }

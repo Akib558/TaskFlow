@@ -14,5 +14,7 @@ public class UserEntity
     public int UserDeleted { get; set; } = 0;
     public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
     public ICollection<TaskAssignmentsEntity> TaskAssignments { get; set; }
+    public ICollection<TaskUpdate> TaskUpdates { get; set; }
+    public ICollection<ProjectMembers> Members { get; set; }
 
 }

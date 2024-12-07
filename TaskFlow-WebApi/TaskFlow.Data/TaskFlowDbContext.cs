@@ -23,7 +23,6 @@ public class TaskFlowDbContext : DbContext
             .HasIndex(ind => ind.UserName)
             .IsUnique();
 
-
         //Many-to-Many relationship between user and task
 
         modelBuilder.Entity<TaskAssignmentsEntity>()
@@ -38,6 +37,38 @@ public class TaskFlowDbContext : DbContext
             .WithMany(u => u.TaskAssignments)
             .HasForeignKey(f => f.TaskGuidId)
             .HasPrincipalKey(t => t.TaskGuidId);
+
+
+        //Many-to-Many relationship between user and taskupdate
+
+        modelBuilder.Entity<TaskUpdate>()
+            .HasKey(ind => new { ind.UserGuidId, ind.TaskGuidId });
+        modelBuilder.Entity<TaskUpdate>()
+            .HasOne(ta => ta.UserEntity)
+            .WithMany(u => u.TaskUpdates)
+            .HasForeignKey(f => f.UserGuidId)
+            .HasPrincipalKey(f => f.UserGuidId);
+        modelBuilder.Entity<TaskUpdate>()
+            .HasOne(ta => ta.TaskEntity)
+            .WithMany(u => u.TaskUpdates)
+            .HasForeignKey(f => f.TaskGuidId)
+            .HasPrincipalKey(t => t.TaskGuidId);
+
+
+        //Many-to-Many relationship between user and taskupdate
+
+        // modelBuilder.Entity<ProjectMembers>()
+        //     .HasKey(ind => new { ind.UserGuidId, ind.ProjectGuidId });
+        // modelBuilder.Entity<ProjectMembers>()
+        //     .HasOne(ta => ta.UserEntity)
+        //     .WithMany(u => u.Members)
+        //     .HasForeignKey(f => f.UserGuidId)
+        //     .HasPrincipalKey(f => f.UserGuidId);
+        // modelBuilder.Entity<ProjectMembers>()
+        //     .HasOne(ta => ta.ProjectEntity)
+        //     .WithMany(u => u.Members)
+        //     .HasForeignKey(f => f.ProjectGuidId)
+        //     .HasPrincipalKey(t => t.ProjectGuidId);
 
     }
 }

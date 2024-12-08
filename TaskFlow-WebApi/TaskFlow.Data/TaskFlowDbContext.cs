@@ -31,12 +31,12 @@ public class TaskFlowDbContext : DbContext
             .HasOne(ta => ta.UserEntity)
             .WithMany(u => u.TaskAssignments)
             .HasForeignKey(f => f.UserGuidId)
-            .HasPrincipalKey(f => f.UserGuidId);
+            .HasPrincipalKey(p => p.UserGuidId);
         modelBuilder.Entity<TaskAssignmentsEntity>()
             .HasOne(ta => ta.TaskEntity)
             .WithMany(u => u.TaskAssignments)
             .HasForeignKey(f => f.TaskGuidId)
-            .HasPrincipalKey(t => t.TaskGuidId);
+            .HasPrincipalKey(p => p.TaskGuidId);
 
 
         //Many-to-Many relationship between user and taskupdate
@@ -44,31 +44,31 @@ public class TaskFlowDbContext : DbContext
         modelBuilder.Entity<TaskUpdate>()
             .HasKey(ind => new { ind.UserGuidId, ind.TaskGuidId });
         modelBuilder.Entity<TaskUpdate>()
-            .HasOne(ta => ta.UserEntity)
-            .WithMany(u => u.TaskUpdates)
-            .HasForeignKey(f => f.UserGuidId)
-            .HasPrincipalKey(f => f.UserGuidId);
+            .HasOne(tu => tu.UserEntity)
+            .WithMany(ue => ue.TaskUpdates)
+            .HasForeignKey(tu => tu.UserGuidId)
+            .HasPrincipalKey(tu => tu.UserGuidId);
         modelBuilder.Entity<TaskUpdate>()
-            .HasOne(ta => ta.TaskEntity)
-            .WithMany(u => u.TaskUpdates)
-            .HasForeignKey(f => f.TaskGuidId)
-            .HasPrincipalKey(t => t.TaskGuidId);
+            .HasOne(tu => tu.TaskEntity)
+            .WithMany(te => te.TaskUpdates)
+            .HasForeignKey(tu => tu.TaskGuidId)
+            .HasPrincipalKey(tu => tu.TaskGuidId);
 
 
         //Many-to-Many relationship between user and taskupdate
 
-        // modelBuilder.Entity<ProjectMembers>()
-        //     .HasKey(ind => new { ind.UserGuidId, ind.ProjectGuidId });
-        // modelBuilder.Entity<ProjectMembers>()
-        //     .HasOne(ta => ta.UserEntity)
-        //     .WithMany(u => u.Members)
-        //     .HasForeignKey(f => f.UserGuidId)
-        //     .HasPrincipalKey(f => f.UserGuidId);
-        // modelBuilder.Entity<ProjectMembers>()
-        //     .HasOne(ta => ta.ProjectEntity)
-        //     .WithMany(u => u.Members)
-        //     .HasForeignKey(f => f.ProjectGuidId)
-        //     .HasPrincipalKey(t => t.ProjectGuidId);
+        modelBuilder.Entity<ProjectMembers>()
+            .HasKey(ind => new { ind.UserGuidId, ind.ProjectGuidId });
+        modelBuilder.Entity<ProjectMembers>()
+            .HasOne(ta => ta.UserEntity)
+            .WithMany(u => u.ProjectMembers)
+            .HasForeignKey(f => f.UserGuidId)
+            .HasPrincipalKey(f => f.UserGuidId);
+        modelBuilder.Entity<ProjectMembers>()
+            .HasOne(ta => ta.ProjectEntity)
+            .WithMany(u => u.Members)
+            .HasForeignKey(f => f.ProjectGuidId)
+            .HasPrincipalKey(t => t.ProjectGuidId);
 
     }
 }

@@ -15,6 +15,6 @@ public class UserEntity
     public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
     public ICollection<TaskAssignmentsEntity> TaskAssignments { get; set; }
     public ICollection<TaskUpdate> TaskUpdates { get; set; }
-    public ICollection<ProjectMembers> Members { get; set; }
+    public ICollection<ProjectMembers> ProjectMembers { get; set; }
 
 }

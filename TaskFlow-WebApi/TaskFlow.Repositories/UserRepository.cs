@@ -18,22 +18,39 @@ namespace TaskFlow.Repositories
             _context = dbContext;
         }
 
-        public async Task<UserEntity> GetUserByUsername(string username)
+        public async Task<UserInfoResponseDto> GetUserByUsername(string username)
         {
-            return await _context.Set<UserEntity>().FirstOrDefaultAsync(u => u.Username == username);
-        }
-
-
-        public async Task<UserInfoResponseDto> GetUserById(string GuidId)
-        {
-            var res = await _context.Set<UserEntity>().FirstOrDefaultAsync(u => u.GuidId == GuidId);
+            var res = await _context.Set<UserEntity>().FirstOrDefaultAsync(u => u.UserName == username);
 
             return new UserInfoResponseDto
             {
                 Id = res.Id,
-                GuidId = res.GuidId,
-                Username = res.Username,
-                Role = res.Role,
+                GuidId = res.UserGuidId,
+                Username = res.UserName,
+                Email = res.UserEmail,
+                Role = res.UserRole,
+                CreatedDate = res.CreatedDate
+            };
+        }
+
+
+        public async Task<List<string>> GetUserRoles(string GuidId)
+        {
+            var user = await _context.Set<UserEntity>().Where(u => u.UserGuidId == GuidId).Select(u => u.UserRole).ToListAsync();
+            return user;
+        }
+
+        public async Task<UserInfoResponseDto> GetUserById(string GuidId)
+        {
+            var res = await _context.Set<UserEntity>().FirstOrDefaultAsync(u => u.UserGuidId == GuidId);
+
+            return new UserInfoResponseDto
+            {
+                Id = res.Id,
+                GuidId = res.UserGuidId,
+                Username = res.UserName,
+                Email = res.UserEmail,
+                Role = res.UserRole,
                 CreatedDate = res.CreatedDate
             };
         }
@@ -45,11 +62,26 @@ namespace TaskFlow.Repositories
             return entity.Entity;
         }
 
-        public async Task<UserEntity> UpdateUser(UserEntity user)
+        public async Task<UserInfoResponseDto> UpdateUser(UserUpdateRequestDto user)
         {
-            var entity = _context.Set<UserEntity>().Update(user);
+            var entity = await _context.Set<UserEntity>().FirstOrDefaultAsync(u => u.UserGuidId == user.GuidId);
+            if (entity == null)
+            {
+                return null;
+            }
+            entity.UserName = user.Username;
+            entity.UserEmail = user.Email;
+            entity.UserRole = user.Role;
+            // entity.UpdatedDate = DateTime.Now;
             await _context.SaveChangesAsync();
-            return entity.Entity;
+            return new UserInfoResponseDto
+            {
+                Id = entity.Id,
+                GuidId = entity.UserGuidId,
+                Username = entity.UserName,
+                Role = entity.UserRole,
+                CreatedDate = entity.CreatedDate
+            };
         }
 
         public async Task DeleteUser(int id)

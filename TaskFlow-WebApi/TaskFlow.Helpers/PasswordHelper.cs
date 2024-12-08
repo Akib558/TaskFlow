@@ -9,6 +9,7 @@ namespace TaskFlow.Helpers
     {
         public static string HashPassword(string password)
         {
+
             var hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
             return hashedPassword;
         }

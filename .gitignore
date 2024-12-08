@@ -13,9 +13,6 @@
 **/bin/
 **/obj/
 # Ignore sensitive configuration files
-appsettings.json
-appsettings.Development.json
-appsettings.Production.json
 *.secret.json
 
 # Ignore user-specific settings and generated files

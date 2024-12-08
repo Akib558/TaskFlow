@@ -17,7 +17,7 @@ namespace TaskFlow.Services
             _userRepository = userRepository;
         }
 
-        public async Task<UserEntity> GetUserByUsername(string username)
+        public async Task<UserInfoResponseDto> GetUserByUsername(string username)
         {
             return await _userRepository.GetUserByUsername(username);
         }
@@ -31,18 +31,18 @@ namespace TaskFlow.Services
         {
             var addUserObj = new UserEntity
             {
-                GuidId = Guid.NewGuid().ToString(),
-                Username = user.Username,
-                PasswordHash = PasswordHelper.HashPassword(user.Password),
-                Email = user.Email,
-                Role = user.Role,
+                UserGuidId = Guid.NewGuid().ToString(),
+                UserName = user.Username,
+                UserPasswordHash = PasswordHelper.HashPassword(user.Password),
+                UserEmail = user.Email,
+                UserRole = user.Role,
                 CreatedDate = DateTime.Now
             };
 
             return await _userRepository.CreateUser(addUserObj);
         }
 
-        public async Task<UserEntity> UpdateUser(UserEntity user)
+        public async Task<UserInfoResponseDto> UpdateUser(UserUpdateRequestDto user)
         {
             return await _userRepository.UpdateUser(user);
         }

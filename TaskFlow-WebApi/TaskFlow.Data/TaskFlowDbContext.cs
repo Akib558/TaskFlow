@@ -57,18 +57,18 @@ public class TaskFlowDbContext : DbContext
 
         //Many-to-Many relationship between user and taskupdate
 
-        // modelBuilder.Entity<ProjectMembers>()
-        //     .HasKey(ind => new { ind.UserGuidId, ind.ProjectGuidId });
-        // modelBuilder.Entity<ProjectMembers>()
-        //     .HasOne(ta => ta.UserEntity)
-        //     .WithMany(u => u.Members)
-        //     .HasForeignKey(f => f.UserGuidId)
-        //     .HasPrincipalKey(f => f.UserGuidId);
-        // modelBuilder.Entity<ProjectMembers>()
-        //     .HasOne(ta => ta.ProjectEntity)
-        //     .WithMany(u => u.Members)
-        //     .HasForeignKey(f => f.ProjectGuidId)
-        //     .HasPrincipalKey(t => t.ProjectGuidId);
+        modelBuilder.Entity<ProjectMembers>()
+            .HasKey(ind => new { ind.UserGuidId, ind.ProjectGuidId });
+        modelBuilder.Entity<ProjectMembers>()
+            .HasOne(ta => ta.UserEntity)
+            .WithMany(u => u.Members)
+            .HasForeignKey(f => f.UserGuidId)
+            .HasPrincipalKey(f => f.UserGuidId);
+        modelBuilder.Entity<ProjectMembers>()
+            .HasOne(ta => ta.ProjectEntity)
+            .WithMany(u => u.Members)
+            .HasForeignKey(f => f.ProjectGuidId)
+            .HasPrincipalKey(t => t.ProjectGuidId);
 
     }
 }

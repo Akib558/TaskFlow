@@ -46,8 +46,10 @@ builder.Services.AddDbContext<TaskFlowDbContext>(options =>
 // Register Services and Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 
 // Add Authentication and Authorization
 builder.Services.AddAuthentication(opt =>

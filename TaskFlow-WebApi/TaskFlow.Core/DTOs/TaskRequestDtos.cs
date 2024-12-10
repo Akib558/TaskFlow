@@ -19,9 +19,9 @@ public class TaskRequestDtos
 
     public class TaskAddRequestDto
     {
-        public int Id { get; set; }
+        // public int Id { get; set; }
         public int TaskParentId { get; set; }
-        public string TaskGuidId { get; set; }
+        // public string TaskGuidId { get; set; }
         public string TaskParentGuidId { get; set; }
         public string TaskCreatedBy { get; set; }
         public string TaskTitle { get; set; }

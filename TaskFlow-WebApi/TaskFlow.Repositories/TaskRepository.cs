@@ -1,6 +1,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using TaskFlow.Core.DTOs;
+using TaskFlow.Data;
 using TaskFlow.Data.Entities;
 using static TaskFlow.Core.DTOs.TaskResponseDtos;
 
@@ -8,8 +9,8 @@ namespace TaskFlow.Repositories;
 
 public class TaskRepository : ITaskRepository
 {
-    private readonly DbContext _dbContext;
-    public TaskRepository(DbContext dbContext)
+    private TaskFlowDbContext _dbContext;
+    public TaskRepository(TaskFlowDbContext dbContext)
     {
         _dbContext = dbContext;
     }
@@ -66,7 +67,7 @@ public class TaskRepository : ITaskRepository
     public async Task<TaskEntity> AddTask(TaskEntity TaskEntity)
     {
         var res = await _dbContext.Set<TaskEntity>().AddAsync(TaskEntity);
-        _dbContext.SaveChangesAsync();
+        await _dbContext.SaveChangesAsync();
         return res.Entity;
     }
 

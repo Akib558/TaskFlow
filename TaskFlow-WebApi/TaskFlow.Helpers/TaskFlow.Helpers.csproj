@@ -9,7 +9,7 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskFlow.Core\TaskFlow.Core.csproj" />
+    <ProjectReference Include="../TaskFlow.Core/TaskFlow.Core.csproj" />
   </ItemGroup>
 
 

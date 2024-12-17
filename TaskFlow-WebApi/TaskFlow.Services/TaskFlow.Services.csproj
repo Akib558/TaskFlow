@@ -9,8 +9,8 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskFlow.Repositories\TaskFlow.Repositories.csproj" />
-    <ProjectReference Include="..\TaskFlow.Helpers\TaskFlow.Helpers.csproj" />
+    <ProjectReference Include="../TaskFlow.Repositories/TaskFlow.Repositories.csproj" />
+    <ProjectReference Include="../TaskFlow.Helpers/TaskFlow.Helpers.csproj" />
   </ItemGroup>
 
 

@@ -12,6 +12,7 @@ namespace TaskFlow.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+
         public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
@@ -19,15 +20,33 @@ namespace TaskFlow.Services
 
         public async Task<UserInfoResponseDto> GetUserByUsername(string username)
         {
-            return await _userRepository.GetUserByUsername(username);
+            var res = await _userRepository.GetUserByUsername(username);
+            return new UserInfoResponseDto
+            {
+                Id = res.Id,
+                GuidId = res.UserGuidId,
+                Username = res.UserName,
+                Email = res.UserEmail,
+                Role = res.UserRole,
+                CreatedDate = res.CreatedDate,
+            };
         }
 
         public async Task<UserInfoResponseDto> GetUserById(string GuidId)
         {
-            return await _userRepository.GetUserById(GuidId);
+            var res = await _userRepository.GetUserById(GuidId);
+            return new UserInfoResponseDto
+            {
+                Id = res.Id,
+                GuidId = res.UserGuidId,
+                Username = res.UserName,
+                Email = res.UserEmail,
+                Role = res.UserRole,
+                CreatedDate = res.CreatedDate,
+            };
         }
 
-        public async Task<UserEntity> CreateUser(UserAddRequestDto user)
+        public async Task<UserInfoResponseDto> CreateUser(UserAddRequestDto user)
         {
             var addUserObj = new UserEntity
             {
@@ -36,21 +55,38 @@ namespace TaskFlow.Services
                 UserPasswordHash = PasswordHelper.HashPassword(user.Password),
                 UserEmail = user.Email,
                 UserRole = user.Role,
-                CreatedDate = DateTime.Now
+                CreatedDate = DateTime.Now,
             };
 
-            return await _userRepository.CreateUser(addUserObj);
+            var res = await _userRepository.CreateUser(addUserObj);
+            return new UserInfoResponseDto
+            {
+                Id = res.Id,
+                GuidId = res.UserGuidId,
+                Username = res.UserName,
+                Email = res.UserEmail,
+                Role = res.UserRole,
+                CreatedDate = res.CreatedDate,
+            };
         }
 
         public async Task<UserInfoResponseDto> UpdateUser(UserUpdateRequestDto user)
         {
-            return await _userRepository.UpdateUser(user);
+            var res = await _userRepository.UpdateUser(user);
+            return new UserInfoResponseDto
+            {
+                Id = res.Id,
+                GuidId = res.UserGuidId,
+                Username = res.UserName,
+                Email = res.UserEmail,
+                Role = res.UserRole,
+                CreatedDate = res.CreatedDate,
+            };
         }
 
         public async Task DeleteUser(int id)
         {
             await _userRepository.DeleteUser(id);
         }
-
     }
 }

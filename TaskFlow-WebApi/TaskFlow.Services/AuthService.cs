@@ -11,11 +11,11 @@ namespace TaskFlow.Services;
 public class AuthService : IAuthService
 {
     private IAuthRepository _authRepository;
+
     public AuthService(IAuthRepository authRepository)
     {
         _authRepository = authRepository;
     }
-
 
     public Task<UserRegisterAuthResponseDto> Register(UserRegisterAuthRequestDto user)
     {
@@ -26,7 +26,7 @@ public class AuthService : IAuthService
             UserPasswordHash = PasswordHelper.HashPassword(user.Password),
             UserEmail = user.Email,
             UserRole = user.Role,
-            CreatedDate = DateTime.Now
+            CreatedDate = DateTime.Now,
         };
         var res = _authRepository.Register(addUserObj);
         if (res == null)
@@ -36,39 +36,53 @@ public class AuthService : IAuthService
 
         var roleList = new List<string> { res.Result.UserRole };
 
-        return Task.FromResult(new UserRegisterAuthResponseDto
-        {
-            UserInfo = new UserInfoResponseDto
+        return Task.FromResult(
+            new UserRegisterAuthResponseDto
             {
-                Username = res.Result.UserName,
-                Email = res.Result.UserEmail,
-                Role = res.Result.UserRole,
-                GuidId = res.Result.UserGuidId
-            },
-            Token = JwtHelper.GenerateToken(res.Result.UserName, res.Result.UserGuidId, roleList)
-        });
+                UserInfo = new UserInfoResponseDto
+                {
+                    Username = res.Result.UserName,
+                    Email = res.Result.UserEmail,
+                    Role = res.Result.UserRole,
+                    GuidId = res.Result.UserGuidId,
+                },
+                Token = JwtHelper.GenerateToken(
+                    res.Result.UserName,
+                    res.Result.UserGuidId,
+                    roleList
+                ),
+            }
+        );
     }
 
     public Task<UserLoginAuthResponseDto> Login(UserLoginAuthRequestDto user)
     {
         var res = _authRepository.Login(user.Email, PasswordHelper.HashPassword(user.Password));
 
-        if (res == null || !PasswordHelper.VerifyPassword(user.Password, res.Result.UserPasswordHash))
+        if (
+            res == null
+            || !PasswordHelper.VerifyPassword(user.Password, res.Result.UserPasswordHash)
+        )
         {
             throw new Exception("User login failed");
         }
 
-        return Task.FromResult(new UserLoginAuthResponseDto
-        {
-            UserInfo = new UserInfoResponseDto
+        return Task.FromResult(
+            new UserLoginAuthResponseDto
             {
-                Username = res.Result.UserName,
-                Email = res.Result.UserEmail,
-                Role = res.Result.UserRole,
-                GuidId = res.Result.UserGuidId
-            },
-            Token = JwtHelper.GenerateToken(res.Result.UserName, res.Result.UserGuidId, new List<string> { res.Result.UserRole })
-        });
+                UserInfo = new UserInfoResponseDto
+                {
+                    Username = res.Result.UserName,
+                    Email = res.Result.UserEmail,
+                    Role = res.Result.UserRole,
+                    GuidId = res.Result.UserGuidId,
+                },
+                Token = JwtHelper.GenerateToken(
+                    res.Result.UserName,
+                    res.Result.UserGuidId,
+                    new List<string> { res.Result.UserRole }
+                ),
+            }
+        );
     }
-
 }

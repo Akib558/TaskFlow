@@ -11,48 +11,38 @@ namespace TaskFlow.Repositories
 {
     public class UserRepository : IUserRepository
     {
-
         private DbContext _context;
+
         public UserRepository(TaskFlowDbContext dbContext)
         {
             _context = dbContext;
         }
 
-        public async Task<UserInfoResponseDto> GetUserByUsername(string username)
+        public async Task<UserEntity> GetUserByUsername(string username)
         {
-            var res = await _context.Set<UserEntity>().FirstOrDefaultAsync(u => u.UserName == username);
-
-            return new UserInfoResponseDto
-            {
-                Id = res.Id,
-                GuidId = res.UserGuidId,
-                Username = res.UserName,
-                Email = res.UserEmail,
-                Role = res.UserRole,
-                CreatedDate = res.CreatedDate
-            };
+            var res = await _context
+                .Set<UserEntity>()
+                .FirstOrDefaultAsync(u => u.UserName == username);
+            return res;
         }
-
 
         public async Task<List<string>> GetUserRoles(string GuidId)
         {
-            var user = await _context.Set<UserEntity>().Where(u => u.UserGuidId == GuidId).Select(u => u.UserRole).ToListAsync();
+            var user = await _context
+                .Set<UserEntity>()
+                .Where(u => u.UserGuidId == GuidId)
+                .Select(u => u.UserRole)
+                .ToListAsync();
             return user;
         }
 
-        public async Task<UserInfoResponseDto> GetUserById(string GuidId)
+        public async Task<UserEntity> GetUserById(string GuidId)
         {
-            var res = await _context.Set<UserEntity>().FirstOrDefaultAsync(u => u.UserGuidId == GuidId);
+            var res = await _context
+                .Set<UserEntity>()
+                .FirstOrDefaultAsync(u => u.UserGuidId == GuidId);
 
-            return new UserInfoResponseDto
-            {
-                Id = res.Id,
-                GuidId = res.UserGuidId,
-                Username = res.UserName,
-                Email = res.UserEmail,
-                Role = res.UserRole,
-                CreatedDate = res.CreatedDate
-            };
+            return res;
         }
 
         public async Task<UserEntity> CreateUser(UserEntity user)
@@ -62,9 +52,11 @@ namespace TaskFlow.Repositories
             return entity.Entity;
         }
 
-        public async Task<UserInfoResponseDto> UpdateUser(UserUpdateRequestDto user)
+        public async Task<UserEntity> UpdateUser(UserUpdateRequestDto user)
         {
-            var entity = await _context.Set<UserEntity>().FirstOrDefaultAsync(u => u.UserGuidId == user.GuidId);
+            var entity = await _context
+                .Set<UserEntity>()
+                .FirstOrDefaultAsync(u => u.UserGuidId == user.GuidId);
             if (entity == null)
             {
                 return null;
@@ -72,16 +64,8 @@ namespace TaskFlow.Repositories
             entity.UserName = user.Username;
             entity.UserEmail = user.Email;
             entity.UserRole = user.Role;
-            // entity.UpdatedDate = DateTime.Now;
             await _context.SaveChangesAsync();
-            return new UserInfoResponseDto
-            {
-                Id = entity.Id,
-                GuidId = entity.UserGuidId,
-                Username = entity.UserName,
-                Role = entity.UserRole,
-                CreatedDate = entity.CreatedDate
-            };
+            return entity;
         }
 
         public async Task DeleteUser(int id)
@@ -90,7 +74,5 @@ namespace TaskFlow.Repositories
             _context.Set<UserEntity>().Remove(new UserEntity { Id = id });
             await _context.SaveChangesAsync();
         }
-
-
     }
 }

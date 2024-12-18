@@ -10,10 +10,12 @@ namespace TaskFlow.Services;
 public class TaskService : ITaskService
 {
     private readonly ITaskRepository _taskRepository;
+
     public TaskService(ITaskRepository taskRepository)
     {
         _taskRepository = taskRepository;
     }
+
     public async Task<TaskGetResponseDto> GetTaskByGuidId(string TaskGuidId)
     {
         var res = await _taskRepository.GetTaskResponseByGuidId(TaskGuidId);
@@ -33,35 +35,36 @@ public class TaskService : ITaskService
             TaskDeleted = res.TaskDeleted,
             TaskCreatedDate = res.TaskCreatedDate,
             TaskUpdatedDate = res.TaskUpdatedDate,
-            TaskDueDate = res.TaskDueDate
+            TaskDueDate = res.TaskDueDate,
         };
-
     }
+
     public async Task<List<TaskGetResponseDto>> GetAllTaskByAuthorId(string AuthorGuidId)
     {
         var data = await _taskRepository.GetAllTaskResponseByAuthorGuidId(AuthorGuidId);
         var res = data.Select(x => new TaskGetResponseDto
-        {
-            Id = x.Id,
-            TaskParentId = x.TaskParentId,
-            TaskGuidId = x.TaskGuidId,
-            TaskParentGuidId = x.TaskParentGuidId,
-            TaskCreatedBy = x.TaskCreatedBy,
-            TaskTitle = x.TaskTitle,
-            TaskDescription = x.TaskDescription,
-            TaskProjectGuidId = x.TaskProjectGuidId,
-            TaskStatus = x.TaskStatus,
-            TaskType = x.TaskType,
-            TaskPriority = x.TaskPriority,
-            TaskDeleted = x.TaskDeleted,
-            TaskCreatedDate = x.TaskCreatedDate,
-            TaskUpdatedDate = x.TaskUpdatedDate,
-            TaskDueDate = x.TaskDueDate
-        }).ToList();
+            {
+                Id = x.Id,
+                TaskParentId = x.TaskParentId,
+                TaskGuidId = x.TaskGuidId,
+                TaskParentGuidId = x.TaskParentGuidId,
+                TaskCreatedBy = x.TaskCreatedBy,
+                TaskTitle = x.TaskTitle,
+                TaskDescription = x.TaskDescription,
+                TaskProjectGuidId = x.TaskProjectGuidId,
+                TaskStatus = x.TaskStatus,
+                TaskType = x.TaskType,
+                TaskPriority = x.TaskPriority,
+                TaskDeleted = x.TaskDeleted,
+                TaskCreatedDate = x.TaskCreatedDate,
+                TaskUpdatedDate = x.TaskUpdatedDate,
+                TaskDueDate = x.TaskDueDate,
+            })
+            .ToList();
 
         return res;
-
     }
+
     public async Task<TaskGetResponseDto> AddTask(TaskAddRequestDto TaskAddRequest)
     {
         var taskEntity = new TaskEntity
@@ -78,9 +81,8 @@ public class TaskService : ITaskService
             TaskPriority = TaskAddRequest.TaskPriority,
             TaskDeleted = 0,
             TaskCreatedDate = DateTime.Now,
-            TaskUpdatedDate = DateTime.Now
+            TaskUpdatedDate = DateTime.Now,
             // TaskDueDate = DateTime.Now,
-
         };
         var res = await _taskRepository.AddTask(taskEntity);
         return new TaskGetResponseDto
@@ -99,7 +101,7 @@ public class TaskService : ITaskService
             TaskDeleted = res.TaskDeleted,
             TaskCreatedDate = res.TaskCreatedDate,
             TaskUpdatedDate = res.TaskUpdatedDate,
-            TaskDueDate = res.TaskDueDate
+            TaskDueDate = res.TaskDueDate,
         };
     }
 }

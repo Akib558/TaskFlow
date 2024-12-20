@@ -14,10 +14,12 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="../TaskFlow.Utilites/TaskFlow.Utilites.csproj" />
-    <ProjectReference Include="../TaskFlow.Helpers/TaskFlow.Helpers.csproj" />
-    <ProjectReference Include="../TaskFlow.Core/TaskFlow.Core.csproj" />
+    <ProjectReference Include="..\TaskFlow.Core\TaskFlow.Core.csproj" />
+    <ProjectReference Include="..\TaskFlow.Helpers\TaskFlow.Helpers.csproj" />
+    <ProjectReference Include="..\TaskFlow.Utilites\TaskFlow.Utilites.csproj" />
   </ItemGroup>
+
+
 
 
 

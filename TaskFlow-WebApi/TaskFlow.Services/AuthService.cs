@@ -1,4 +1,5 @@
 using System;
+using Azure.Core;
 using BCrypt.Net;
 using TaskFlow.Data.Entities;
 using TaskFlow.Helpers;
@@ -17,7 +18,7 @@ public class AuthService : IAuthService
         _authRepository = authRepository;
     }
 
-    public Task<UserRegisterAuthResponseDto> Register(UserRegisterAuthRequestDto user)
+    public async Task<UserRegisterAuthResponseDto> Register(UserRegisterAuthRequestDto user)
     {
         var addUserObj = new UserEntity
         {
@@ -36,7 +37,7 @@ public class AuthService : IAuthService
 
         var roleList = new List<string> { res.Result.UserRole };
 
-        return Task.FromResult(
+        return await Task.FromResult(
             new UserRegisterAuthResponseDto
             {
                 UserInfo = new UserInfoResponseDto
@@ -46,16 +47,20 @@ public class AuthService : IAuthService
                     Role = res.Result.UserRole,
                     GuidId = res.Result.UserGuidId,
                 },
-                Token = JwtHelper.GenerateToken(
-                    res.Result.UserName,
-                    res.Result.UserGuidId,
-                    roleList
-                ),
+                Token = new TokenResponseDto
+                {
+                    AccessToken = JwtHelper.GenerateToken(
+                        res.Result.UserName,
+                        res.Result.UserGuidId,
+                        roleList
+                    ),
+                    RefreshToken = await GetRefreshToken(),
+                },
             }
         );
     }
 
-    public Task<UserLoginAuthResponseDto> Login(UserLoginAuthRequestDto user)
+    public async Task<UserLoginAuthResponseDto> Login(UserLoginAuthRequestDto user)
     {
         var res = _authRepository.Login(user.Email, PasswordHelper.HashPassword(user.Password));
 
@@ -67,7 +72,7 @@ public class AuthService : IAuthService
             throw new Exception("User login failed");
         }
 
-        return Task.FromResult(
+        return await Task.FromResult(
             new UserLoginAuthResponseDto
             {
                 UserInfo = new UserInfoResponseDto
@@ -77,12 +82,40 @@ public class AuthService : IAuthService
                     Role = res.Result.UserRole,
                     GuidId = res.Result.UserGuidId,
                 },
-                Token = JwtHelper.GenerateToken(
-                    res.Result.UserName,
-                    res.Result.UserGuidId,
-                    new List<string> { res.Result.UserRole }
-                ),
+                Token = new TokenResponseDto
+                {
+                    AccessToken = JwtHelper.GenerateToken(
+                        res.Result.UserName,
+                        res.Result.UserGuidId,
+                        new List<string> { res.Result.UserRole }
+                    ),
+                    RefreshToken = await GetRefreshToken(),
+                },
             }
         );
+    }
+
+    private async Task<bool> IsRefreshTokenValid(RefreshTokenRequestDto refreshTokenRequestDto)
+    {
+        var res = await _authRepository.ValidateRefreshToken(refreshTokenRequestDto.RefreshToken);
+
+        if (res == null)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    private async Task<string> GetRefreshToken()
+    {
+        /*
+            TODO:
+            * Validate the current refresh token
+            * Generate a new refresh token
+            * Invalid the previous refresh token(mark as used)
+            * Return the new access and refresh token to client
+
+        */
+        return "";
     }
 }

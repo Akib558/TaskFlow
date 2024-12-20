@@ -12,17 +12,22 @@ public class AuthResponseDto
         public string Role { get; set; }
         public string GuidId { get; set; }
     }
+
     public class UserRegisterAuthResponseDto
     {
         public UserInfoResponseDto UserInfo { get; set; }
-        public string Token { get; set; }
-
+        public TokenResponseDto Token { get; set; }
     }
 
     public class UserLoginAuthResponseDto
     {
         public UserInfoResponseDto UserInfo { get; set; }
-        public string Token { get; set; }
+        public TokenResponseDto Token { get; set; }
     }
 
+    public class TokenResponseDto
+    {
+        public string AccessToken { get; set; }
+        public string RefreshToken { get; set; }
+    }
 }

@@ -10,6 +10,7 @@ namespace TaskFlow.Repositories;
 public class TaskRepository : ITaskRepository
 {
     private TaskFlowDbContext _dbContext;
+
     public TaskRepository(TaskFlowDbContext dbContext)
     {
         _dbContext = dbContext;
@@ -17,12 +18,18 @@ public class TaskRepository : ITaskRepository
 
     public async Task<TaskEntity> GetTaskResponseByGuidId(string TaskGuidId)
     {
-        var res = await _dbContext.Set<TaskEntity>().FirstOrDefaultAsync(x => x.TaskGuidId == TaskGuidId);
+        var res = await _dbContext
+            .Set<TaskEntity>()
+            .FirstOrDefaultAsync(x => x.TaskGuidId == TaskGuidId);
         return res;
     }
+
     public async Task<List<TaskEntity>> GetAllTaskResponseByAuthorGuidId(string AuthorGuidId)
     {
-        var res = await _dbContext.Set<TaskEntity>().Where(x => x.TaskCreatedBy == AuthorGuidId).ToListAsync();
+        var res = await _dbContext
+            .Set<TaskEntity>()
+            .Where(x => x.TaskCreatedBy == AuthorGuidId)
+            .ToListAsync();
         return res;
     }
 
@@ -32,5 +39,4 @@ public class TaskRepository : ITaskRepository
         await _dbContext.SaveChangesAsync();
         return res.Entity;
     }
-
 }

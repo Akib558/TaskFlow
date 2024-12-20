@@ -22,10 +22,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../TaskFlow.Utilites/TaskFlow.Utilites.csproj" />
-    <ProjectReference Include="../TaskFlow.Middlewares/TaskFlow.Middlewares.csproj" />
-    <ProjectReference Include="../TaskFlow.Services/TaskFlow.Services.csproj" />
+    <ProjectReference Include="..\TaskFlow.Core\TaskFlow.Core.csproj" />
+    <ProjectReference Include="..\TaskFlow.Middlewares\TaskFlow.Middlewares.csproj" />
+    <ProjectReference Include="..\TaskFlow.Services\TaskFlow.Services.csproj" />
+    <ProjectReference Include="..\TaskFlow.Utilites\TaskFlow.Utilites.csproj" />
   </ItemGroup>
+
 
 
 

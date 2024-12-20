@@ -11,10 +11,9 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="../TaskFlow.Core/TaskFlow.Core.csproj" />
-    <ProjectReference Include="../TaskFlow.Data/TaskFlow.Data.csproj" />
+    <ProjectReference Include="..\TaskFlow.Core\TaskFlow.Core.csproj" />
+    <ProjectReference Include="..\TaskFlow.Data\TaskFlow.Data.csproj" />
   </ItemGroup>
-
 
 
 

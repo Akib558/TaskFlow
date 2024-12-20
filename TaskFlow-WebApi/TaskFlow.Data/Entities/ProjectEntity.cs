@@ -17,7 +17,6 @@ public class ProjectEntity
     public ICollection<ProjectMembers> Members { get; set; }
 }
 
-
 public class ProjectRolesEntity
 {
     [Key]
@@ -36,5 +35,4 @@ public class ProjectMembers
 
     public ProjectEntity ProjectEntity { get; set; }
     public UserEntity UserEntity { get; set; }
-
 }

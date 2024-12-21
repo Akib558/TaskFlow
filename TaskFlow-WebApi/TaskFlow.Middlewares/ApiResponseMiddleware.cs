@@ -17,12 +17,12 @@ public class ApiResponseMiddleware
         _next = next;
         _logger = logger;
     }
+
     public async Task InvokeAsync(HttpContext context)
     {
         var originalBodyStream = context.Response.Body;
         var newBodyStream = new MemoryStream();
         context.Response.Body = newBodyStream;
-
 
         try
         {
@@ -48,7 +48,7 @@ public class ApiResponseMiddleware
                     "register" => "User Created Successfully",
                     "login" => "Login Successful",
                     "GetUserByName" => "User Retrieved Successfully",
-                    _ => "Request Successful"
+                    _ => "Request Successful",
                 };
                 var standardResponse = ApiResponse<object>.SuccessResponse(responseObject, message);
                 var standardResponseJson = JsonConvert.SerializeObject(standardResponse);
@@ -85,5 +85,4 @@ public class ApiResponseMiddleware
             newBodyStream.Dispose(); // Dispose manually here
         }
     }
-
 }

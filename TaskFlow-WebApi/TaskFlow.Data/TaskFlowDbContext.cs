@@ -17,6 +17,8 @@ public class TaskFlowDbContext : DbContext
     public DbSet<ProjectRolesEntity> ProjectRoles { get; set; }
     public DbSet<ProjectMembers> ProjectMembers { get; set; }
     public DbSet<JwtRefreshTokenEntity> JwtRefreshTokens { get; set; }
+    public DbSet<ProjectPrivileges> ProjectPrivileges { get; set; }
+    public DbSet<ProjectOperations> ProjectOperations { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -74,5 +76,25 @@ public class TaskFlowDbContext : DbContext
             .WithMany(u => u.Members)
             .HasForeignKey(f => f.ProjectGuidId)
             .HasPrincipalKey(t => t.ProjectGuidId);
+
+        //Many-toMany relationship between ProjectRolesEntity & ProjectOperations
+
+        modelBuilder
+            .Entity<ProjectPrivileges>()
+            .HasKey(ind => new { ind.ProjectRoleGuidId, ind.ProjectOperationsGuidId });
+
+        modelBuilder
+            .Entity<ProjectPrivileges>()
+            .HasOne(pp => pp.ProjectRole)
+            .WithMany(pr => pr.ProjectPrivileges)
+            .HasForeignKey(pp => pp.ProjectRoleGuidId)
+            .HasPrincipalKey(pp => pp.ProjectRoleGuidId);
+
+        modelBuilder
+            .Entity<ProjectPrivileges>()
+            .HasOne(pp => pp.ProjectOperation)
+            .WithMany(pr => pr.ProjectPrivileges)
+            .HasForeignKey(pp => pp.ProjectOperationsGuidId)
+            .HasPrincipalKey(pp => pp.ProjectOperationsGuidId);
     }
 }

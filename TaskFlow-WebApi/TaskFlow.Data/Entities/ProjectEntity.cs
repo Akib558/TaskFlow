@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using TaskFlow.Core.Enums;
 
 namespace TaskFlow.Data.Entities;
 
@@ -21,8 +22,9 @@ public class ProjectRolesEntity
 {
     [Key]
     public int Id { get; set; }
-    public int ProjectRoleGuidId { get; set; }
+    public string ProjectRoleGuidId { get; set; }
     public int ProjectRoleName { get; set; }
+    public ICollection<ProjectPrivileges> ProjectPrivileges { get; set; }
 }
 
 public class ProjectMembers
@@ -35,4 +37,24 @@ public class ProjectMembers
 
     public ProjectEntity ProjectEntity { get; set; }
     public UserEntity UserEntity { get; set; }
+}
+
+public class ProjectPrivileges
+{
+    [Key]
+    public int Id { get; set; }
+    public string ProjectPrivilegesGuidId { get; set; }
+    public string ProjectRoleGuidId { get; set; }
+    public string ProjectOperationsGuidId { get; set; }
+    public ProjectRolesEntity ProjectRole { get; set; }
+    public ProjectOperations ProjectOperation { get; set; }
+}
+
+public class ProjectOperations
+{
+    [Key]
+    public int Id { get; set; }
+    public string ProjectOperationsGuidId { get; set; }
+    public ProjectOperationEnums ProjectOperationType { get; set; }
+    public ICollection<ProjectPrivileges> ProjectPrivileges { get; set; }
 }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TaskFlow.Services;
@@ -26,6 +27,7 @@ namespace TaskFlow.WebAPI.Controllers
             return Ok(res);
         }
 
+        [Authorize]
         [HttpPost("GetAllTaskForUser")]
         public async Task<IEnumerable<TaskGetResponseDto>> GetAllTaskByAuthorId(
             TaskGetAllForUserRequestDto taskGetAllForUserRequestDto

@@ -41,11 +41,14 @@ public class AuthRepository : IAuthRepository
         JwtRefreshTokenEntity jwtRefreshTokenEntitys
     )
     {
-        var res = await _context
-            .Set<JwtRefreshTokenEntity>()
-            .FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
+        if (refreshToken != null)
+        {
+            var res = await _context
+                .Set<JwtRefreshTokenEntity>()
+                .FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
 
-        res.Status = Core.Enums.RefreshTokenStatusEnum.Used;
+            res.Status = Core.Enums.RefreshTokenStatusEnum.Used;
+        }
         var res2 = await _context.Set<JwtRefreshTokenEntity>().AddAsync(jwtRefreshTokenEntitys);
         await _context.SaveChangesAsync();
         return res2.Entity;

@@ -20,6 +20,7 @@ public class TaskFlowDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<UserEntity>().HasIndex(ind => ind.UserEmail).IsUnique();
         modelBuilder.Entity<UserEntity>().HasIndex(ind => ind.UserName).IsUnique();
 
         //Many-to-Many relationship between user and task

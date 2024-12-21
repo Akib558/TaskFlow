@@ -42,7 +42,8 @@ ApiModelValidation.AddValidationForModel(builder.Services);
 
 builder.Services.AddDbContext<TaskFlowDbContext>(options =>
     options.UseSqlServer(
-        "Server=localhost,4001;Database=TaskFlow;User ID=sa;Password=@M1janinaok;Trusted_Connection=False;Encrypt=True;TrustServerCertificate=True;"
+        builder.Configuration["ConnectionStrings:DefaultConnection"]
+    // "Server=localhost,4001;Database=TaskFlow;User ID=sa;Password=@M1janinaok;Trusted_Connection=False;Encrypt=True;TrustServerCertificate=True;"
     )
 );
 
@@ -70,10 +71,11 @@ builder
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
             ValidIssuer = "http://localhost:5109",
-            ValidAudience = "http://localhost:5000",
+            ValidAudience = "http://localhost:5109",
             IssuerSigningKey = new SymmetricSecurityKey(
                 Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"] ?? "")
             ),
+            ClockSkew = TimeSpan.Zero,
         };
     });
 
@@ -91,16 +93,6 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Enable Swagger
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-    var swaggerUrl =
-        $"http://localhost:{app.Urls.FirstOrDefault()?.Split(':').LastOrDefault()}/swagger";
-    OpenBrowser(swaggerUrl);
-}
-
 // Use Authentication and Authorization
 app.UseAuthentication();
 app.UseAuthorization();
@@ -111,16 +103,3 @@ app.UseMiddleware<LoggingMiddleware>();
 app.MapControllers();
 
 app.Run();
-
-//--
-static void OpenBrowser(string url)
-{
-    try
-    {
-        Process.Start(new ProcessStartInfo { FileName = url, UseShellExecute = true });
-    }
-    catch (Exception ex)
-    {
-        Log.Error("Failed to open Swagger UI: {ErrorMessage}", ex.Message);
-    }
-}

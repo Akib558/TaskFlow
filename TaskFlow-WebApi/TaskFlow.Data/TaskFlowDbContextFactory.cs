@@ -14,10 +14,19 @@ namespace TaskFlow.Data
         {
             var optionsBuilder = new DbContextOptionsBuilder<TaskFlowDbContext>();
 
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .Build();
+
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+            optionsBuilder.UseSqlServer(connectionString);
+
             // Manually specify the connection string here
-            optionsBuilder.UseSqlServer(
-                "Server=localhost,4001;Database=TaskFlow;User ID=sa;Password=@M1janinaok;Trusted_Connection=False;Encrypt=True;TrustServerCertificate=True;"
-            );
+            // optionsBuilder.UseSqlServer(
+            //     "Server=localhost,4001;Database=TaskFlow;User ID=sa;Password=@M1janinaok;Trusted_Connection=False;Encrypt=True;TrustServerCertificate=True;"
+            // );
 
             return new TaskFlowDbContext(optionsBuilder.Options);
         }

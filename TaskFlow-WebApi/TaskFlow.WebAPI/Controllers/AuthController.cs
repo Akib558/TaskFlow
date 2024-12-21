@@ -32,11 +32,11 @@ namespace TaskFlow.WebAPI
 
         //TODO: Refresh Token Implementation
 
-        // [HttpPost("refresh")]
-        // public async Task<IActionResult> Refresh(RefreshTokenRequestDto request)
-        // {
-        //     var response = await _authService.Refresh(request.RefreshToken);
-        //     return Ok(response);
-        // }
+        [HttpPost("refresh")]
+        public async Task<IActionResult> Refresh(RefreshTokenRequestDto request)
+        {
+            var response = await _authService.GetTokens(request);
+            return Ok(response);
+        }
     }
 }

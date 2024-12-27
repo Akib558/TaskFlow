@@ -10,7 +10,9 @@ using TaskFlow.Core.Validators;
 using TaskFlow.Data;
 using TaskFlow.Middlewares;
 using TaskFlow.Repositories;
+using TaskFlow.Repositories.Roles;
 using TaskFlow.Services;
+using TaskFlow.Services.Role;
 using TaskFlow.Utilites;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -51,9 +53,11 @@ builder.Services.AddDbContext<TaskFlowDbContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
+builder.Services.AddScoped<IRoleService, RoleService>();
 
 // Add Authentication and Authorization
 builder
@@ -85,15 +89,22 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "TaskFlow API V1");
+        c.RoutePrefix = string.Empty; // Set Swagger UI at the app's root
+    });
+}
+else
 {
     app.UseExceptionHandler("/error");
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
-
-// Use Authentication and Authorization
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<ApiResponseMiddleware>();

@@ -23,7 +23,7 @@ public class ProjectRolesEntity
     [Key]
     public int Id { get; set; }
     public string ProjectRoleGuidId { get; set; }
-    public int ProjectRoleName { get; set; }
+    public string ProjectRoleName { get; set; }
     public ICollection<ProjectPrivileges> ProjectPrivileges { get; set; }
 }
 

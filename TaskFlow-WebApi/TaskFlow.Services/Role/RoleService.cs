@@ -86,4 +86,30 @@ public class RoleService : IRoleService
         }
         throw new Exception("Error Occured during updating role");
     }
+
+    public async Task<List<ProjectRolesEntity>> GetAllRole()
+    {
+        var res = await _roleRepository.GetAllRole();
+        if (res != null)
+        {
+            return res;
+        }
+        throw new Exception("Error Occured during getting all role");
+    }
+
+    public async Task<List<ProjectOperations>> GetAllProjectOperation()
+    {
+        var res = await _roleRepository.GetAllProjectOperation();
+        if (res != null)
+        {
+            return res;
+        }
+        throw new Exception("Error Occured during getting all operation for project");
+    }
+
+    public async Task<bool> AddAllProjectOperation()
+    {
+        var res = await _roleRepository.AddAllProjectOperation();
+        return res;
+    }
 }

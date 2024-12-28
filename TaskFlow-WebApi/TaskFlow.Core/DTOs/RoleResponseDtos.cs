@@ -25,5 +25,5 @@ public class RoleUpdateResponseDto
 
 public class RoleAddOperationResponseDto
 {
-    public List<RoleOperationDto> RoleOperation;
+    public List<RoleOperationDto> RoleOperation { get; set; }
 }

@@ -1,5 +1,6 @@
 using System;
 using TaskFlow.Core.DTOs;
+using TaskFlow.Data.Entities;
 
 namespace TaskFlow.Services.Role;
 
@@ -11,4 +12,7 @@ public interface IRoleService
     Task<RoleAddOperationResponseDto> RoleAddOperation(
         RoleAddOperationRequestDto roleAddOperationRequestDto
     );
+    Task<List<ProjectRolesEntity>> GetAllRole();
+    Task<List<ProjectOperations>> GetAllProjectOperation();
+    Task<bool> AddAllProjectOperation();
 }

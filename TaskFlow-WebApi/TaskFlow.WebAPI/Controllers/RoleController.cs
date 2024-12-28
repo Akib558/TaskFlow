@@ -30,12 +30,33 @@ namespace TaskFlow.WebAPI.Controllers
             return Ok(res);
         }
 
+        [HttpGet("GetAllRole")]
+        public async Task<IActionResult> GetAllRole()
+        {
+            var res = await _roleService.GetAllRole();
+            return Ok(res);
+        }
+
         [HttpPost("RoleAddOperation")]
         public async Task<IActionResult> RoleAddOperation(
             RoleAddOperationRequestDto roleAddOperationRequestDto
         )
         {
             var res = await _roleService.RoleAddOperation(roleAddOperationRequestDto);
+            return Ok(res);
+        }
+
+        [HttpGet("GetAllOperation")]
+        public async Task<IActionResult> GetAllOperation()
+        {
+            var res = await _roleService.GetAllProjectOperation();
+            return Ok(res);
+        }
+
+        [HttpPost("AddAllProjectOperation")]
+        public async Task<IActionResult> AddAllProjectOperation()
+        {
+            var res = await _roleService.AddAllProjectOperation();
             return Ok(res);
         }
     }

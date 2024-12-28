@@ -6,17 +6,17 @@ public class RoleRequestDtos { }
 
 public class RoleAddRequestDto
 {
-    public string RoleName;
+    public string RoleName { get; set; }
 }
 
 public class RoleDeleteRequestDto
 {
-    public string ProjectRoleGuidId;
+    public string ProjectRoleGuidId { get; set; }
 }
 
 public class RoleUpdateRequestDto
 {
-    public string RoleName;
+    public string RoleName { get; set; }
 }
 
 public class RoleOperationDto
@@ -27,5 +27,5 @@ public class RoleOperationDto
 
 public class RoleAddOperationRequestDto
 {
-    public List<RoleOperationDto> RoleOperation;
+    public List<RoleOperationDto> RoleOperation { get; set; }
 }

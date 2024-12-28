@@ -55,6 +55,7 @@ public class ProjectOperations
     [Key]
     public int Id { get; set; }
     public string ProjectOperationsGuidId { get; set; }
+    public string ProjectOperationName { get; set; }
     public ProjectOperationEnums ProjectOperationType { get; set; }
     public ICollection<ProjectPrivileges> ProjectPrivileges { get; set; }
 }

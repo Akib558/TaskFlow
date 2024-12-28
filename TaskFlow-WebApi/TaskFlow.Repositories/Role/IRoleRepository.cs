@@ -10,4 +10,6 @@ public interface IRoleRepository
     Task<ProjectRolesEntity> UpdateRole(ProjectRolesEntity projectRolesEntity);
     Task<List<ProjectRolesEntity>> GetAllRole();
     Task<bool> AddOperationsToRole(List<ProjectPrivileges> projectPrivileges);
+    Task<List<ProjectOperations>> GetAllProjectOperation();
+    Task<bool> AddAllProjectOperation();
 }

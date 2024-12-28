@@ -20,6 +20,7 @@ public class RoleRepository : IRoleRepository
     public async Task<ProjectRolesEntity> AddRole(ProjectRolesEntity projectEntity)
     {
         var res = await _context.Set<ProjectRolesEntity>().AddAsync(projectEntity);
+        await _context.SaveChangesAsync();
         if (res != null)
         {
             return projectEntity;
@@ -55,7 +56,15 @@ public class RoleRepository : IRoleRepository
 
     public async Task<List<ProjectRolesEntity>> GetAllRole()
     {
-        var res = await _context.Set<ProjectRolesEntity>().Select(x => x).ToListAsync();
+        var res = await _context
+            .Set<ProjectRolesEntity>()
+            .Select(x => new ProjectRolesEntity
+            {
+                ProjectRoleGuidId = x.ProjectRoleGuidId,
+                ProjectRoleName = x.ProjectRoleName,
+                ProjectPrivileges = x.ProjectPrivileges.Select(x => x).ToList(),
+            })
+            .ToListAsync();
         return res;
     }
 
@@ -71,4 +80,64 @@ public class RoleRepository : IRoleRepository
 
         return result > 0;
     }
+
+    //get all operation list
+    public async Task<List<ProjectOperations>> GetAllProjectOperation()
+    {
+        var res = await _context
+            .Set<ProjectOperations>()
+            .Select(x => new ProjectOperations
+            {
+                ProjectOperationsGuidId = x.ProjectOperationsGuidId,
+                ProjectOperationName = x.ProjectOperationName,
+                ProjectOperationType = x.ProjectOperationType,
+            })
+            .ToListAsync();
+        if (res != null)
+        {
+            return res;
+        }
+
+        return null;
+    }
+
+    public async Task<bool> AddAllProjectOperation()
+    {
+        var projectOperations = new List<ProjectOperations>
+        {
+            new ProjectOperations
+            {
+                ProjectOperationsGuidId = Guid.NewGuid().ToString(),
+                ProjectOperationName = "Create",
+                ProjectOperationType = Core.Enums.ProjectOperationEnums.Create,
+            },
+            new ProjectOperations
+            {
+                ProjectOperationsGuidId = Guid.NewGuid().ToString(),
+                ProjectOperationName = "Read",
+                ProjectOperationType = Core.Enums.ProjectOperationEnums.Read,
+            },
+            new ProjectOperations
+            {
+                ProjectOperationsGuidId = Guid.NewGuid().ToString(),
+                ProjectOperationName = "Update",
+                ProjectOperationType = Core.Enums.ProjectOperationEnums.Update,
+            },
+            new ProjectOperations
+            {
+                ProjectOperationsGuidId = Guid.NewGuid().ToString(),
+                ProjectOperationName = "Delete",
+                ProjectOperationType = Core.Enums.ProjectOperationEnums.Delete,
+            },
+        };
+        if (projectOperations == null || !projectOperations.Any())
+        {
+            return false;
+        }
+        await _context.Set<ProjectOperations>().AddRangeAsync(projectOperations);
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
+    // add operation list
 }

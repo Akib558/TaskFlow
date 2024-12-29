@@ -19,6 +19,8 @@ public class TaskFlowDbContext : DbContext
     public DbSet<JwtRefreshTokenEntity> JwtRefreshTokens { get; set; }
     public DbSet<ProjectPrivileges> ProjectPrivileges { get; set; }
     public DbSet<ProjectOperations> ProjectOperations { get; set; }
+    public DbSet<RolePathEntity> RolePaths { get; set; }
+    public DbSet<PathEntity> Paths { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -96,5 +98,21 @@ public class TaskFlowDbContext : DbContext
             .WithMany(pr => pr.ProjectPrivileges)
             .HasForeignKey(pp => pp.ProjectOperationsGuidId)
             .HasPrincipalKey(pp => pp.ProjectOperationsGuidId);
+
+        modelBuilder
+            .Entity<RolePathEntity>()
+            .HasKey(ind => new { ind.ProjectRoleGuidId, ind.PathGuidId });
+        modelBuilder
+            .Entity<RolePathEntity>()
+            .HasOne(pp => pp.ProjectRoles)
+            .WithMany(pr => pr.ProjectRoleWiseAccesses)
+            .HasForeignKey(pr => pr.ProjectRoleGuidId)
+            .HasPrincipalKey(pp => pp.ProjectRoleGuidId);
+        modelBuilder
+            .Entity<RolePathEntity>()
+            .HasOne(pp => pp.Paths)
+            .WithMany(p => p.ProjectRoleWiseAccesses)
+            .HasForeignKey(pp => pp.PathGuidId)
+            .HasPrincipalKey(pp => pp.PathGuidId);
     }
 }

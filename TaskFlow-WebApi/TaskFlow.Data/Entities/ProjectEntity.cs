@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using TaskFlow.Core.Enums;
+using static TaskFlow.Data.Entities.JwtEntity;
 
 namespace TaskFlow.Data.Entities;
 
@@ -25,6 +26,7 @@ public class ProjectRolesEntity
     public string ProjectRoleGuidId { get; set; }
     public string ProjectRoleName { get; set; }
     public ICollection<ProjectPrivileges> ProjectPrivileges { get; set; }
+    public ICollection<RolePathEntity> ProjectRoleWiseAccesses { get; set; }
 }
 
 public class ProjectMembers

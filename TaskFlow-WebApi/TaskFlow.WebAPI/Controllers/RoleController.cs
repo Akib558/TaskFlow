@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using TaskFlow.Core.DTOs;
 using TaskFlow.Services.Role;
 
@@ -10,10 +13,15 @@ namespace TaskFlow.WebAPI.Controllers
     public class RoleController : ControllerBase
     {
         private readonly IRoleService _roleService;
+        private readonly IActionDescriptorCollectionProvider _actionDescriptorCollectionProvider;
 
-        public RoleController(IRoleService roleService)
+        public RoleController(
+            IRoleService roleService,
+            IActionDescriptorCollectionProvider actionDescriptorCollectionProvider
+        )
         {
             _roleService = roleService;
+            _actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
         }
 
         [HttpPost("AddRole")]
@@ -57,6 +65,40 @@ namespace TaskFlow.WebAPI.Controllers
         public async Task<IActionResult> AddAllProjectOperation()
         {
             var res = await _roleService.AddAllProjectOperation();
+            return Ok(res);
+        }
+
+        [HttpGet("routes")]
+        public IActionResult GetAvailableApiPaths()
+        {
+            var routes = _actionDescriptorCollectionProvider
+                .ActionDescriptors.Items.Where(ad => ad is ControllerActionDescriptor)
+                .Cast<ControllerActionDescriptor>()
+                .Select(ad => new
+                {
+                    Path = $"/{ad.AttributeRouteInfo?.Template}",
+                    HttpMethods = ad.ActionConstraints?.OfType<HttpMethodActionConstraint>()
+                        .FirstOrDefault()
+                        ?.HttpMethods ?? new List<string>(),
+                })
+                .ToList();
+
+            return Ok(routes);
+        }
+
+        [HttpPost("AddPathToRole")]
+        public async Task<IActionResult> AddPathToRole(
+            AddPathToRoleRequestDto addPathToRoleRequestDto
+        )
+        {
+            var res = await _roleService.AddPathToRole(addPathToRoleRequestDto);
+            return Ok(res);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddPath(PathAddRequestDto pathAddRequestDto)
+        {
+            var res = await _roleService.AddPath(pathAddRequestDto);
             return Ok(res);
         }
     }

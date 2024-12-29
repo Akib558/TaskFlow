@@ -1,6 +1,7 @@
 using System;
 using TaskFlow.Core.DTOs;
 using TaskFlow.Data.Entities;
+using static TaskFlow.Data.Entities.JwtEntity;
 
 namespace TaskFlow.Services.Role;
 
@@ -15,4 +16,7 @@ public interface IRoleService
     Task<List<ProjectRolesEntity>> GetAllRole();
     Task<List<ProjectOperations>> GetAllProjectOperation();
     Task<bool> AddAllProjectOperation();
+
+    Task<bool> AddPathToRole(AddPathToRoleRequestDto addPathToRoleRequestDto);
+    Task<PathEntity> AddPath(PathAddRequestDto pathAddRequestDto);
 }

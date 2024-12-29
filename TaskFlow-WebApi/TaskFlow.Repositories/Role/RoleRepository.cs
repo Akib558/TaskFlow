@@ -1,8 +1,10 @@
 using System;
 using System.Reflection.Metadata.Ecma335;
 using Microsoft.EntityFrameworkCore;
+using TaskFlow.Core.DTOs;
 using TaskFlow.Data;
 using TaskFlow.Data.Entities;
+using static TaskFlow.Data.Entities.JwtEntity;
 
 namespace TaskFlow.Repositories.Roles;
 
@@ -139,5 +141,42 @@ public class RoleRepository : IRoleRepository
         return true;
     }
 
+    public async Task<bool> AddPathToRole(AddPathToRoleRequestDto addPathToRoleRequestDto)
+    {
+        var res = await _context
+            .Set<RolePathEntity>()
+            .AddAsync(
+                new RolePathEntity
+                {
+                    RolePathGuidId = Guid.NewGuid().ToString(),
+                    ProjectRoleGuidId = addPathToRoleRequestDto.RoleGuidId,
+                    PathGuidId = addPathToRoleRequestDto.PathGuidId,
+                }
+            );
+
+        await _context.SaveChangesAsync();
+        return (res != null);
+    }
+
+    public async Task<PathEntity> AddPath(PathAddRequestDto pathAddRequestDto)
+    {
+        var res = await _context
+            .Set<PathEntity>()
+            .AddAsync(
+                new PathEntity
+                {
+                    PathGuidId = Guid.NewGuid().ToString(),
+                    PathName = pathAddRequestDto.PathName,
+                    PathValue = pathAddRequestDto.PathValue,
+                }
+            );
+        if (res != null)
+        {
+            await _context.SaveChangesAsync();
+            return res.Entity;
+        }
+
+        return null;
+    }
     // add operation list
 }

@@ -2,6 +2,7 @@ using System;
 using TaskFlow.Core.DTOs;
 using TaskFlow.Data.Entities;
 using TaskFlow.Repositories.Roles;
+using static TaskFlow.Data.Entities.JwtEntity;
 
 namespace TaskFlow.Services.Role;
 
@@ -110,6 +111,18 @@ public class RoleService : IRoleService
     public async Task<bool> AddAllProjectOperation()
     {
         var res = await _roleRepository.AddAllProjectOperation();
+        return res;
+    }
+
+    public async Task<bool> AddPathToRole(AddPathToRoleRequestDto addPathToRoleRequestDto)
+    {
+        var res = await _roleRepository.AddPathToRole(addPathToRoleRequestDto);
+        return res;
+    }
+
+    public async Task<PathEntity> AddPath(PathAddRequestDto pathAddRequestDto)
+    {
+        var res = await _roleRepository.AddPath(pathAddRequestDto);
         return res;
     }
 }

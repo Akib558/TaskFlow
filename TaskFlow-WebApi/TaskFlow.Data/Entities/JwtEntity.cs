@@ -15,4 +15,25 @@ public class JwtEntity
         public RefreshTokenStatusEnum Status { get; set; }
         public DateTime ExpiryDate { get; set; }
     }
+
+    public class RolePathEntity
+    {
+        [Key]
+        public int Id { get; set; }
+        public string RolePathGuidId { get; set; }
+        public string ProjectRoleGuidId { get; set; }
+        public string PathGuidId { get; set; }
+        public ProjectRolesEntity ProjectRoles { get; set; }
+        public PathEntity Paths { get; set; }
+    }
+
+    public class PathEntity
+    {
+        [Key]
+        public int Id { get; set; }
+        public string PathGuidId { get; set; }
+        public string PathName { get; set; }
+        public string PathValue { get; set; }
+        public ICollection<RolePathEntity> ProjectRoleWiseAccesses { get; set; }
+    }
 }

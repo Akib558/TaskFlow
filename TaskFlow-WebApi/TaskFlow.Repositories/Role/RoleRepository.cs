@@ -64,7 +64,8 @@ public class RoleRepository : IRoleRepository
             {
                 ProjectRoleGuidId = x.ProjectRoleGuidId,
                 ProjectRoleName = x.ProjectRoleName,
-                ProjectPrivileges = x.ProjectPrivileges.Select(x => x).ToList(),
+                // ProjectPrivileges = x.ProjectPrivileges.Select(x => x).ToList(),
+                ProjectRoleWiseAccesses = x.ProjectRoleWiseAccesses.Select(x => x).ToList(),
             })
             .ToListAsync();
         return res;
@@ -177,6 +178,42 @@ public class RoleRepository : IRoleRepository
         }
 
         return null;
+    }
+
+    public async Task<List<PathEntity>> GetAllPath()
+    {
+        var res = await _context.Set<PathEntity>().Select(x => x).ToListAsync();
+        if (res != null)
+        {
+            return res;
+        }
+        return null;
+    }
+
+    public async Task<GetAllowedPathForRoleDto> GetAllowedPathForRole(string roleGuidId)
+    {
+        var res = _context
+            .RolePaths.Include(x => x.Paths)
+            .Where(x => x.RolePathGuidId == roleGuidId)
+            .Select(x => new PathInfoDto
+            {
+                PathGuidId = x.Paths.PathGuidId,
+                PathName = x.Paths.PathName,
+                PathValue = x.Paths.PathValue,
+            })
+            .ToList();
+
+        var res2 = await _context
+            .Set<ProjectRolesEntity>()
+            .FirstAsync(x => x.ProjectRoleGuidId == roleGuidId);
+
+        var res3 = new GetAllowedPathForRoleDto
+        {
+            RoleName = res2.ProjectRoleName,
+            RoleGuidId = res2.ProjectRoleGuidId,
+            PathInfoList = res,
+        };
+        return res3;
     }
     // add operation list
 }

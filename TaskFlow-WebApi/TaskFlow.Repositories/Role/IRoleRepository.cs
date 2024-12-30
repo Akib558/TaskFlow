@@ -16,4 +16,6 @@ public interface IRoleRepository
     Task<bool> AddAllProjectOperation();
     Task<bool> AddPathToRole(AddPathToRoleRequestDto addPathToRoleRequestDto);
     Task<PathEntity> AddPath(PathAddRequestDto pathAddRequestDto);
+    Task<List<PathEntity>> GetAllPath();
+    Task<GetAllowedPathForRoleDto> GetAllowedPathForRole(string roleGuidId);
 }

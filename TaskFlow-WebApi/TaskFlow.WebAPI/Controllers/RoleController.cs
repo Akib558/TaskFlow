@@ -45,28 +45,28 @@ namespace TaskFlow.WebAPI.Controllers
             return Ok(res);
         }
 
-        [HttpPost("RoleAddOperation")]
-        public async Task<IActionResult> RoleAddOperation(
-            RoleAddOperationRequestDto roleAddOperationRequestDto
-        )
-        {
-            var res = await _roleService.RoleAddOperation(roleAddOperationRequestDto);
-            return Ok(res);
-        }
+        // [HttpPost("RoleAddOperation")]
+        // public async Task<IActionResult> RoleAddOperation(
+        //     RoleAddOperationRequestDto roleAddOperationRequestDto
+        // )
+        // {
+        //     var res = await _roleService.RoleAddOperation(roleAddOperationRequestDto);
+        //     return Ok(res);
+        // }
 
-        [HttpGet("GetAllOperation")]
-        public async Task<IActionResult> GetAllOperation()
-        {
-            var res = await _roleService.GetAllProjectOperation();
-            return Ok(res);
-        }
+        // [HttpGet("GetAllOperation")]
+        // public async Task<IActionResult> GetAllOperation()
+        // {
+        //     var res = await _roleService.GetAllProjectOperation();
+        //     return Ok(res);
+        // }
 
-        [HttpPost("AddAllProjectOperation")]
-        public async Task<IActionResult> AddAllProjectOperation()
-        {
-            var res = await _roleService.AddAllProjectOperation();
-            return Ok(res);
-        }
+        // [HttpPost("AddAllProjectOperation")]
+        // public async Task<IActionResult> AddAllProjectOperation()
+        // {
+        //     var res = await _roleService.AddAllProjectOperation();
+        //     return Ok(res);
+        // }
 
         [HttpGet("routes")]
         public IActionResult GetAvailableApiPaths()
@@ -95,10 +95,24 @@ namespace TaskFlow.WebAPI.Controllers
             return Ok(res);
         }
 
-        [HttpPost]
+        [HttpPost("AddPath")]
         public async Task<IActionResult> AddPath(PathAddRequestDto pathAddRequestDto)
         {
             var res = await _roleService.AddPath(pathAddRequestDto);
+            return Ok(res);
+        }
+
+        [HttpGet("GetAllPath")]
+        public async Task<IActionResult> GetAllPath()
+        {
+            var res = await _roleService.GetAllPath();
+            return Ok(res);
+        }
+
+        [HttpPost("GetAllowrdPathForRole")]
+        public async Task<IActionResult> GetAllowrdPathForRole(string roleGuidId)
+        {
+            var res = await _roleService.GetAllowedPathForRole(roleGuidId);
             return Ok(res);
         }
     }

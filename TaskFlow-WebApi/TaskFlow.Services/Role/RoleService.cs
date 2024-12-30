@@ -125,4 +125,16 @@ public class RoleService : IRoleService
         var res = await _roleRepository.AddPath(pathAddRequestDto);
         return res;
     }
+
+    public async Task<List<PathEntity>> GetAllPath()
+    {
+        var res = await _roleRepository.GetAllPath();
+        return res;
+    }
+
+    public async Task<GetAllowedPathForRoleDto> GetAllowedPathForRole(string roleGuidId)
+    {
+        var res = await _roleRepository.GetAllowedPathForRole(roleGuidId);
+        return res;
+    }
 }

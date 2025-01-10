@@ -16,9 +16,14 @@ public class TaskService : ITaskService
         _taskRepository = taskRepository;
     }
 
-    public async Task<TaskGetResponseDto> GetTaskByGuidId(string TaskGuidId)
+    public async Task<TaskGetResponseDto> GetTaskByGuidId(
+        TaskGetByGuidRequestDto taskGetByGuidRequestDtos
+    )
     {
-        var res = await _taskRepository.GetTaskResponseByGuidId(TaskGuidId);
+        var res = await _taskRepository.GetTaskResponseByGuidId(
+            taskGetByGuidRequestDtos.UserGuidId,
+            taskGetByGuidRequestDtos.TaskGuidId
+        );
         return new TaskGetResponseDto
         {
             Id = res.Id,

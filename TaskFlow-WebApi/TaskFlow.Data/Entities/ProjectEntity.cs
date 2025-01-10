@@ -37,6 +37,8 @@ public class ProjectMembers
     public string ProjectGuidId { get; set; }
     public string ProjectRoleGuidId { get; set; }
 
+    //TODO: Add ForeighKey for ProjectRoleGuidId
+
     public ProjectEntity ProjectEntity { get; set; }
     public UserEntity UserEntity { get; set; }
 }

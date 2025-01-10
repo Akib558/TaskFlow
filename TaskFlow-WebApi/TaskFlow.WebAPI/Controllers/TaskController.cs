@@ -18,12 +18,13 @@ namespace TaskFlow.WebAPI.Controllers
             _taskService = taskService;
         }
 
+        [Authorize]
         [HttpPost("GetTaskByGuid")]
         public async Task<IActionResult> GetTaskByGuidId(
             TaskGetByGuidRequestDto taskGetByGuidRequestDto
         )
         {
-            var res = await _taskService.GetTaskByGuidId(taskGetByGuidRequestDto.TaskGuidId);
+            var res = await _taskService.GetTaskByGuidId(taskGetByGuidRequestDto);
             return Ok(res);
         }
 
@@ -39,6 +40,7 @@ namespace TaskFlow.WebAPI.Controllers
             return (IEnumerable<TaskGetResponseDto>)res;
         }
 
+        [Authorize]
         [HttpPost("AddTask")]
         public async Task<IActionResult> AddTask(TaskAddRequestDto addRequestDto)
         {

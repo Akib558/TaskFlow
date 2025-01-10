@@ -36,7 +36,7 @@ public static class JwtHelper
             issuer: "http://localhost:5109",
             audience: "http://localhost:5109",
             claims: claims,
-            expires: DateTime.UtcNow.AddMinutes(1),
+            expires: DateTime.UtcNow.AddMonths(1),
             signingCredentials: creds
         );
 

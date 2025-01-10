@@ -16,11 +16,11 @@ public class TaskRepository : ITaskRepository
         _dbContext = dbContext;
     }
 
-    public async Task<TaskEntity> GetTaskResponseByGuidId(string TaskGuidId)
+    public async Task<TaskEntity> GetTaskResponseByGuidId(string UserGuidId, string TaskGuidId)
     {
         var res = await _dbContext
             .Set<TaskEntity>()
-            .FirstOrDefaultAsync(x => x.TaskGuidId == TaskGuidId);
+            .FirstOrDefaultAsync(x => x.TaskGuidId == TaskGuidId && x.TaskCreatedBy == UserGuidId);
         return res;
     }
 

@@ -192,16 +192,15 @@ public class RoleRepository : IRoleRepository
 
     public async Task<GetAllowedPathForRoleDto> GetAllowedPathForRole(string roleGuidId)
     {
-        var res = _context
-            .RolePaths.Include(x => x.Paths)
-            .Where(x => x.RolePathGuidId == roleGuidId)
-            .Select(x => new PathInfoDto
+        var res = await _context
+            .RolePaths.Where(rp => rp.ProjectRoles.ProjectRoleGuidId == roleGuidId)
+            .Select(rp => new PathInfoDto
             {
-                PathGuidId = x.Paths.PathGuidId,
-                PathName = x.Paths.PathName,
-                PathValue = x.Paths.PathValue,
+                PathName = rp.Paths.PathName,
+                PathGuidId = rp.PathGuidId,
+                PathValue = rp.Paths.PathValue,
             })
-            .ToList();
+            .ToListAsync();
 
         var res2 = await _context
             .Set<ProjectRolesEntity>()

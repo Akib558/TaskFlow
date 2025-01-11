@@ -11,8 +11,10 @@ using TaskFlow.Core.Validators;
 using TaskFlow.Data;
 using TaskFlow.Middlewares;
 using TaskFlow.Repositories;
+using TaskFlow.Repositories.Project;
 using TaskFlow.Repositories.Roles;
 using TaskFlow.Services;
+using TaskFlow.Services.Project;
 using TaskFlow.Services.Role;
 using TaskFlow.Utilites;
 
@@ -55,10 +57,12 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
 
 // Add Authentication and Authorization
 builder

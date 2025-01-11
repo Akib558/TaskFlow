@@ -42,51 +42,51 @@ public class RoleService : IRoleService
         // await _roleRepository.DeleteRole(roleDeleteRequestDto.ProjectRoleGuidId);
     }
 
-    public async Task<RoleUpdateResponseDto> UpdateRole(RoleUpdateRequestDto roleUpdateRequestDto)
-    {
-        var res = await _roleRepository.UpdateRole(
-            new ProjectRolesEntity { ProjectRoleName = roleUpdateRequestDto.RoleName }
-        );
-        if (res != null)
-        {
-            return new RoleUpdateResponseDto
-            {
-                ProjectRoleGuidId = res.ProjectRoleGuidId,
-                ProjectRoleName = res.ProjectRoleName,
-            };
-        }
-        throw new Exception("Error Occured during updating role");
-    }
+    // public async Task<RoleUpdateResponseDto> UpdateRole(RoleUpdateRequestDto roleUpdateRequestDto)
+    // {
+    //     var res = await _roleRepository.UpdateRole(
+    //         new ProjectRolesEntity { ProjectRoleName = roleUpdateRequestDto.RoleName }
+    //     );
+    //     if (res != null)
+    //     {
+    //         return new RoleUpdateResponseDto
+    //         {
+    //             ProjectRoleGuidId = res.ProjectRoleGuidId,
+    //             ProjectRoleName = res.ProjectRoleName,
+    //         };
+    //     }
+    //     throw new Exception("Error Occured during updating role");
+    // }
 
-    public async Task<RoleAddOperationResponseDto> RoleAddOperation(
-        RoleAddOperationRequestDto roleAddOperationRequestDto
-    )
-    {
-        var roleOperationList = roleAddOperationRequestDto
-            .RoleOperation.Select(x => new ProjectPrivileges
-            {
-                ProjectPrivilegesGuidId = Guid.NewGuid().ToString(),
-                ProjectRoleGuidId = x.ProjectRoleGuidId,
-                ProjectOperationsGuidId = x.ProjectOperationsGuidId,
-            })
-            .ToList();
-        var res = await _roleRepository.AddOperationsToRole(roleOperationList);
+    // public async Task<RoleAddOperationResponseDto> RoleAddOperation(
+    //     RoleAddOperationRequestDto roleAddOperationRequestDto
+    // )
+    // {
+    //     var roleOperationList = roleAddOperationRequestDto
+    //         .RoleOperation.Select(x => new ProjectPrivileges
+    //         {
+    //             ProjectPrivilegesGuidId = Guid.NewGuid().ToString(),
+    //             ProjectRoleGuidId = x.ProjectRoleGuidId,
+    //             ProjectOperationsGuidId = x.ProjectOperationsGuidId,
+    //         })
+    //         .ToList();
+    //     var res = await _roleRepository.AddOperationsToRole(roleOperationList);
 
-        if (res != null)
-        {
-            return new RoleAddOperationResponseDto
-            {
-                RoleOperation = roleOperationList
-                    .Select(x => new RoleOperationDto
-                    {
-                        ProjectRoleGuidId = x.ProjectRoleGuidId,
-                        ProjectOperationsGuidId = x.ProjectOperationsGuidId,
-                    })
-                    .ToList(),
-            };
-        }
-        throw new Exception("Error Occured during updating role");
-    }
+    //     if (res != null)
+    //     {
+    //         return new RoleAddOperationResponseDto
+    //         {
+    //             RoleOperation = roleOperationList
+    //                 .Select(x => new RoleOperationDto
+    //                 {
+    //                     ProjectRoleGuidId = x.ProjectRoleGuidId,
+    //                     ProjectOperationsGuidId = x.ProjectOperationsGuidId,
+    //                 })
+    //                 .ToList(),
+    //         };
+    //     }
+    //     throw new Exception("Error Occured during updating role");
+    // }
 
     public async Task<List<ProjectRolesEntity>> GetAllRole()
     {
@@ -98,21 +98,21 @@ public class RoleService : IRoleService
         throw new Exception("Error Occured during getting all role");
     }
 
-    public async Task<List<ProjectOperations>> GetAllProjectOperation()
-    {
-        var res = await _roleRepository.GetAllProjectOperation();
-        if (res != null)
-        {
-            return res;
-        }
-        throw new Exception("Error Occured during getting all operation for project");
-    }
+    // public async Task<List<ProjectOperations>> GetAllProjectOperation()
+    // {
+    //     var res = await _roleRepository.GetAllProjectOperation();
+    //     if (res != null)
+    //     {
+    //         return res;
+    //     }
+    //     throw new Exception("Error Occured during getting all operation for project");
+    // }
 
-    public async Task<bool> AddAllProjectOperation()
-    {
-        var res = await _roleRepository.AddAllProjectOperation();
-        return res;
-    }
+    // public async Task<bool> AddAllProjectOperation()
+    // {
+    //     var res = await _roleRepository.AddAllProjectOperation();
+    //     return res;
+    // }
 
     public async Task<bool> AddPathToRole(AddPathToRoleRequestDto addPathToRoleRequestDto)
     {

@@ -9,11 +9,13 @@ public interface IRoleRepository
 {
     Task<ProjectRolesEntity> AddRole(ProjectRolesEntity projectEntity);
     Task<bool> DeleteRole(string projectRoleGuidId);
-    Task<ProjectRolesEntity> UpdateRole(ProjectRolesEntity projectRolesEntity);
+
+    // Task<ProjectRolesEntity> UpdateRole(ProjectRolesEntity projectRolesEntity);
     Task<List<ProjectRolesEntity>> GetAllRole();
-    Task<bool> AddOperationsToRole(List<ProjectPrivileges> projectPrivileges);
-    Task<List<ProjectOperations>> GetAllProjectOperation();
-    Task<bool> AddAllProjectOperation();
+
+    // Task<bool> AddOperationsToRole(List<ProjectPrivileges> projectPrivileges);
+    // Task<List<ProjectOperations>> GetAllProjectOperation();
+    // Task<bool> AddAllProjectOperation();
     Task<bool> AddPathToRole(AddPathToRoleRequestDto addPathToRoleRequestDto);
     Task<PathEntity> AddPath(PathAddRequestDto pathAddRequestDto);
     Task<List<PathEntity>> GetAllPath();

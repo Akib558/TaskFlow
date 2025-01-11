@@ -17,8 +17,12 @@ public class TaskFlowDbContext : DbContext
     public DbSet<ProjectRolesEntity> ProjectRoles { get; set; }
     public DbSet<ProjectMembers> ProjectMembers { get; set; }
     public DbSet<JwtRefreshTokenEntity> JwtRefreshTokens { get; set; }
-    public DbSet<ProjectPrivileges> ProjectPrivileges { get; set; }
-    public DbSet<ProjectOperations> ProjectOperations { get; set; }
+
+    // public DbSet<ProjectPrivileges> ProjectPrivileges { get; set; }
+    // public DbSet<ProjectOperations> ProjectOperations { get; set; }
+
+    public DbSet<ProjectAndRoles> ProjectAndRoles { get; set; }
+    public DbSet<ProjectMembersAndRoles> ProjectMembersAndRoles { get; set; }
     public DbSet<RolePathEntity> RolePaths { get; set; }
     public DbSet<PathEntity> Paths { get; set; }
 
@@ -81,23 +85,23 @@ public class TaskFlowDbContext : DbContext
 
         //Many-toMany relationship between ProjectRolesEntity & ProjectOperations
 
-        modelBuilder
-            .Entity<ProjectPrivileges>()
-            .HasKey(ind => new { ind.ProjectRoleGuidId, ind.ProjectOperationsGuidId });
+        // modelBuilder
+        //     .Entity<ProjectPrivileges>()
+        //     .HasKey(ind => new { ind.ProjectRoleGuidId, ind.ProjectOperationsGuidId });
 
-        modelBuilder
-            .Entity<ProjectPrivileges>()
-            .HasOne(pp => pp.ProjectRole)
-            .WithMany(pr => pr.ProjectPrivileges)
-            .HasForeignKey(pp => pp.ProjectRoleGuidId)
-            .HasPrincipalKey(pp => pp.ProjectRoleGuidId);
+        // modelBuilder
+        //     .Entity<ProjectPrivileges>()
+        //     .HasOne(pp => pp.ProjectRole)
+        //     .WithMany(pr => pr.ProjectPrivileges)
+        //     .HasForeignKey(pp => pp.ProjectRoleGuidId)
+        //     .HasPrincipalKey(pp => pp.ProjectRoleGuidId);
 
-        modelBuilder
-            .Entity<ProjectPrivileges>()
-            .HasOne(pp => pp.ProjectOperation)
-            .WithMany(pr => pr.ProjectPrivileges)
-            .HasForeignKey(pp => pp.ProjectOperationsGuidId)
-            .HasPrincipalKey(pp => pp.ProjectOperationsGuidId);
+        // modelBuilder
+        //     .Entity<ProjectPrivileges>()
+        //     .HasOne(pp => pp.ProjectOperation)
+        //     .WithMany(pr => pr.ProjectPrivileges)
+        //     .HasForeignKey(pp => pp.ProjectOperationsGuidId)
+        //     .HasPrincipalKey(pp => pp.ProjectOperationsGuidId);
 
         modelBuilder
             .Entity<RolePathEntity>()
@@ -114,5 +118,37 @@ public class TaskFlowDbContext : DbContext
             .WithMany(p => p.ProjectRoleWiseAccesses)
             .HasForeignKey(pp => pp.PathGuidId)
             .HasPrincipalKey(pp => pp.PathGuidId);
+
+        modelBuilder
+            .Entity<ProjectAndRoles>()
+            .HasKey(ind => new { ind.ProjectGuidId, ind.ProjectRoleGuidId });
+        modelBuilder
+            .Entity<ProjectAndRoles>()
+            .HasOne(pp => pp.Projects)
+            .WithMany(pr => pr.ProjectAndRoles)
+            .HasForeignKey(pr => pr.ProjectGuidId)
+            .HasPrincipalKey(pp => pp.ProjectGuidId);
+        modelBuilder
+            .Entity<ProjectAndRoles>()
+            .HasOne(pp => pp.ProjectRoles)
+            .WithMany(p => p.ProjectAndRoles)
+            .HasForeignKey(pp => pp.ProjectRoleGuidId)
+            .HasPrincipalKey(pp => pp.ProjectRoleGuidId);
+
+        modelBuilder
+            .Entity<ProjectMembersAndRoles>()
+            .HasKey(ind => new { ind.ProjectMemeberGuidId, ind.ProjectRoleGuidId });
+        modelBuilder
+            .Entity<ProjectMembersAndRoles>()
+            .HasOne(pp => pp.ProjectMembers)
+            .WithMany(pr => pr.ProjectMembersAndRoles)
+            .HasForeignKey(pr => pr.ProjectMemeberGuidId)
+            .HasPrincipalKey(pp => pp.ProjectMemberGuidId);
+        modelBuilder
+            .Entity<ProjectMembersAndRoles>()
+            .HasOne(pp => pp.ProjectRoles)
+            .WithMany(p => p.ProjectMembersAndRoles)
+            .HasForeignKey(pp => pp.ProjectRoleGuidId)
+            .HasPrincipalKey(pp => pp.ProjectRoleGuidId);
     }
 }

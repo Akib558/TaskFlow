@@ -31,12 +31,12 @@ namespace TaskFlow.WebAPI.Controllers
             return Ok(res);
         }
 
-        [HttpPut("UpdateRole")]
-        public async Task<IActionResult> RoleUpdate(RoleUpdateRequestDto roleUpdateRequestDto)
-        {
-            var res = await _roleService.UpdateRole(roleUpdateRequestDto);
-            return Ok(res);
-        }
+        // [HttpPut("UpdateRole")]
+        // public async Task<IActionResult> RoleUpdate(RoleUpdateRequestDto roleUpdateRequestDto)
+        // {
+        //     var res = await _roleService.UpdateRole(roleUpdateRequestDto);
+        //     return Ok(res);
+        // }
 
         [HttpGet("GetAllRole")]
         public async Task<IActionResult> GetAllRole()

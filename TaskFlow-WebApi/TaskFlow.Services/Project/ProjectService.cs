@@ -151,23 +151,39 @@ public class ProjectService : IProjectService
         return mainRes;
     }
 
-    public async Task<bool> AddRoleToProjects(ProjectAndRoles projectAndRoles)
+    public async Task<bool> AddRoleToProjects(ProjectAndRoleRequestDto projectAndRoleRequest)
     {
-        var res = await _projectRepository.AddRoleToProjects(projectAndRoles);
+        var newObj = new ProjectAndRoles
+        {
+            ProjectGuidId = projectAndRoleRequest.ProjectGuidId,
+            ProjectRoleGuidId = projectAndRoleRequest.ProjectRoleGuidId,
+        };
+        var res = await _projectRepository.AddRoleToProjects(newObj);
         return res != null;
     }
 
-    public async Task<List<ProjectRolesEntity>> GetAllProjetRoles(string projectGuidId)
+    public async Task<List<ProjectRolesEntity>> GetAllProjetRoles(
+        GetAllProjectRolesRequestDto getAllProjectRolesRequestDto
+    )
     {
-        var res = await _projectRepository.GetAllProjetRoles(projectGuidId);
+        var res = await _projectRepository.GetAllProjetRoles(
+            getAllProjectRolesRequestDto.ProjectGuidId
+        );
         return res;
     }
 
     // public async Task<ProjectRolesEntity>
 
-    public async Task<bool> AddProjectRolesToMembers(ProjectMembersAndRoles projectMembersAndRoles)
+    public async Task<bool> AddProjectRolesToMembers(
+        ProjectMemberAndRolesRequestDto projectMemberAndRolesRequestDto
+    )
     {
-        var res = await _projectRepository.AddProjectRolesToMembers(projectMembersAndRoles);
+        var newObj = new ProjectMembersAndRoles
+        {
+            ProjectMemeberGuidId = projectMemberAndRolesRequestDto.ProjectMemeberGuidId,
+            ProjectRoleGuidId = projectMemberAndRolesRequestDto.ProjectRoleGuidId,
+        };
+        var res = await _projectRepository.AddProjectRolesToMembers(newObj);
         return res != null;
     }
 }

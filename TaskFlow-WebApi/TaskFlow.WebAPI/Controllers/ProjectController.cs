@@ -77,7 +77,7 @@ namespace TaskFlow.WebAPI.Controllers
 
         [Authorize]
         [HttpPost("AddRoleToProject")]
-        public async Task<IActionResult> AddRoleToProjects(ProjectAndRoles projectAndRoles)
+        public async Task<IActionResult> AddRoleToProjects(ProjectAndRoleRequestDto projectAndRoles)
         {
             var res = await _projectService.AddRoleToProjects(projectAndRoles);
             return Ok(res != null);
@@ -85,16 +85,18 @@ namespace TaskFlow.WebAPI.Controllers
 
         [Authorize]
         [HttpPost("GetAllProjetRoles")]
-        public async Task<IActionResult> GetAllProjetRoles(string projectGuidId)
+        public async Task<IActionResult> GetAllProjetRoles(
+            GetAllProjectRolesRequestDto getAllProjectRolesRequestDto
+        )
         {
-            var res = await _projectService.GetAllProjetRoles(projectGuidId);
+            var res = await _projectService.GetAllProjetRoles(getAllProjectRolesRequestDto);
             return Ok(res);
         }
 
         [Authorize]
         [HttpPost("AddProjectRolesToMembers")]
         public async Task<IActionResult> AddProjectRolesToMembers(
-            ProjectMembersAndRoles projectMembersAndRoles
+            ProjectMemberAndRolesRequestDto projectMembersAndRoles
         )
         {
             var res = await _projectService.AddProjectRolesToMembers(projectMembersAndRoles);

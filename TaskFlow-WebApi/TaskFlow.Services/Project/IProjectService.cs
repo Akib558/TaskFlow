@@ -18,7 +18,9 @@ public interface IProjectService
     Task<ProjectGetAllMembersResponseDto> GetAllMembers(
         ProjectGetAllMembersRequestDto projectGetAllMembersRequestDto
     );
-    Task<bool> AddRoleToProjects(ProjectAndRoles projectAndRoles);
-    Task<bool> AddProjectRolesToMembers(ProjectMembersAndRoles projectMembersAndRoles);
-    Task<List<ProjectRolesEntity>> GetAllProjetRoles(string projectGuidId);
+    Task<bool> AddRoleToProjects(ProjectAndRoleRequestDto projectAndRoles);
+    Task<bool> AddProjectRolesToMembers(ProjectMemberAndRolesRequestDto projectMembersAndRoles);
+    Task<List<ProjectRolesEntity>> GetAllProjetRoles(
+        GetAllProjectRolesRequestDto getAllProjectRolesRequestDto
+    );
 }

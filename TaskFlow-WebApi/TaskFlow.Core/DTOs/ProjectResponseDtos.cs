@@ -48,3 +48,11 @@ public class ProjectMemeberResponseDto
     public string ProjectGuidId { get; set; }
     public string ProjectRoleGuidId { get; set; }
 }
+
+public class ProjectShortInfoDto
+{
+    public int Id { get; set; }
+    public string ProjectGuidId { get; set; }
+    public string ProjectName { get; set; }
+    public string ProjectDescription { get; set; }
+}

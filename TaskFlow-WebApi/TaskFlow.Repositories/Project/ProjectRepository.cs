@@ -1,4 +1,5 @@
 using System;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using TaskFlow.Data;
 using TaskFlow.Data.Entities;
@@ -98,5 +99,14 @@ public class ProjectRepository : IProjectRepository
         var res = await _context.ProjectMembersAndRoles.AddAsync(projectMembersAndRoles);
         await _context.SaveChangesAsync();
         return res != null;
+    }
+
+    public async Task<List<ProjectEntity>> GetAllProjectByUser(string userGuidId)
+    {
+        var res = await _context
+            .ProjectMembers.Where(x => x.UserGuidId == userGuidId)
+            .Select(x => x.ProjectEntity)
+            .ToListAsync();
+        return res;
     }
 }

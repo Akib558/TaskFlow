@@ -19,6 +19,9 @@ public class ProjectEntity
     public ICollection<ProjectAndRoles> ProjectAndRoles { get; set; }
 
     public ICollection<ProjectMembers> Members { get; set; }
+
+    public ICollection<ProjectSubProject> ParentProjects { get; set; }
+    public ICollection<ProjectSubProject> ChildProjects { get; set; }
 }
 
 public class ProjectAndRoles
@@ -86,3 +89,14 @@ public class ProjectMembers
 //     public ProjectOperationEnums ProjectOperationType { get; set; }
 //     public ICollection<ProjectPrivileges> ProjectPrivileges { get; set; }
 // }
+
+public class ProjectSubProject
+{
+    [Key]
+    public int Id { get; set; }
+    public string ProjectSubProjectGuidId { get; set; }
+    public string ParentProjectGuidId { get; set; }
+    public string ChildProjectGuidId { get; set; }
+    public ProjectEntity ParentProject { get; set; }
+    public ProjectEntity ChildProject { get; set; }
+}

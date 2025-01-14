@@ -25,6 +25,7 @@ public class TaskFlowDbContext : DbContext
     public DbSet<ProjectMembersAndRoles> ProjectMembersAndRoles { get; set; }
     public DbSet<RolePathEntity> RolePaths { get; set; }
     public DbSet<PathEntity> Paths { get; set; }
+    public DbSet<ProjectSubProject> ProjectSubProjects { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -150,5 +151,24 @@ public class TaskFlowDbContext : DbContext
             .WithMany(p => p.ProjectMembersAndRoles)
             .HasForeignKey(pp => pp.ProjectRoleGuidId)
             .HasPrincipalKey(pp => pp.ProjectRoleGuidId);
+
+        modelBuilder
+            .Entity<ProjectSubProject>()
+            .HasKey(ind => new { ind.ParentProjectGuidId, ind.ChildProjectGuidId });
+        modelBuilder
+            .Entity<ProjectSubProject>()
+            .HasOne(p1 => p1.ParentProject)
+            .WithMany(p2 => p2.ParentProjects)
+            .HasForeignKey(p3 => p3.ParentProjectGuidId)
+            .HasPrincipalKey(p4 => p4.ProjectGuidId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder
+            .Entity<ProjectSubProject>()
+            .HasOne(p1 => p1.ChildProject)
+            .WithMany(p2 => p2.ChildProjects)
+            .HasForeignKey(p3 => p3.ChildProjectGuidId)
+            .HasPrincipalKey(p4 => p4.ProjectGuidId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

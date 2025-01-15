@@ -14,4 +14,5 @@ public interface IProjectRepository
     Task<bool> AddRoleToProjects(ProjectAndRoles projectAndRoles);
     Task<bool> AddProjectRolesToMembers(ProjectMembersAndRoles projectMembersAndRoles);
     Task<List<ProjectRolesEntity>> GetAllProjetRoles(string projectGuidId);
+    Task<List<ProjectEntity>> GetAllProjectByUser(string userGuidId);
 }

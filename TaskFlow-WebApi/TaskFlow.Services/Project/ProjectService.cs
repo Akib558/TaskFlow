@@ -186,4 +186,21 @@ public class ProjectService : IProjectService
         var res = await _projectRepository.AddProjectRolesToMembers(newObj);
         return res != null;
     }
+
+    public async Task<List<ProjectShortInfoDto>> GetAllProjectByUser(
+        GettAllProjectByUser gettAllProjectByUser
+    )
+    {
+        var res = await _projectRepository.GetAllProjectByUser(gettAllProjectByUser.UserGuidId);
+        var mainRes = res.Select(x => new ProjectShortInfoDto
+            {
+                Id = x.Id,
+                ProjectGuidId = x.ProjectGuidId,
+                ProjectName = x.ProjectName,
+                ProjectDescription = x.ProjectDescription,
+            })
+            .ToList();
+
+        return mainRes;
+    }
 }

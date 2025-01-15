@@ -23,4 +23,5 @@ public interface IProjectService
     Task<List<ProjectRolesEntity>> GetAllProjetRoles(
         GetAllProjectRolesRequestDto getAllProjectRolesRequestDto
     );
+    Task<List<ProjectShortInfoDto>> GetAllProjectByUser(GettAllProjectByUser gettAllProjectByUser);
 }

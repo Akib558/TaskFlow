@@ -102,5 +102,15 @@ namespace TaskFlow.WebAPI.Controllers
             var res = await _projectService.AddProjectRolesToMembers(projectMembersAndRoles);
             return Ok(res != null);
         }
+
+        [Authorize]
+        [HttpPost("GetAllProjectForUser")]
+        public async Task<IActionResult> GetAllProjectByUser(
+            GettAllProjectByUser gettAllProjectByUser
+        )
+        {
+            var res = await _projectService.GetAllProjectByUser(gettAllProjectByUser);
+            return Ok(res);
+        }
     }
 }

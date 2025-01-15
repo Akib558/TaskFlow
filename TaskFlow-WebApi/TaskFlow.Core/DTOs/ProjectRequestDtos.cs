@@ -88,3 +88,8 @@ public class GetAllProjectRolesRequestDto
 {
     public string ProjectGuidId { get; set; }
 }
+
+public class GettAllProjectByUser
+{
+    public string UserGuidId { get; set; }
+}

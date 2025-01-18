@@ -37,7 +37,6 @@ public class TaskAssignmentsEntity
     public string Role { get; set; }
 }
 
-
 public class TaskUpdate
 {
     [Key]
@@ -51,6 +50,4 @@ public class TaskUpdate
 
     public UserEntity UserEntity { get; set; }
     public TaskEntity TaskEntity { get; set; }
-
-
 }

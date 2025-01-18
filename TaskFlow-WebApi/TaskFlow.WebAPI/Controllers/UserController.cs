@@ -26,7 +26,9 @@ namespace TaskFlow.WebAPI.Controllers
         }
 
         [HttpGet("GetUserByName")]
-        public async Task<IActionResult> GetUserByUsername(UserGetByUsernameRequestDto userGetByUsernameRequestDto)
+        public async Task<IActionResult> GetUserByUsername(
+            UserGetByUsernameRequestDto userGetByUsernameRequestDto
+        )
         {
             var user = await _userService.GetUserByUsername(userGetByUsernameRequestDto.Username);
             if (user == null)
@@ -38,7 +40,9 @@ namespace TaskFlow.WebAPI.Controllers
 
         // Get user by id
         [HttpPost("GetUserById")]
-        public async Task<IActionResult> GetUserById([FromBody] UserGetByGuidRequestDto userGetByGuidRequestDto)
+        public async Task<IActionResult> GetUserById(
+            [FromBody] UserGetByGuidRequestDto userGetByGuidRequestDto
+        )
         {
             var user = await _userService.GetUserById(userGetByGuidRequestDto.GuidId);
             if (user == null)
@@ -70,5 +74,4 @@ namespace TaskFlow.WebAPI.Controllers
             return NoContent();
         }
     }
-
 }

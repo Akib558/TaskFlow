@@ -30,7 +30,9 @@ namespace TaskFlow.Middlewares
 
             try
             {
-                logBuilder.Append($"[Method: {context.Request.Method}] | [Path: {context.Request.Path}]");
+                logBuilder.Append(
+                    $"[Method: {context.Request.Method}] | [Path: {context.Request.Path}]"
+                );
                 var userIdentity = context.User?.Identity?.Name ?? "Anonymous";
                 logBuilder.Append($" | [User: {userIdentity}]");
 
@@ -42,13 +44,14 @@ namespace TaskFlow.Middlewares
                 logBuilder.Append($" | [Status Code: {context.Response.StatusCode}]");
 
                 context.Response.Body.Seek(0, SeekOrigin.Begin);
-                var responseContent = await new StreamReader(context.Response.Body).ReadToEndAsync();
+                var responseContent = await new StreamReader(
+                    context.Response.Body
+                ).ReadToEndAsync();
                 context.Response.Body.Seek(0, SeekOrigin.Begin);
 
 #if DEBUG
                 logBuilder.Append($" | [Response: {responseContent}]");
 #endif
-
             }
             catch (Exception ex)
             {

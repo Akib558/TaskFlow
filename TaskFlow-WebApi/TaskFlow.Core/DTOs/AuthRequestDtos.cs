@@ -17,7 +17,13 @@ public class AuthRequestDto
     {
         // [Required(ErrorMessage = "Email is Required")]
         public string Email { get; set; }
+
         // [Required(ErrorMessage = "Password is Required")]
         public string Password { get; set; }
+    }
+
+    public class RefreshTokenRequestDto
+    {
+        public string RefreshToken { get; set; }
     }
 }

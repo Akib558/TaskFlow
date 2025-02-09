@@ -27,6 +27,7 @@ public class RoleRepository : IRoleRepository
         {
             return projectEntity;
         }
+
         return null;
     }
 
@@ -50,7 +51,7 @@ public class RoleRepository : IRoleRepository
     //     // res.ProjectPrivileges = projectRolesEntity.ProjectPrivileges;
     //     res.ProjectRoleName = projectRolesEntity.ProjectRoleName;
 
-    //     await _context.SaveChangesAsync();
+    //     await _context.SaveChang esAsync();
     //     return projectRolesEntity;
     // }
 
@@ -187,6 +188,7 @@ public class RoleRepository : IRoleRepository
         {
             return res;
         }
+
         return null;
     }
 

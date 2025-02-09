@@ -38,6 +38,15 @@ Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()
     .CreateLogger();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp",
+        policy => policy.WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
+});
+
 builder.Host.UseSerilog();
 builder.Services.AddControllers();
 builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
@@ -48,7 +57,7 @@ ApiModelValidation.AddValidationForModel(builder.Services);
 builder.Services.AddDbContext<TaskFlowDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration["ConnectionStrings:DefaultConnection"]
-    // "Server=localhost,4001;Database=TaskFlow;User ID=sa;Password=@M1janinaok;Trusted_Connection=False;Encrypt=True;TrustServerCertificate=True;"
+        // "Server=localhost,4001;Database=TaskFlow;User ID=sa;Password=@M1janinaok;Trusted_Connection=False;Encrypt=True;TrustServerCertificate=True;"
     )
 );
 
@@ -129,15 +138,16 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 var app = builder.Build();
-
+app.UseCors("AllowAngularApp");
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c =>
+    app.UseSwaggerUI();
+    /*app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "TaskFlow API V1");
         c.RoutePrefix = string.Empty; // Set Swagger UI at the app's root
-    });
+    });*/
 }
 else
 {

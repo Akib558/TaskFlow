@@ -33,6 +33,7 @@ public class RoleService : IRoleService
                 ProjectRoleName = res.ProjectRoleName,
             };
         }
+
         throw new Exception("Error Occured during adding role");
     }
 
@@ -95,6 +96,7 @@ public class RoleService : IRoleService
         {
             return res;
         }
+
         throw new Exception("Error Occured during getting all role");
     }
 

@@ -25,6 +25,8 @@ namespace TaskFlow.WebAPI.Controllers
             _userService = userService;
         }
 
+
+        [Authorize]
         [HttpGet("GetUserByName")]
         public async Task<IActionResult> GetUserByUsername(
             UserGetByUsernameRequestDto userGetByUsernameRequestDto
@@ -35,10 +37,12 @@ namespace TaskFlow.WebAPI.Controllers
             {
                 return NotFound();
             }
+
             return Ok(user);
         }
 
         // Get user by id
+        [Authorize]
         [HttpPost("GetUserById")]
         public async Task<IActionResult> GetUserById(
             [FromBody] UserGetByGuidRequestDto userGetByGuidRequestDto
@@ -49,6 +53,7 @@ namespace TaskFlow.WebAPI.Controllers
             {
                 return NotFound();
             }
+
             return Ok(user);
         }
 

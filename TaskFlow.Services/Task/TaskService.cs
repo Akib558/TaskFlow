@@ -1,11 +1,9 @@
-using System;
-using TaskFlow.Core.DTOs;
 using TaskFlow.Data.Entities;
 using TaskFlow.Repositories;
 using static TaskFlow.Core.DTOs.TaskRequestDtos;
 using static TaskFlow.Core.DTOs.TaskResponseDtos;
 
-namespace TaskFlow.Services;
+namespace TaskFlow.Services.Task;
 
 public class TaskService : ITaskService
 {
@@ -16,32 +14,37 @@ public class TaskService : ITaskService
         _taskRepository = taskRepository;
     }
 
-    public async Task<TaskGetResponseDto> GetTaskByGuidId(
-        TaskGetByGuidRequestDto taskGetByGuidRequestDtos
+    public async Task<TaskGetResponseDto?> GetTaskByGuidId(
+        TaskGetByGuidRequestDto taskGetByGuidRequestDto
     )
     {
-        var res = await _taskRepository.GetTaskResponseByGuidId(
-            taskGetByGuidRequestDtos.UserGuidId,
-            taskGetByGuidRequestDtos.TaskGuidId
-        );
-        return new TaskGetResponseDto
+        if (taskGetByGuidRequestDto is { UserGuidId: not null, TaskGuidId: not null })
         {
-            Id = res.Id,
-            TaskParentId = res.TaskParentId,
-            TaskGuidId = res.TaskGuidId,
-            TaskParentGuidId = res.TaskParentGuidId,
-            TaskCreatedBy = res.TaskCreatedBy,
-            TaskTitle = res.TaskTitle,
-            TaskDescription = res.TaskDescription,
-            TaskProjectGuidId = res.TaskProjectGuidId,
-            TaskStatus = res.TaskStatus,
-            TaskType = res.TaskType,
-            TaskPriority = res.TaskPriority,
-            TaskDeleted = res.TaskDeleted,
-            TaskCreatedDate = res.TaskCreatedDate,
-            TaskUpdatedDate = res.TaskUpdatedDate,
-            TaskDueDate = res.TaskDueDate,
-        };
+            var res = await _taskRepository.GetTaskResponseByGuidId(
+                taskGetByGuidRequestDto.UserGuidId,
+                taskGetByGuidRequestDto.TaskGuidId
+            );
+            return new TaskGetResponseDto
+            {
+                Id = res.Id,
+                TaskParentId = res.TaskParentId,
+                TaskGuidId = res.TaskGuidId,
+                TaskParentGuidId = res.TaskParentGuidId,
+                TaskCreatedBy = res.TaskCreatedBy,
+                TaskTitle = res.TaskTitle,
+                TaskDescription = res.TaskDescription,
+                TaskProjectGuidId = res.TaskProjectGuidId,
+                TaskStatus = res.TaskStatus,
+                TaskType = res.TaskType,
+                TaskPriority = res.TaskPriority,
+                TaskDeleted = res.TaskDeleted,
+                TaskCreatedDate = res.TaskCreatedDate,
+                TaskUpdatedDate = res.TaskUpdatedDate,
+                TaskDueDate = res.TaskDueDate,
+            };
+        }
+
+        return null;
     }
 
     public async Task<List<TaskGetResponseDto>> GetAllTaskByAuthorId(string AuthorGuidId)
@@ -74,13 +77,13 @@ public class TaskService : ITaskService
     {
         var taskEntity = new TaskEntity
         {
-            TaskParentId = TaskAddRequest.TaskParentId,
+            TaskParentId = TaskAddRequest.TaskParentId ?? 0,
             TaskGuidId = Guid.NewGuid().ToString(),
-            TaskParentGuidId = TaskAddRequest.TaskParentGuidId,
+            TaskParentGuidId = TaskAddRequest.TaskParentGuidId ?? "",
             TaskCreatedBy = TaskAddRequest.TaskCreatedBy,
             TaskTitle = TaskAddRequest.TaskTitle,
             TaskDescription = TaskAddRequest.TaskDescription,
-            TaskProjectGuidId = TaskAddRequest.TaskProjectGuidId,
+            TaskProjectGuidId = TaskAddRequest.TaskProjectGuidId ?? "",
             TaskStatus = TaskAddRequest.TaskStatus,
             TaskType = TaskAddRequest.TaskType,
             TaskPriority = TaskAddRequest.TaskPriority,

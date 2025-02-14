@@ -14,7 +14,7 @@ namespace TaskFlow.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : Controller
+    public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;
         private readonly IUserService _userService;
@@ -72,11 +72,11 @@ namespace TaskFlow.WebAPI.Controllers
             return Ok(updatedUser);
         }
 
-        [HttpDelete("DeleteUser")]
-        public async Task<IActionResult> DeleteUser(int id)
-        {
-            await _userService.DeleteUser(id);
-            return NoContent();
-        }
+        // [HttpDelete("DeleteUser")]
+        // public async Task<IActionResult> DeleteUser(int id)
+        // {
+        //     await _userService.DeleteUser(id);
+        //     return NoContent();
+        // }
     }
 }

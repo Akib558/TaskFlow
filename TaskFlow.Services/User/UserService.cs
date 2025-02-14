@@ -84,9 +84,9 @@ namespace TaskFlow.Services
             };
         }
 
-        public async Task DeleteUser(int id)
-        {
-            await _userRepository.DeleteUser(id);
-        }
+        // public async Task DeleteUser(int id)
+        // {
+        //     await _userRepository.DeleteUser(id);
+        // }
     }
 }

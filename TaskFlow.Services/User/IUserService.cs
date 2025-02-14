@@ -8,7 +8,8 @@ namespace TaskFlow.Services
         Task<UserInfoResponseDto> GetUserByUsername(string username);
         Task<UserInfoResponseDto> GetUserById(string GuidId);
         Task<UserInfoResponseDto> CreateUser(UserAddRequestDto user);
+
         Task<UserInfoResponseDto> UpdateUser(UserUpdateRequestDto user);
-        Task DeleteUser(int id);
+        // Task DeleteUser(int id);
     }
 }

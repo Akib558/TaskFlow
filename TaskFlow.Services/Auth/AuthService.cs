@@ -2,6 +2,7 @@ using System;
 using Azure.Core;
 using Azure.Identity;
 using BCrypt.Net;
+using System.Threading.Tasks;
 using TaskFlow.Data.Entities;
 using TaskFlow.Helpers;
 using TaskFlow.Repositories;
@@ -54,7 +55,7 @@ public class AuthService : IAuthService
             }
         );
 
-        return await Task.FromResult(
+        return
             new UserRegisterAuthResponseDto
             {
                 UserInfo = new UserInfoResponseDto
@@ -73,8 +74,7 @@ public class AuthService : IAuthService
                     ),
                     RefreshToken = newRefreshToken,
                 },
-            }
-        );
+            };
     }
 
     public async Task<UserLoginAuthResponseDto> Login(UserLoginAuthRequestDto user)
@@ -88,6 +88,7 @@ public class AuthService : IAuthService
         {
             throw new Exception("User login failed");
         }
+
         var newRefreshToken = JwtHelper.GenerateRefreshToken(
             res.Result.UserName,
             res.Result.UserGuidId,
@@ -103,7 +104,7 @@ public class AuthService : IAuthService
                 ExpiryDate = DateTime.UtcNow.AddMinutes(60),
             }
         );
-        return await Task.FromResult(
+        return
             new UserLoginAuthResponseDto
             {
                 UserInfo = new UserInfoResponseDto
@@ -122,8 +123,7 @@ public class AuthService : IAuthService
                     ),
                     RefreshToken = newRefreshToken,
                 },
-            }
-        );
+            };
     }
 
     private async Task<bool> IsRefreshTokenValid(RefreshTokenRequestDto refreshTokenRequestDto)
@@ -134,6 +134,7 @@ public class AuthService : IAuthService
         {
             return false;
         }
+
         return true;
     }
 

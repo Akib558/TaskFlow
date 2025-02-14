@@ -30,8 +30,6 @@ namespace TaskFlow.WebAPI
             return Ok(response);
         }
 
-        //TODO: Refresh Token Implementation
-
         [HttpPost("refresh")]
         public async Task<IActionResult> Refresh(RefreshTokenRequestDto request)
         {

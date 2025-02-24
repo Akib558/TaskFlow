@@ -39,4 +39,23 @@ public class TaskRequestDtos
         public string TaskType { get; set; }
         public string TaskPriority { get; set; }
     }
+
+    public class TaskUpdateRequestDto
+    {
+        // public int Id { get; set; }
+        public int? TaskParentId { get; set; }
+
+        public string TaskGuidId { get; set; }
+        public string? TaskParentGuidId { get; set; }
+
+        [Required] public string? TaskCreatedBy { get; set; }
+
+        [Required] public string? TaskTitle { get; set; }
+
+        [Required] public string? TaskDescription { get; set; }
+        public string? TaskProjectGuidId { get; set; }
+        public string TaskStatus { get; set; }
+        public string TaskType { get; set; }
+        public string TaskPriority { get; set; }
+    }
 }

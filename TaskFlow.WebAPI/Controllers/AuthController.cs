@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TaskFlow.Services;
@@ -24,6 +25,7 @@ namespace TaskFlow.WebAPI
         }
 
         [HttpPost("login")]
+        [SuppressMessage("ReSharper.DPA", "DPA0011: High execution time of MVC action", MessageId = "time: 16766ms")]
         public async Task<IActionResult> Login(UserLoginAuthRequestDto user)
         {
             var response = await _authService.Login(user);

@@ -39,4 +39,21 @@ public class TaskRepository : ITaskRepository
         await _dbContext.SaveChangesAsync();
         return res.Entity;
     }
+
+    public async Task<TaskEntity> UpdateTask(TaskEntity taskEntity)
+    {
+        var res = await _dbContext.Tasks.FirstOrDefaultAsync(x => x.TaskGuidId == taskEntity.TaskGuidId);
+        if (res == null)
+        {
+            throw new Exception("Task not found");
+        }
+
+        res.TaskTitle = taskEntity.TaskTitle;
+        res.TaskDescription = taskEntity.TaskDescription;
+        //TODO: More assignments needed
+
+        await _dbContext.SaveChangesAsync();
+
+        return res;
+    }
 }

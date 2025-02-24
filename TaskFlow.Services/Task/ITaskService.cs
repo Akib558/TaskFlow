@@ -9,4 +9,5 @@ public interface ITaskService
     Task<TaskGetResponseDto?> GetTaskByGuidId(TaskGetByGuidRequestDto taskGetByGuidRequestDto);
     Task<List<TaskGetResponseDto>> GetAllTaskByAuthorId(string AuthorGuidId);
     Task<TaskGetResponseDto> AddTask(TaskAddRequestDto TaskAddRequest);
+    Task<TaskGetResponseDto> UpdateTask(TaskUpdateRequestDto TaskUpdateRequest);
 }

@@ -47,5 +47,14 @@ namespace TaskFlow.WebAPI.Controllers
             var res = await _taskService.AddTask(addRequestDto);
             return Ok(res);
         }
+
+
+        [Authorize]
+        [HttpPost("UpdateTask")]
+        public async Task<IActionResult> UpdateTask(TaskUpdateRequestDto updateRequestDto)
+        {
+            var res = await _taskService.UpdateTask(updateRequestDto);
+            return Ok(res);
+        }
     }
 }

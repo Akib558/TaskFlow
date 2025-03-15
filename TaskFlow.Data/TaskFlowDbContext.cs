@@ -7,7 +7,9 @@ namespace TaskFlow.Data;
 public class TaskFlowDbContext : DbContext
 {
     public TaskFlowDbContext(DbContextOptions<TaskFlowDbContext> options)
-        : base(options) { }
+        : base(options)
+    {
+    }
 
     public DbSet<UserEntity> Users { get; set; }
     public DbSet<TaskEntity> Tasks { get; set; }
@@ -17,15 +19,12 @@ public class TaskFlowDbContext : DbContext
     public DbSet<ProjectRolesEntity> ProjectRoles { get; set; }
     public DbSet<ProjectMembers> ProjectMembers { get; set; }
     public DbSet<JwtRefreshTokenEntity> JwtRefreshTokens { get; set; }
-
-    // public DbSet<ProjectPrivileges> ProjectPrivileges { get; set; }
-    // public DbSet<ProjectOperations> ProjectOperations { get; set; }
-
     public DbSet<ProjectAndRoles> ProjectAndRoles { get; set; }
     public DbSet<ProjectMembersAndRoles> ProjectMembersAndRoles { get; set; }
     public DbSet<RolePathEntity> RolePaths { get; set; }
     public DbSet<PathEntity> Paths { get; set; }
     public DbSet<ProjectSubProject> ProjectSubProjects { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -84,25 +83,6 @@ public class TaskFlowDbContext : DbContext
             .HasForeignKey(f => f.ProjectGuidId)
             .HasPrincipalKey(t => t.ProjectGuidId);
 
-        //Many-toMany relationship between ProjectRolesEntity & ProjectOperations
-
-        // modelBuilder
-        //     .Entity<ProjectPrivileges>()
-        //     .HasKey(ind => new { ind.ProjectRoleGuidId, ind.ProjectOperationsGuidId });
-
-        // modelBuilder
-        //     .Entity<ProjectPrivileges>()
-        //     .HasOne(pp => pp.ProjectRole)
-        //     .WithMany(pr => pr.ProjectPrivileges)
-        //     .HasForeignKey(pp => pp.ProjectRoleGuidId)
-        //     .HasPrincipalKey(pp => pp.ProjectRoleGuidId);
-
-        // modelBuilder
-        //     .Entity<ProjectPrivileges>()
-        //     .HasOne(pp => pp.ProjectOperation)
-        //     .WithMany(pr => pr.ProjectPrivileges)
-        //     .HasForeignKey(pp => pp.ProjectOperationsGuidId)
-        //     .HasPrincipalKey(pp => pp.ProjectOperationsGuidId);
 
         modelBuilder
             .Entity<RolePathEntity>()

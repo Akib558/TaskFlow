@@ -5,8 +5,7 @@ namespace TaskFlow.Data.Entities;
 
 public class TaskEntity
 {
-    [Key]
-    public int Id { get; set; }
+    [Key] public int Id { get; set; }
     public int TaskParentId { get; set; }
     public string TaskGuidId { get; set; }
     public string TaskParentGuidId { get; set; }
@@ -27,8 +26,7 @@ public class TaskEntity
 
 public class TaskAssignmentsEntity
 {
-    [Key]
-    public int Id { get; set; }
+    [Key] public int Id { get; set; }
     public string TaskAssignmentGuidId { get; set; }
     public string UserGuidId { get; set; }
     public UserEntity UserEntity { get; set; }
@@ -39,8 +37,7 @@ public class TaskAssignmentsEntity
 
 public class TaskUpdate
 {
-    [Key]
-    public int Id { get; set; }
+    [Key] public int Id { get; set; }
     public string TaskUpdateGuidId { get; set; }
     public string TaskGuidId { get; set; }
     public string UserGuidId { get; set; }

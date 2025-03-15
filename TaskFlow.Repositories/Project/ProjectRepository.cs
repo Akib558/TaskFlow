@@ -8,7 +8,7 @@ namespace TaskFlow.Repositories.Project;
 
 public class ProjectRepository : IProjectRepository
 {
-    private TaskFlowDbContext _context;
+    private readonly TaskFlowDbContext _context;
 
     public ProjectRepository(TaskFlowDbContext context)
     {

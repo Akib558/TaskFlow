@@ -106,7 +106,7 @@ namespace TaskFlow.WebAPI.Controllers
         [Authorize]
         [HttpPost("GetAllProjectForUser")]
         public async Task<IActionResult> GetAllProjectByUser(
-            GettAllProjectByUser gettAllProjectByUser
+            GetAllProjectsByUserRequestDto gettAllProjectByUser
         )
         {
             var res = await _projectService.GetAllProjectByUser(gettAllProjectByUser);

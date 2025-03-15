@@ -1,14 +1,12 @@
-using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TaskFlow.Core.DTOs;
-
-public class RoleResponseDtos { }
 
 public class RoleAddResponseDto
 {
     public int Id { get; set; }
-    public string ProjectRoleGuidId { get; set; }
-    public string ProjectRoleName { get; set; }
+    public int ProjectRoleId { get; set; }
+    public string ProjectRoleName { get; set; } = String.Empty;
 }
 
 public class RoleDeleteResponseDto
@@ -18,38 +16,39 @@ public class RoleDeleteResponseDto
 
 public class RoleUpdateResponseDto
 {
-    public string ProjectPrivilegesGuidId { get; set; }
-    public string ProjectRoleGuidId { get; set; }
-    public string ProjectRoleName { get; set; }
+    public int ProjectRoleId { get; set; }
+    public string ProjectRoleName { get; set; } = String.Empty;
 }
 
 public class RoleAddOperationResponseDto
 {
-    public List<RoleOperationDto> RoleOperation { get; set; }
+    public List<RoleOperationDto> RoleOperations { get; set; } = new List<RoleOperationDto>();
 }
 
 public class AddPathToRoleRequestDto
 {
-    public string RoleGuidId { get; set; }
-    public string PathGuidId { get; set; }
+    [Required] public int ProjectRoleId { get; set; }
+
+    [Required] public int PathId { get; set; }
 }
 
 public class PathAddRequestDto
 {
-    public string PathName { get; set; }
-    public string PathValue { get; set; }
+    [Required] public string PathName { get; set; } = String.Empty;
+
+    [Required] public string PathValue { get; set; } = String.Empty;
 }
 
 public class PathInfoDto
 {
-    public string PathName { get; set; }
-    public string PathValue { get; set; }
-    public string PathGuidId { get; set; }
+    public int PathId { get; set; }
+    public string PathName { get; set; } = String.Empty;
+    public string PathValue { get; set; } = String.Empty;
 }
 
 public class GetAllowedPathForRoleDto
 {
-    public string RoleName { get; set; }
-    public string RoleGuidId { get; set; }
-    public List<PathInfoDto> PathInfoList { get; set; }
+    public string RoleName { get; set; } = String.Empty;
+    public int ProjectRoleId { get; set; }
+    public List<PathInfoDto> PathInfoList { get; set; } = new List<PathInfoDto>();
 }

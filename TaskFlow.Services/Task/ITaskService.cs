@@ -6,8 +6,7 @@ namespace TaskFlow.Services;
 
 public interface ITaskService
 {
-    Task<TaskGetResponseDto?> GetTaskByGuidId(TaskGetByGuidRequestDto taskGetByGuidRequestDto);
-    Task<List<TaskGetResponseDto>> GetAllTaskByAuthorId(string AuthorGuidId);
+    Task<List<TaskGetResponseDto>> GetAllTaskByAuthorId(int AuthorId);
     Task<TaskGetResponseDto> AddTask(TaskAddRequestDto TaskAddRequest);
     Task<TaskGetResponseDto> UpdateTask(TaskUpdateRequestDto TaskUpdateRequest);
 }

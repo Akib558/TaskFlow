@@ -1,18 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace TaskFlow.Core.DTOs
 {
     public class UserInfoResponseDto
     {
         public int Id { get; set; }
-        public string GuidId { get; set; }
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
-        public string Role { get; set; }
+        public string Username { get; set; } = String.Empty;
+        public string Email { get; set; } = String.Empty;
+        public string PasswordHash { get; set; } = String.Empty;
+        public int Role { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
     }
 }

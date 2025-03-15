@@ -7,55 +7,42 @@ public class TaskRequestDtos
 {
     public class TaskGetAllForUserRequestDto
     {
-        public string UserGuidId { get; set; }
+        [Required] public int UserId { get; set; }
     }
 
     public class TaskGetAllForProjectRequestDto
     {
-        public string ProjectGuidId { get; set; }
+        [Required] public int ProjectId { get; set; }
     }
 
-    public class TaskGetByGuidRequestDto
+    public class TaskGetByIdRequestDto
     {
-        public string? UserGuidId { get; set; }
-        public string? TaskGuidId { get; set; }
+        public int? UserId { get; set; }
+        [Required] public int TaskId { get; set; }
     }
 
     public class TaskAddRequestDto
     {
-        // public int Id { get; set; }
         public int? TaskParentId { get; set; }
-
-        // public string TaskGuidId { get; set; }
-        public string? TaskParentGuidId { get; set; }
-
-        [Required] public string? TaskCreatedBy { get; set; }
-
-        [Required] public string? TaskTitle { get; set; }
-
-        [Required] public string? TaskDescription { get; set; }
-        public string? TaskProjectGuidId { get; set; }
-        public string TaskStatus { get; set; }
-        public string TaskType { get; set; }
-        public string TaskPriority { get; set; }
+        [Required] public int TaskCreatedBy { get; set; }
+        [Required] public string TaskTitle { get; set; } = String.Empty;
+        [Required] public string TaskDescription { get; set; } = String.Empty;
+        public int? TaskProjectId { get; set; }
+        public int? TaskStatusId { get; set; }
+        public int? TaskTypeId { get; set; }
+        public int? TaskPriorityId { get; set; }
     }
 
     public class TaskUpdateRequestDto
     {
-        // public int Id { get; set; }
+        [Required] public int TaskId { get; set; }
         public int? TaskParentId { get; set; }
-
-        public string TaskGuidId { get; set; }
-        public string? TaskParentGuidId { get; set; }
-
-        [Required] public string? TaskCreatedBy { get; set; }
-
-        [Required] public string? TaskTitle { get; set; }
-
-        [Required] public string? TaskDescription { get; set; }
-        public string? TaskProjectGuidId { get; set; }
-        public string TaskStatus { get; set; }
-        public string TaskType { get; set; }
-        public string TaskPriority { get; set; }
+        [Required] public int TaskCreatedBy { get; set; }
+        [Required] public string TaskTitle { get; set; } = String.Empty;
+        [Required] public string TaskDescription { get; set; } = String.Empty;
+        public int? TaskProjectId { get; set; }
+        public int? TaskStatusId { get; set; }
+        public int? TaskTypeId { get; set; }
+        public int? TaskPriorityId { get; set; }
     }
 }

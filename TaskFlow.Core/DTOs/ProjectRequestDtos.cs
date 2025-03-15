@@ -1,95 +1,94 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices.JavaScript;
 
 namespace TaskFlow.Core.DTOs;
 
 public class ProjectAddRequestDto
 {
-    [Required]
-    public string ProjectName { get; set; }
+    [Required] public string ProjectName { get; set; } = String.Empty;
 
-    [Required]
-    public string ProjectDescription { get; set; }
+    public string? ProjectDescription { get; set; }
 
-    [Required]
-    public string ProjectCreatedBy { get; set; }
+    public DateTime? StartDate { get; set; }
+
+    public DateTime? EndDate { get; set; }
+
+    public string? ProjectStatus { get; set; }
+
+    [Required] public int CreatedBy { get; set; }
 }
 
 public class ProjectGetRequestDto
 {
-    [Required]
-    public string ProjectGuidId { get; set; }
+    [Required] public int ProjectId { get; set; }
 }
 
 public class ProjectUpdateRequestDto
 {
-    [Required]
-    public string ProjectName { get; set; }
+    [Required] public int ProjectId { get; set; }
 
-    [Required]
-    public string ProjectDescription { get; set; }
+    [Required] public string ProjectName { get; set; } = String.Empty;
 
-    [Required]
-    public string ProjectCreatedBy { get; set; }
+    public string? ProjectDescription { get; set; }
+
+    public DateTime? StartDate { get; set; }
+
+    public DateTime? EndDate { get; set; }
+
+    public string? ProjectStatus { get; set; }
 }
 
 public class ProjectAddMemberRequestDto
 {
-    [Required]
-    public string UserGuidId { get; set; }
+    [Required] public int UserId { get; set; }
 
-    [Required]
-    public string ProjectGuidId { get; set; }
+    [Required] public int ProjectId { get; set; }
+
+    [Required] public int ProjectRoleId { get; set; }
 }
 
 public class ProjectUpdateMemberRequestDto
 {
-    [Required]
-    public string UserGuidId { get; set; }
+    [Required] public int UserId { get; set; }
 
-    [Required]
-    public string ProjectGuidId { get; set; }
+    [Required] public int ProjectId { get; set; }
 
-    [Required]
-    public string ProjectRoleGuidId { get; set; }
+    [Required] public int ProjectRoleId { get; set; }
 }
 
 public class ProjectGetAllMembersRequestDto
 {
-    [Required]
-    public string ProjectGuidId { get; set; }
-
-    [Required]
-    public string UserGuidId { get; set; }
+    [Required] public int ProjectId { get; set; }
 }
 
-public class ProjectGetMemberByGuidRequestDto
+public class ProjectGetMemberByIdRequestDto
 {
-    [Required]
-    public string ProjectGuidId { get; set; }
+    [Required] public int ProjectId { get; set; }
 
-    [Required]
-    public string UserGuidId { get; set; }
+    [Required] public int UserId { get; set; }
 }
 
 public class ProjectAndRoleRequestDto
 {
-    public string ProjectRoleGuidId { get; set; }
-    public string ProjectGuidId { get; set; }
+    [Required] public int ProjectRoleId { get; set; }
+
+    [Required] public int ProjectId { get; set; }
 }
 
 public class ProjectMemberAndRolesRequestDto
 {
-    public string ProjectMemeberGuidId { get; set; }
-    public string ProjectRoleGuidId { get; set; }
+    [Required] public int ProjectMemberId { get; set; }
+
+    [Required] public int ProjectRoleId { get; set; }
 }
 
 public class GetAllProjectRolesRequestDto
 {
-    public string ProjectGuidId { get; set; }
+    [Required] public int ProjectId { get; set; }
 }
 
-public class GettAllProjectByUser
+public class GetAllProjectsByUserRequestDto
 {
-    public string UserGuidId { get; set; }
+    [Required] public int UserId { get; set; }
 }

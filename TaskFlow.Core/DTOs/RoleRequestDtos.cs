@@ -1,31 +1,34 @@
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace TaskFlow.Core.DTOs;
 
-public class RoleRequestDtos { }
-
 public class RoleAddRequestDto
 {
-    public string RoleName { get; set; }
+    [Required] public string RoleName { get; set; } = String.Empty;
 }
 
 public class RoleDeleteRequestDto
 {
-    public string ProjectRoleGuidId { get; set; }
+    [Required] public int ProjectRoleId { get; set; }
 }
 
 public class RoleUpdateRequestDto
 {
-    public string RoleName { get; set; }
+    [Required] public int ProjectRoleId { get; set; }
+
+    [Required] public string RoleName { get; set; } = String.Empty;
 }
 
 public class RoleOperationDto
 {
-    public string ProjectRoleGuidId { get; set; }
-    public string ProjectOperationsGuidId { get; set; }
+    [Required] public int ProjectRoleId { get; set; }
+
+    [Required] public int PathId { get; set; }
 }
 
 public class RoleAddOperationRequestDto
 {
-    public List<RoleOperationDto> RoleOperation { get; set; }
+    [Required] public List<RoleOperationDto> RoleOperations { get; set; } = new List<RoleOperationDto>();
 }

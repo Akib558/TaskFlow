@@ -45,10 +45,10 @@ namespace TaskFlow.WebAPI.Controllers
         [Authorize]
         [HttpPost("GetUserById")]
         public async Task<IActionResult> GetUserById(
-            [FromBody] UserGetByGuidRequestDto userGetByGuidRequestDto
+            [FromBody] UserGetByUserIdRequestDto userGetByIdRequestDto
         )
         {
-            var user = await _userService.GetUserById(userGetByGuidRequestDto.GuidId);
+            var user = await _userService.GetUserById(userGetByIdRequestDto.UserId);
             if (user == null)
             {
                 return NotFound();

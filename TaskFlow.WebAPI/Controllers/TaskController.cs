@@ -19,23 +19,13 @@ namespace TaskFlow.WebAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("GetTaskByGuid")]
-        public async Task<IActionResult> GetTaskByGuidId(
-            TaskGetByGuidRequestDto taskGetByGuidRequestDto
-        )
-        {
-            var res = await _taskService.GetTaskByGuidId(taskGetByGuidRequestDto);
-            return Ok(res);
-        }
-
-        [Authorize]
         [HttpPost("GetAllTaskForUser")]
         public async Task<IEnumerable<TaskGetResponseDto>> GetAllTaskByAuthorId(
             TaskGetAllForUserRequestDto taskGetAllForUserRequestDto
         )
         {
             var res = await _taskService.GetAllTaskByAuthorId(
-                taskGetAllForUserRequestDto.UserGuidId
+                taskGetAllForUserRequestDto.UserId
             );
             return (IEnumerable<TaskGetResponseDto>)res;
         }

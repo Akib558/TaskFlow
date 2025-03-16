@@ -55,12 +55,7 @@ builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsi
 builder.Services.AddValidatorsFromAssemblyContaining<UserLoginAuthValidator>();
 ApiModelValidation.AddValidationForModel(builder.Services);
 
-builder.Services.AddDbContext<TaskFlowDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration["ConnectionStrings:DefaultConnection"]
-        // "Server=localhost,4001;Database=TaskFlow;User ID=sa;Password=@M1janinaok;Trusted_Connection=False;Encrypt=True;TrustServerCertificate=True;"
-    )
-);
+builder.Services.AddSingleton<TaskFlowDbContext>();
 
 // Register Services and Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();

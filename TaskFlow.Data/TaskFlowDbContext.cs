@@ -1,154 +1,20 @@
-using Microsoft.EntityFrameworkCore;
-using TaskFlow.Data.Entities;
-using static TaskFlow.Data.Entities.JwtEntity;
+using System.Data;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace TaskFlow.Data;
 
-public class TaskFlowDbContext : DbContext
+public class TaskFlowDbContext
 {
-    public TaskFlowDbContext(DbContextOptions<TaskFlowDbContext> options)
-        : base(options)
+    private readonly string _connectionString;
+
+    public TaskFlowDbContext(IConfiguration configuration)
     {
+        _connectionString = configuration.GetConnectionString("DefaultConnection") ?? "";
     }
 
-    public DbSet<UserEntity> Users { get; set; }
-    public DbSet<TaskEntity> Tasks { get; set; }
-    public DbSet<TaskUpdate> TasksUpdate { get; set; }
-    public DbSet<TaskAssignmentsEntity> TaskAssignments { get; set; }
-    public DbSet<ProjectEntity> Projects { get; set; }
-    public DbSet<ProjectRolesEntity> ProjectRoles { get; set; }
-    public DbSet<ProjectMembers> ProjectMembers { get; set; }
-    public DbSet<JwtRefreshTokenEntity> JwtRefreshTokens { get; set; }
-    public DbSet<ProjectAndRoles> ProjectAndRoles { get; set; }
-    public DbSet<ProjectMembersAndRoles> ProjectMembersAndRoles { get; set; }
-    public DbSet<RolePathEntity> RolePaths { get; set; }
-    public DbSet<PathEntity> Paths { get; set; }
-    public DbSet<ProjectSubProject> ProjectSubProjects { get; set; }
-
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    public IDbConnection CreateConnection()
     {
-        modelBuilder.Entity<UserEntity>().HasIndex(ind => ind.UserEmail).IsUnique();
-        modelBuilder.Entity<UserEntity>().HasIndex(ind => ind.UserName).IsUnique();
-
-        //Many-to-Many relationship between user and task
-
-        modelBuilder
-            .Entity<TaskAssignmentsEntity>()
-            .HasKey(ind => new { ind.UserGuidId, ind.TaskGuidId });
-        modelBuilder
-            .Entity<TaskAssignmentsEntity>()
-            .HasOne(ta => ta.UserEntity)
-            .WithMany(u => u.TaskAssignments)
-            .HasForeignKey(f => f.UserGuidId)
-            .HasPrincipalKey(f => f.UserGuidId);
-        modelBuilder
-            .Entity<TaskAssignmentsEntity>()
-            .HasOne(ta => ta.TaskEntity)
-            .WithMany(u => u.TaskAssignments)
-            .HasForeignKey(f => f.TaskGuidId)
-            .HasPrincipalKey(t => t.TaskGuidId);
-
-        //Many-to-Many relationship between user and taskupdate
-
-        modelBuilder.Entity<TaskUpdate>().HasKey(ind => new { ind.UserGuidId, ind.TaskGuidId });
-        modelBuilder
-            .Entity<TaskUpdate>()
-            .HasOne(ta => ta.UserEntity)
-            .WithMany(u => u.TaskUpdates)
-            .HasForeignKey(f => f.UserGuidId)
-            .HasPrincipalKey(f => f.UserGuidId);
-        modelBuilder
-            .Entity<TaskUpdate>()
-            .HasOne(ta => ta.TaskEntity)
-            .WithMany(u => u.TaskUpdates)
-            .HasForeignKey(f => f.TaskGuidId)
-            .HasPrincipalKey(t => t.TaskGuidId);
-
-        //Many-to-Many relationship between user and taskupdate
-
-        modelBuilder
-            .Entity<ProjectMembers>()
-            .HasKey(ind => new { ind.UserGuidId, ind.ProjectGuidId });
-        modelBuilder
-            .Entity<ProjectMembers>()
-            .HasOne(ta => ta.UserEntity)
-            .WithMany(u => u.Members)
-            .HasForeignKey(f => f.UserGuidId)
-            .HasPrincipalKey(f => f.UserGuidId);
-        modelBuilder
-            .Entity<ProjectMembers>()
-            .HasOne(ta => ta.ProjectEntity)
-            .WithMany(u => u.Members)
-            .HasForeignKey(f => f.ProjectGuidId)
-            .HasPrincipalKey(t => t.ProjectGuidId);
-
-
-        modelBuilder
-            .Entity<RolePathEntity>()
-            .HasKey(ind => new { ind.ProjectRoleGuidId, ind.PathGuidId });
-        modelBuilder
-            .Entity<RolePathEntity>()
-            .HasOne(pp => pp.ProjectRoles)
-            .WithMany(pr => pr.ProjectRoleWiseAccesses)
-            .HasForeignKey(pr => pr.ProjectRoleGuidId)
-            .HasPrincipalKey(pp => pp.ProjectRoleGuidId);
-        modelBuilder
-            .Entity<RolePathEntity>()
-            .HasOne(pp => pp.Paths)
-            .WithMany(p => p.ProjectRoleWiseAccesses)
-            .HasForeignKey(pp => pp.PathGuidId)
-            .HasPrincipalKey(pp => pp.PathGuidId);
-
-        modelBuilder
-            .Entity<ProjectAndRoles>()
-            .HasKey(ind => new { ind.ProjectGuidId, ind.ProjectRoleGuidId });
-        modelBuilder
-            .Entity<ProjectAndRoles>()
-            .HasOne(pp => pp.Projects)
-            .WithMany(pr => pr.ProjectAndRoles)
-            .HasForeignKey(pr => pr.ProjectGuidId)
-            .HasPrincipalKey(pp => pp.ProjectGuidId);
-        modelBuilder
-            .Entity<ProjectAndRoles>()
-            .HasOne(pp => pp.ProjectRoles)
-            .WithMany(p => p.ProjectAndRoles)
-            .HasForeignKey(pp => pp.ProjectRoleGuidId)
-            .HasPrincipalKey(pp => pp.ProjectRoleGuidId);
-
-        modelBuilder
-            .Entity<ProjectMembersAndRoles>()
-            .HasKey(ind => new { ind.ProjectMemeberGuidId, ind.ProjectRoleGuidId });
-        modelBuilder
-            .Entity<ProjectMembersAndRoles>()
-            .HasOne(pp => pp.ProjectMembers)
-            .WithMany(pr => pr.ProjectMembersAndRoles)
-            .HasForeignKey(pr => pr.ProjectMemeberGuidId)
-            .HasPrincipalKey(pp => pp.ProjectMemberGuidId);
-        modelBuilder
-            .Entity<ProjectMembersAndRoles>()
-            .HasOne(pp => pp.ProjectRoles)
-            .WithMany(p => p.ProjectMembersAndRoles)
-            .HasForeignKey(pp => pp.ProjectRoleGuidId)
-            .HasPrincipalKey(pp => pp.ProjectRoleGuidId);
-
-        modelBuilder
-            .Entity<ProjectSubProject>()
-            .HasKey(ind => new { ind.ParentProjectGuidId, ind.ChildProjectGuidId });
-        modelBuilder
-            .Entity<ProjectSubProject>()
-            .HasOne(p1 => p1.ParentProject)
-            .WithMany(p2 => p2.ParentProjects)
-            .HasForeignKey(p3 => p3.ParentProjectGuidId)
-            .HasPrincipalKey(p4 => p4.ProjectGuidId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder
-            .Entity<ProjectSubProject>()
-            .HasOne(p1 => p1.ChildProject)
-            .WithMany(p2 => p2.ChildProjects)
-            .HasForeignKey(p3 => p3.ChildProjectGuidId)
-            .HasPrincipalKey(p4 => p4.ProjectGuidId)
-            .OnDelete(DeleteBehavior.Restrict);
+        return new SqlConnection(_connectionString);
     }
 }

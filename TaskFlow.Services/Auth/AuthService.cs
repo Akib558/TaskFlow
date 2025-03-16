@@ -3,6 +3,7 @@ using Azure.Core;
 using Azure.Identity;
 using BCrypt.Net;
 using System.Threading.Tasks;
+using TaskFlow.Core.Records;
 using TaskFlow.Data.Entities;
 using TaskFlow.Helpers;
 using TaskFlow.Repositories;
@@ -22,15 +23,14 @@ public class AuthService : IAuthService
 
     public async Task<UserRegisterAuthResponseDto> Register(UserRegisterAuthRequestDto user)
     {
-        var addUserObj = new UserEntity
+        var addUserObj = new RegisterUserRecord
         {
-            UserGuidId = Guid.NewGuid().ToString(),
-            UserName = user.Username,
-            UserPasswordHash = PasswordHelper.HashPassword(user.Password),
-            UserEmail = user.Email,
-            UserRole = user.Role,
-            CreatedDate = DateTime.Now,
+            Username = user.Username,
+            Password = PasswordHelper.HashPassword(user.Password),
+            Email = user.Email,
+            Role = user.Role
         };
+
         var res = _authRepository.Register(addUserObj);
         if (res == null)
         {

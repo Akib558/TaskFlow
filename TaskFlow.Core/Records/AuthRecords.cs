@@ -2,6 +2,7 @@ namespace TaskFlow.Core.Records;
 
 public record RegisterUserRecord
 {
+    public int Id { get; set; } = 0;
     public string Username { get; set; } = String.Empty;
     public string Password { get; set; } = String.Empty;
     public string Email { get; set; } = String.Empty;

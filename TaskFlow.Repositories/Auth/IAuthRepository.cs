@@ -9,10 +9,10 @@ public interface IAuthRepository
 {
     Task<RegisterUserRecord> Register(RegisterUserRecord user);
     Task<RegisterUserRecord> Login(string email, string password);
-    Task<JwtRefreshTokenEntity> ValidateRefreshToken(string refreshToken);
+    Task<RefreshTokenInfoRecord> ValidateRefreshToken(string refreshToken);
 
-    Task<JwtRefreshTokenEntity> DeactivateAndAddRefreshToken(
+    Task<RefreshTokenInfoRecord> DeactivateAndAddRefreshToken(
         string refreshToken,
-        JwtRefreshTokenEntity jwtRefreshTokenEntitys
+        RefreshTokenInfoRecord jwtRefreshTokenEntitys
     );
 }

@@ -39,30 +39,31 @@ public class AuthRepository : IAuthRepository
         return res;
     }
 
-    public async Task<JwtRefreshTokenEntity> ValidateRefreshToken(string refreshToken)
+    public async Task<RefreshTokenInfoRecord> ValidateRefreshToken(string refreshToken)
     {
-        var res = await _context
-            .Set<JwtRefreshTokenEntity>()
-            .FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
+        using var connection = _dbContext.CreateConnection();
+        var res = await connection.QueryFirstOrDefaultAsync<RefreshTokenInfoRecord>(
+            QueryCollection.RefreshTokenValidate, new
+            {
+                RefreshToken = refreshToken
+            });
+
         return res;
     }
 
-    public async Task<JwtRefreshTokenEntity> DeactivateAndAddRefreshToken(
+    public async Task<RefreshTokenInfoRecord> DeactivateAndAddRefreshToken(
         string refreshToken,
-        JwtRefreshTokenEntity jwtRefreshTokenEntitys
+        RefreshTokenInfoRecord jwtRefreshTokenRecord
     )
     {
-        if (refreshToken != null)
-        {
-            var res = await _context
-                .Set<JwtRefreshTokenEntity>()
-                .FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
-
-            res.Status = Core.Enums.RefreshTokenStatusEnum.Used;
-        }
-
-        var res2 = await _context.Set<JwtRefreshTokenEntity>().AddAsync(jwtRefreshTokenEntitys);
-        await _context.SaveChangesAsync();
-        return res2.Entity;
+        using var connection = _dbContext.CreateConnection();
+        var res = await connection.QueryFirstOrDefaultAsync<RefreshTokenInfoRecord>(
+            QueryCollection.ValidateAndAddRefreshToken,
+            new
+            {
+                PrevToken = jwtRefreshTokenRecord.RefreshToken,
+                NewToken = refreshToken,
+            });
+        return res;
     }
 }

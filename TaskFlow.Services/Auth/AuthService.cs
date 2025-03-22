@@ -1,20 +1,16 @@
-using System;
-using Azure.Core;
-using Azure.Identity;
-using BCrypt.Net;
-using System.Threading.Tasks;
+using TaskFlow.Core.DTOs;
 using TaskFlow.Core.Records;
-using TaskFlow.Data.Entities;
 using TaskFlow.Helpers;
-using TaskFlow.Repositories;
-using static TaskFlow.Core.DTOs.AuthRequestDto;
+using TaskFlow.Repositories.Auth;
 using static TaskFlow.Core.DTOs.AuthResponseDto;
+using RefreshTokenRequestDto = TaskFlow.Core.DTOs.RefreshTokenRequestDto;
+using UserLoginAuthRequestDto = TaskFlow.Core.DTOs.UserLoginAuthRequestDto;
 
-namespace TaskFlow.Services;
+namespace TaskFlow.Services.Auth;
 
 public class AuthService : IAuthService
 {
-    private IAuthRepository _authRepository;
+    private readonly IAuthRepository _authRepository;
 
     public AuthService(IAuthRepository authRepository)
     {
@@ -31,45 +27,47 @@ public class AuthService : IAuthService
             Role = user.Role
         };
 
-        var res = _authRepository.Register(addUserObj);
+        var res = await _authRepository.Register(addUserObj);
         if (res == null)
         {
             throw new Exception("User registration failed");
         }
 
-        var roleList = new List<string> { res.Result.UserRole };
+        var roleList = new List<int> { res.Role };
         var newRefreshToken = JwtHelper.GenerateRefreshToken(
-            res.Result.UserName,
-            res.Result.UserGuidId,
-            new List<string> { res.Result.UserRole }
+            res.Username,
+            res.Id,
+            new List<int> { res.Role }
         );
 
-        var res2 = await _authRepository.DeactivateAndAddRefreshToken(
-            null,
-            new JwtEntity.JwtRefreshTokenEntity
-            {
-                UserGuidId = res.Result.UserGuidId,
-                RefreshToken = newRefreshToken,
-                Status = Core.Enums.RefreshTokenStatusEnum.Active,
-                ExpiryDate = DateTime.UtcNow.AddMinutes(60),
-            }
-        );
+        var refreshTokenInfo = new RefreshTokenInfoRecord
+        {
+            Id = 0,
+            UserId = res.Id,
+            RefreshToken = newRefreshToken,
+            Status = 1,
+            ExpiryDate = DateTime.UtcNow.AddMinutes(60)
+        };
+
+        // var res2 = await _authRepository.DeactivateAndAddRefreshToken(
+        //     "", refreshTokenInfo
+        // );
 
         return
             new UserRegisterAuthResponseDto
             {
-                UserInfo = new UserInfoResponseDto
+                UserInfo = new AuthResponseDto.UserInfoResponseDto
                 {
-                    Username = res.Result.UserName,
-                    Email = res.Result.UserEmail,
-                    Role = res.Result.UserRole,
-                    GuidId = res.Result.UserGuidId,
+                    Id = res.Id,
+                    Username = res.Username,
+                    Email = res.Email,
+                    Role = "",
                 },
                 Token = new TokenResponseDto
                 {
                     AccessToken = JwtHelper.GenerateAccessToken(
-                        res.Result.UserName,
-                        res.Result.UserGuidId,
+                        res.Username,
+                        res.Id,
                         roleList
                     ),
                     RefreshToken = newRefreshToken,
@@ -79,47 +77,49 @@ public class AuthService : IAuthService
 
     public async Task<UserLoginAuthResponseDto> Login(UserLoginAuthRequestDto user)
     {
-        var res = _authRepository.Login(user.Email, PasswordHelper.HashPassword(user.Password));
+        var res = await _authRepository.Login(user.Email, PasswordHelper.HashPassword(user.Password));
 
         if (
             res == null
-            || !PasswordHelper.VerifyPassword(user.Password, res.Result.UserPasswordHash)
+            || !PasswordHelper.VerifyPassword(user.Password, res.Password)
         )
         {
             throw new Exception("User login failed");
         }
 
         var newRefreshToken = JwtHelper.GenerateRefreshToken(
-            res.Result.UserName,
-            res.Result.UserGuidId,
-            new List<string> { res.Result.UserRole }
+            res.Username,
+            res.Id,
+            new List<int> { res.Role }
         );
-        var res2 = await _authRepository.DeactivateAndAddRefreshToken(
-            null,
-            new JwtEntity.JwtRefreshTokenEntity
-            {
-                UserGuidId = res.Result.UserGuidId,
-                RefreshToken = newRefreshToken,
-                Status = Core.Enums.RefreshTokenStatusEnum.Active,
-                ExpiryDate = DateTime.UtcNow.AddMinutes(60),
-            }
-        );
+        // var res2 = await _authRepository.DeactivateAndAddRefreshToken(
+        //     null,
+        //     new JwtEntity.JwtRefreshTokenEntity
+        //     {
+        //         UserGuidId = res.Result.UserGuidId,
+        //         RefreshToken = newRefreshToken,
+        //         Status = Core.Enums.RefreshTokenStatusEnum.Active,
+        //         ExpiryDate = DateTime.UtcNow.AddMinutes(60),
+        //     }
+        // );
+        var roleList = new List<int> { res.Role };
+
         return
             new UserLoginAuthResponseDto
             {
-                UserInfo = new UserInfoResponseDto
+                UserInfo = new AuthResponseDto.UserInfoResponseDto
                 {
-                    Username = res.Result.UserName,
-                    Email = res.Result.UserEmail,
-                    Role = res.Result.UserRole,
-                    GuidId = res.Result.UserGuidId,
+                    Id = res.Id,
+                    Username = res.Username,
+                    Email = res.Email,
+                    Role = "",
                 },
                 Token = new TokenResponseDto
                 {
                     AccessToken = JwtHelper.GenerateAccessToken(
-                        res.Result.UserName,
-                        res.Result.UserGuidId,
-                        new List<string> { res.Result.UserRole }
+                        res.Username,
+                        res.Id,
+                        roleList
                     ),
                     RefreshToken = newRefreshToken,
                 },
@@ -138,8 +138,6 @@ public class AuthService : IAuthService
         return true;
     }
 
-    //TODO: disable tokenl
-
     public async Task<TokenResponseDto> GetTokens(RefreshTokenRequestDto refreshTokenRequestDto)
     {
         string refreshToken = refreshTokenRequestDto.RefreshToken;
@@ -149,26 +147,26 @@ public class AuthService : IAuthService
             throw new UnauthorizedAccessException("Refresh token invalid");
         }
 
-        (string userName, string userGuidId, List<string> Roles) = JwtHelper.DecryptRefreshToken(
+        (string userName, int userId, List<int> Roles) = JwtHelper.DecryptRefreshToken(
             refreshToken
         );
 
-        var newRefreshToken = JwtHelper.GenerateRefreshToken(userName, userGuidId, Roles);
+        var newRefreshToken = JwtHelper.GenerateRefreshToken(userName, userId, Roles);
 
-        var res = await _authRepository.DeactivateAndAddRefreshToken(
-            refreshToken,
-            new JwtEntity.JwtRefreshTokenEntity
-            {
-                UserGuidId = userGuidId,
-                RefreshToken = newRefreshToken,
-                Status = Core.Enums.RefreshTokenStatusEnum.Active,
-                ExpiryDate = DateTime.UtcNow.AddMinutes(60),
-            }
-        );
+        // var res = await _authRepository.DeactivateAndAddRefreshToken(
+        //     refreshToken,
+        //     new JwtEntity.JwtRefreshTokenEntity
+        //     {
+        //         UserGuidId = userGuidId,
+        //         RefreshToken = newRefreshToken,
+        //         Status = Core.Enums.RefreshTokenStatusEnum.Active,
+        //         ExpiryDate = DateTime.UtcNow.AddMinutes(60),
+        //     }
+        // );
 
         return new TokenResponseDto
         {
-            AccessToken = JwtHelper.GenerateAccessToken(userName, userGuidId, Roles),
+            AccessToken = JwtHelper.GenerateAccessToken(userName, userId, Roles),
             RefreshToken = newRefreshToken,
         };
     }

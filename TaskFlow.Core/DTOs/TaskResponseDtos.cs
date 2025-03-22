@@ -6,7 +6,6 @@ public class TaskResponseDtos
     {
         public int Id { get; set; }
         public int? TaskParentId { get; set; }
-        public int? TaskParentGuidId { get; set; }
         public int TaskCreatedBy { get; set; }
         public string TaskTitle { get; set; } = String.Empty;
         public string TaskDescription { get; set; } = String.Empty;

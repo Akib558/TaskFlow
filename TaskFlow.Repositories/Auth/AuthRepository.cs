@@ -1,36 +1,37 @@
-using System;
 using Dapper;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using TaskFlow.Core.Records;
 using TaskFlow.Data;
-using TaskFlow.Data.Entities;
-using static TaskFlow.Data.Entities.JwtEntity;
 
-namespace TaskFlow.Repositories;
+namespace TaskFlow.Repositories.Auth;
 
 public class AuthRepository : IAuthRepository
 {
-    private TaskFlowDbContext _dbContext;
+    private readonly TaskFlowDbContext _dbContext;
 
     public AuthRepository(TaskFlowDbContext dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public async Task<RegisterUserRecord> Register(RegisterUserRecord user)
+    public async Task<RegisterUserRecord?> Register(RegisterUserRecord user)
     {
         using var connection = _dbContext.CreateConnection();
 
-        var res = await connection.QueryFirstOrDefaultAsync<RegisterUserRecord>(QueryCollection.RegisterUserSql, user);
+        var query = QueryCollection.LoadQuery("Auth", "AuthRegister");
+
+        var res = await connection.QueryFirstOrDefaultAsync<RegisterUserRecord>(query, user);
 
         return res;
     }
 
-    public async Task<RegisterUserRecord> Login(string email, string password)
+    public async Task<RegisterUserRecord?> Login(string email, string password)
     {
         using var connection = _dbContext.CreateConnection();
 
-        var res = await connection.QueryFirstOrDefaultAsync<RegisterUserRecord>(QueryCollection.LoginUserSql, new
+        var query = QueryCollection.LoadQuery("Auth", "AuthLogin");
+
+        var res = await connection.QueryFirstOrDefaultAsync<RegisterUserRecord>(query, new
         {
             UserEmail = email,
             UserPasswordHash = password
@@ -39,11 +40,14 @@ public class AuthRepository : IAuthRepository
         return res;
     }
 
-    public async Task<RefreshTokenInfoRecord> ValidateRefreshToken(string refreshToken)
+    public async Task<RefreshTokenInfoRecord?> ValidateRefreshToken(string refreshToken)
     {
         using var connection = _dbContext.CreateConnection();
+
+        var query = QueryCollection.LoadQuery("Auth", "ValidateRefreshToken");
+
         var res = await connection.QueryFirstOrDefaultAsync<RefreshTokenInfoRecord>(
-            QueryCollection.RefreshTokenValidate, new
+            query, new
             {
                 RefreshToken = refreshToken
             });
@@ -51,19 +55,37 @@ public class AuthRepository : IAuthRepository
         return res;
     }
 
-    public async Task<RefreshTokenInfoRecord> DeactivateAndAddRefreshToken(
-        string refreshToken,
-        RefreshTokenInfoRecord jwtRefreshTokenRecord
-    )
+    public async Task<RefreshTokenInfoRecord?> DeactivateAndAddRefreshToken(
+        string newRefreshToken,
+        RefreshTokenInfoRecord jwtRefreshTokenRecord)
     {
         using var connection = _dbContext.CreateConnection();
-        var res = await connection.QueryFirstOrDefaultAsync<RefreshTokenInfoRecord>(
-            QueryCollection.ValidateAndAddRefreshToken,
-            new
-            {
-                PrevToken = jwtRefreshTokenRecord.RefreshToken,
-                NewToken = refreshToken,
-            });
-        return res;
+
+        var query = QueryCollection.LoadQuery("Auth", "RemoveAndAddRefreshToken");
+
+        try
+        {
+            var res = await connection.QueryFirstOrDefaultAsync<RefreshTokenInfoRecord>(
+                query,
+                new
+                {
+                    PrevToken = jwtRefreshTokenRecord.RefreshToken,
+                    NewToken = newRefreshToken,
+                    UserId = jwtRefreshTokenRecord.UserId
+                }
+            );
+
+            return res;
+        }
+        catch (SqlException ex)
+        {
+            Console.WriteLine($"SQL Error: {ex.Message}");
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"General Error: {ex.Message}");
+            return null;
+        }
     }
 }

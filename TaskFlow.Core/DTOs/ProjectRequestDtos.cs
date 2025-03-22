@@ -80,6 +80,8 @@ public class ProjectMemberAndRolesRequestDto
 {
     [Required] public int ProjectMemberId { get; set; }
 
+    [Required] public int ProjectId { get; set; }
+
     [Required] public int ProjectRoleId { get; set; }
 }
 

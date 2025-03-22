@@ -1,15 +1,11 @@
-using TaskFlow.Core.DTOs;
-using TaskFlow.Data.Entities;
+using TaskFlow.Core.Records;
 
-namespace TaskFlow.Repositories
+namespace TaskFlow.Repositories.User
 {
     public interface IUserRepository
     {
-        Task<UserEntity> GetUserByUsername(string username);
-        Task<UserEntity> GetUserById(string GuidId);
-        Task<List<string>> GetUserRoles(string GuidId);
-        Task<UserEntity> CreateUser(UserEntity user);
-        Task<UserEntity> UpdateUser(UserUpdateRequestDto user);
-        Task DeleteUser(int id);
+        Task<UserRecord> GetUserByUserId(int userId);
+        Task<bool> UpdateUser(UserRecord userRecord);
+        Task<bool> DeleteUser(int userId);
     }
 }

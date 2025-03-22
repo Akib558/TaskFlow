@@ -19,7 +19,7 @@ public static class JwtHelper
         _secret = configuraiton["Jwt:Key"];
     }
 
-    public static string GenerateAccessToken(string Username, string GuidId, List<string> Roles)
+    public static string GenerateAccessToken(string Username, int Id, List<int> Roles)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_secret));
@@ -28,7 +28,7 @@ public static class JwtHelper
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, Username),
-            new Claim(ClaimTypes.NameIdentifier, GuidId),
+            new Claim(ClaimTypes.NameIdentifier, $"{Id}"),
             new Claim(ClaimTypes.Role, string.Join(",", Roles)),
         };
 
@@ -43,7 +43,7 @@ public static class JwtHelper
         return tokenHandler.WriteToken(token);
     }
 
-    public static (string, string, List<string>) DecryptRefreshToken(string refreshToken)
+    public static (string, int, List<int>) DecryptRefreshToken(string refreshToken)
     {
         using (var aesAlg = Aes.Create())
         {
@@ -52,6 +52,7 @@ public static class JwtHelper
             {
                 Array.Resize(ref keyBytes, 32); // Resize the key to 32 bytes
             }
+
             aesAlg.Key = keyBytes;
             aesAlg.IV = new byte[16];
 
@@ -74,17 +75,17 @@ public static class JwtHelper
                 }
 
                 var username = parts[0];
-                var guid = parts[1];
-                var roles = parts[2].Split(',').ToList();
+                var userId = Int32.Parse(parts[1]);
+                var roles = parts[2].Split(',').Select(x => Int32.Parse(x)).ToList();
 
-                return (username, guid, roles);
+                return (username, userId, roles);
             }
         }
     }
 
-    public static string GenerateRefreshToken(string Username, string GuidId, List<string> Roles)
+    public static string GenerateRefreshToken(string Username, int Id, List<int> Roles)
     {
-        var dataToEncrypt = $"{Username}|{GuidId}|{string.Join(",", Roles)}|{GetRandomNumber()}";
+        var dataToEncrypt = $"{Username}|{Id}|{string.Join(",", Roles)}|{GetRandomNumber()}";
         using (var aesAlg = Aes.Create())
         {
             byte[] keyBytes = Encoding.UTF8.GetBytes(_secret);
@@ -92,6 +93,7 @@ public static class JwtHelper
             {
                 Array.Resize(ref keyBytes, 32); // Resize the key to 32 bytes
             }
+
             aesAlg.Key = keyBytes;
             aesAlg.IV = new byte[16];
             using (var cryptoTransform = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV))
@@ -116,6 +118,7 @@ public static class JwtHelper
         {
             rng.GetBytes(randomNumber);
         }
+
         return Convert.ToBase64String(randomNumber);
     }
 

@@ -2,16 +2,9 @@ namespace TaskFlow.Data;
 
 public static class QueryCollection
 {
-    private static readonly string AuthQueryDirectory = "Queries/AuthQueries";
-
-    public static readonly string RegisterUserSql = LoadQuery("registeruser.sql");
-    public static readonly string LoginUserSql = LoadQuery("loginuser.sql");
-    public static readonly string RefreshTokenValidate = LoadQuery("validaterefereshtoken.sql");
-    public static readonly string ValidateAndAddRefreshToken = LoadQuery("validateandaddrefreshtoken.sql");
-
-    private static string LoadQuery(string fileName)
+    public static string LoadQuery(string dirName, string fileName)
     {
-        string filePath = Path.Combine(AuthQueryDirectory, fileName);
+        string filePath = Path.Combine("Queries", dirName, fileName);
         return File.ReadAllText(filePath);
     }
 }

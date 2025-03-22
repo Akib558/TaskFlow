@@ -17,7 +17,7 @@ public class TaskRequestDtos
 
     public class TaskGetByIdRequestDto
     {
-        public int? UserId { get; set; }
+        [Required] public int UserId { get; set; }
         [Required] public int TaskId { get; set; }
     }
 

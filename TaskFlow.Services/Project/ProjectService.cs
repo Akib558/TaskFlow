@@ -1,37 +1,34 @@
-using System;
-using Microsoft.Identity.Client;
 using TaskFlow.Core.DTOs;
-using TaskFlow.Data.Entities;
+using TaskFlow.Core.Records;
 using TaskFlow.Repositories.Project;
 
 namespace TaskFlow.Services.Project;
 
 public class ProjectService : IProjectService
 {
-    public IProjectRepository _projectRepository;
+    public readonly IProjectRepository ProjectRepository;
 
     public ProjectService(IProjectRepository projectRepository)
     {
-        _projectRepository = projectRepository;
+        ProjectRepository = projectRepository;
     }
 
     public async Task<ProjectAddResponseDto> AddProject(ProjectAddRequestDto addRequestDto)
     {
-        var obj = new ProjectEntity
-        {
-            ProjectGuidId = Guid.NewGuid().ToString(),
-            ProjectName = addRequestDto.ProjectName,
-            ProjectDescription = addRequestDto.ProjectDescription,
-            StartDate = DateTime.Now,
-            EndDate = DateTime.Now,
-            ProjectStatus = "Started",
-            CreatedBy = addRequestDto.ProjectCreatedBy,
-        };
-        var res = await _projectRepository.AddProject(obj);
+        var obj = new ProjectRecord(
+            0,
+            addRequestDto.ProjectName,
+            addRequestDto.ProjectDescription,
+            DateTime.Now,
+            DateTime.Now,
+            "Started",
+            addRequestDto.CreatedBy
+        );
+
+        var res = await ProjectRepository.AddProject(obj);
         var mainRes = new ProjectAddResponseDto
         {
             Id = res.Id,
-            ProjectGuidId = res.ProjectGuidId,
             ProjectName = res.ProjectName,
             ProjectDescription = res.ProjectDescription,
             StartDate = res.StartDate,
@@ -46,21 +43,20 @@ public class ProjectService : IProjectService
         ProjectUpdateRequestDto projectUpdateRequestDto
     )
     {
-        var obj = new ProjectEntity
-        {
-            ProjectGuidId = Guid.NewGuid().ToString(),
-            ProjectName = projectUpdateRequestDto.ProjectName,
-            ProjectDescription = projectUpdateRequestDto.ProjectDescription,
-            StartDate = DateTime.Now,
-            EndDate = DateTime.Now,
-            ProjectStatus = null,
-            CreatedBy = projectUpdateRequestDto.ProjectCreatedBy,
-        };
-        var res = await _projectRepository.UpdateProject(obj);
+        var obj = new ProjectRecord(
+            projectUpdateRequestDto.ProjectId,
+            projectUpdateRequestDto.ProjectName,
+            projectUpdateRequestDto.ProjectDescription,
+            DateTime.Now,
+            DateTime.Now,
+            projectUpdateRequestDto.ProjectStatus,
+            0
+        );
+
+        var res = await ProjectRepository.UpdateProject(obj);
         var mainRes = new ProjectUpdateResponseDto
         {
             Id = res.Id,
-            ProjectGuidId = res.ProjectGuidId,
             ProjectName = res.ProjectName,
             ProjectDescription = res.ProjectDescription,
             StartDate = res.StartDate,
@@ -73,11 +69,10 @@ public class ProjectService : IProjectService
 
     public async Task<ProjectGetResponseDto> GetProject(ProjectGetRequestDto projectGetRequestDto)
     {
-        var res = await _projectRepository.GetProject(projectGetRequestDto.ProjectGuidId);
+        var res = await ProjectRepository.GetProject(projectGetRequestDto.ProjectId);
         var mainRes = new ProjectGetResponseDto
         {
             Id = res.Id,
-            ProjectGuidId = res.ProjectGuidId,
             ProjectName = res.ProjectName,
             ProjectDescription = res.ProjectDescription,
             StartDate = res.StartDate,
@@ -88,114 +83,110 @@ public class ProjectService : IProjectService
         return mainRes;
     }
 
-    public async Task<ProjectAddMemberResponseDto> AddMemeberToProject(
-        ProjectAddMemberRequestDto projectAddMemberRequestDto
+    public async Task<List<ProjectAddMemberResponseDto>> AddMemberToProject(
+        List<ProjectAddMemberRequestDto> projectAddMemberRequestDto
     )
     {
-        var obj = new ProjectMembers
+        var obj = projectAddMemberRequestDto.Select(x => new ProjectMemberRecord
+        (
+            0,
+            x.UserId,
+            x.ProjectId,
+            x.ProjectRoleId
+        )).ToList();
+        var res = await ProjectRepository.AddMmeberToProject(obj);
+        var mainRes = res.Select(x => new ProjectAddMemberResponseDto
         {
-            ProjectRoleGuidId = Guid.NewGuid().ToString(),
-            UserGuidId = projectAddMemberRequestDto.UserGuidId,
-            ProjectGuidId = projectAddMemberRequestDto.ProjectGuidId,
-        };
-        var res = await _projectRepository.AddMmeberToProject(obj);
-        var mainRes = new ProjectAddMemberResponseDto
-        {
-            Id = res.Id,
-            ProjectRoleGuidId = res.ProjectRoleGuidId,
-            ProjectGuidId = res.ProjectGuidId,
-            UserGuidId = res.UserGuidId,
-        };
+            Id = x.Id,
+            UserId = x.UserId,
+            ProjectId = x.ProjectId,
+            ProjectRoleId = x.ProjectRoleId,
+        }).ToList();
         return mainRes;
     }
 
-    public async Task<ProjectUpdateMemberResponseDto> UpdateMmeberOfProject(
+    public async Task<bool> UpdateMmeberOfProject(
         ProjectUpdateMemberRequestDto projectUpdateMemberRequestDto
     )
     {
-        var obj = new ProjectMembers
-        {
-            ProjectRoleGuidId = Guid.NewGuid().ToString(),
-            UserGuidId = projectUpdateMemberRequestDto.UserGuidId,
-            ProjectGuidId = projectUpdateMemberRequestDto.ProjectGuidId,
-        };
-        var res = await _projectRepository.UpdateMemeberToProject(obj);
-        var mainRes = new ProjectUpdateMemberResponseDto
-        {
-            Id = res.Id,
-            ProjectRoleGuidId = res.ProjectRoleGuidId,
-            ProjectGuidId = res.ProjectGuidId,
-            UserGuidId = res.UserGuidId,
-        };
-        return mainRes;
+        var obj = new ProjectMemberRecord
+        (
+            0,
+            projectUpdateMemberRequestDto.UserId,
+            projectUpdateMemberRequestDto.ProjectId,
+            projectUpdateMemberRequestDto.ProjectRoleId
+        );
+        var res = await ProjectRepository.UpdateMemeberToProject(obj);
+
+        return res;
     }
 
     public async Task<ProjectGetAllMembersResponseDto> GetAllMembers(
         ProjectGetAllMembersRequestDto projectGetAllMembersRequestDto
     )
     {
-        var res = await _projectRepository.GetAllProjectMembers(
-            projectGetAllMembersRequestDto.ProjectGuidId
+        var res = await ProjectRepository.GetAllProjectMembers(
+            projectGetAllMembersRequestDto.ProjectId
         );
 
-        var res2 = res.Select(x => new ProjectMemeberResponseDto
+        var res2 = res.Select(x => new ProjectMemberResponseDto
             {
                 Id = x.Id,
-                UserGuidId = x.UserGuidId,
-                ProjectGuidId = x.ProjectGuidId,
-                ProjectRoleGuidId = x.ProjectRoleGuidId,
+                UserId = x.UserId,
+                ProjectId = x.ProjectId,
+                ProjectRoleId = x.ProjectRoleId,
             })
             .ToList();
 
-        var mainRes = new ProjectGetAllMembersResponseDto { ProjectMemebers = res2 };
+        var mainRes = new ProjectGetAllMembersResponseDto { ProjectMembers = res2 };
         return mainRes;
     }
 
     public async Task<bool> AddRoleToProjects(ProjectAndRoleRequestDto projectAndRoleRequest)
     {
-        var newObj = new ProjectAndRoles
-        {
-            ProjectGuidId = projectAndRoleRequest.ProjectGuidId,
-            ProjectRoleGuidId = projectAndRoleRequest.ProjectRoleGuidId,
-        };
-        var res = await _projectRepository.AddRoleToProjects(newObj);
-        return res != null;
-    }
-
-    public async Task<List<ProjectRolesEntity>> GetAllProjetRoles(
-        GetAllProjectRolesRequestDto getAllProjectRolesRequestDto
-    )
-    {
-        var res = await _projectRepository.GetAllProjetRoles(
-            getAllProjectRolesRequestDto.ProjectGuidId
+        var newObj = new ProjectRoleProjectWiseRecord
+        (
+            0,
+            projectAndRoleRequest.ProjectRoleId,
+            projectAndRoleRequest.ProjectId
         );
+        var res = await ProjectRepository.AddRoleToProjects(newObj);
         return res;
     }
 
-    // public async Task<ProjectRolesEntity>
+    public async Task<List<ProjectRoleProjectWiseRecord>> GetAllProjetRoles(
+        GetAllProjectRolesRequestDto getAllProjectRolesRequestDto
+    )
+    {
+        var res = await ProjectRepository.GetAllProjetRoles(
+            getAllProjectRolesRequestDto.ProjectId
+        );
+        return res.ToList();
+    }
 
     public async Task<bool> AddProjectRolesToMembers(
         ProjectMemberAndRolesRequestDto projectMemberAndRolesRequestDto
     )
     {
-        var newObj = new ProjectMembersAndRoles
-        {
-            ProjectMemeberGuidId = projectMemberAndRolesRequestDto.ProjectMemeberGuidId,
-            ProjectRoleGuidId = projectMemberAndRolesRequestDto.ProjectRoleGuidId,
-        };
-        var res = await _projectRepository.AddProjectRolesToMembers(newObj);
-        return res != null;
+        var newObj = new ProjectMemberRecord
+        (
+            0,
+            projectMemberAndRolesRequestDto.ProjectMemberId,
+            projectMemberAndRolesRequestDto.ProjectId,
+            projectMemberAndRolesRequestDto.ProjectRoleId
+        );
+        var res = await ProjectRepository.AddProjectRolesToMembers(newObj);
+        return res;
     }
 
     public async Task<List<ProjectShortInfoDto>> GetAllProjectByUser(
-        GettAllProjectByUser gettAllProjectByUser
+        GetAllProjectsByUserRequestDto gettAllProjectByUser
     )
     {
-        var res = await _projectRepository.GetAllProjectByUser(gettAllProjectByUser.UserGuidId);
+        var res = await ProjectRepository.GetAllProjectByUser(gettAllProjectByUser.UserId);
         var mainRes = res.Select(x => new ProjectShortInfoDto
             {
                 Id = x.Id,
-                ProjectGuidId = x.ProjectGuidId,
                 ProjectName = x.ProjectName,
                 ProjectDescription = x.ProjectDescription,
             })

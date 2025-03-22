@@ -1,18 +1,17 @@
-using System;
-using TaskFlow.Data.Entities;
+using TaskFlow.Core.Records;
 
 namespace TaskFlow.Repositories.Project;
 
 public interface IProjectRepository
 {
-    Task<ProjectEntity> AddProject(ProjectEntity projectEntity);
-    Task<ProjectEntity> UpdateProject(ProjectEntity projectEntity);
-    Task<ProjectMembers> AddMmeberToProject(ProjectMembers projectMemebers);
-    Task<ProjectMembers> UpdateMemeberToProject(ProjectMembers projectMemebers);
-    Task<List<ProjectMembers>> GetAllProjectMembers(string projectGuidId);
-    Task<ProjectEntity> GetProject(string projectGuidId);
-    Task<bool> AddRoleToProjects(ProjectAndRoles projectAndRoles);
-    Task<bool> AddProjectRolesToMembers(ProjectMembersAndRoles projectMembersAndRoles);
-    Task<List<ProjectRolesEntity>> GetAllProjetRoles(string projectGuidId);
-    Task<List<ProjectEntity>> GetAllProjectByUser(string userGuidId);
+    Task<ProjectRecord> AddProject(ProjectRecord projectRecord);
+    Task<ProjectRecord> UpdateProject(ProjectRecord projectRecord);
+    Task<List<ProjectMemberRecord>> AddMmeberToProject(List<ProjectMemberRecord> projectMembers);
+    Task<bool> UpdateMemeberToProject(ProjectMemberRecord projectMember);
+    Task<List<ProjectMemberRecord>> GetAllProjectMembers(int projectId);
+    Task<ProjectRecord> GetProject(int projectId);
+    Task<bool> AddRoleToProjects(ProjectRoleProjectWiseRecord projectAndRoles);
+    Task<bool> AddProjectRolesToMembers(ProjectMemberRecord projectMemberRecord);
+    Task<List<ProjectRoleProjectWiseRecord>> GetAllProjetRoles(int projectId);
+    Task<List<ProjectRecord>> GetAllProjectByUser(int userId);
 }

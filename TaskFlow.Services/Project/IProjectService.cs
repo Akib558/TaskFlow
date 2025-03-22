@@ -1,6 +1,5 @@
-using System;
 using TaskFlow.Core.DTOs;
-using TaskFlow.Data.Entities;
+using TaskFlow.Core.Records;
 
 namespace TaskFlow.Services.Project;
 
@@ -10,11 +9,11 @@ public interface IProjectService
     Task<ProjectGetResponseDto> GetProject(ProjectGetRequestDto projectGetRequestDto);
     Task<ProjectUpdateResponseDto> UpdateProject(ProjectUpdateRequestDto projectUpdateRequestDto);
 
-    Task<ProjectAddMemberResponseDto> AddMemeberToProject(
-        ProjectAddMemberRequestDto projectAddMemberRequestDto
+    Task<List<ProjectAddMemberResponseDto>> AddMemberToProject(
+        List<ProjectAddMemberRequestDto> projectAddMemberRequestDto
     );
 
-    Task<ProjectUpdateMemberResponseDto> UpdateMmeberOfProject(
+    Task<bool> UpdateMmeberOfProject(
         ProjectUpdateMemberRequestDto projectUpdateMemberRequestDto
     );
 
@@ -25,7 +24,7 @@ public interface IProjectService
     Task<bool> AddRoleToProjects(ProjectAndRoleRequestDto projectAndRoles);
     Task<bool> AddProjectRolesToMembers(ProjectMemberAndRolesRequestDto projectMembersAndRoles);
 
-    Task<List<ProjectRolesEntity>> GetAllProjetRoles(
+    Task<List<ProjectRoleProjectWiseRecord>> GetAllProjetRoles(
         GetAllProjectRolesRequestDto getAllProjectRolesRequestDto
     );
 

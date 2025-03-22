@@ -1,78 +1,74 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using TaskFlow.Core.DTOs;
+using Dapper;
+using TaskFlow.Core.Records;
 using TaskFlow.Data;
-using TaskFlow.Data.Entities;
 
-namespace TaskFlow.Repositories
+namespace TaskFlow.Repositories.User
 {
     public class UserRepository : IUserRepository
     {
-        private DbContext _context;
+        private readonly TaskFlowDbContext _dbContext;
 
         public UserRepository(TaskFlowDbContext dbContext)
         {
-            _context = dbContext;
+            _dbContext = dbContext;
         }
 
-        public async Task<UserEntity> GetUserByUsername(string username)
+        public async Task<UserRecord> GetUserByUserId(int userId)
         {
-            var res = await _context
-                .Set<UserEntity>()
-                .FirstOrDefaultAsync(u => u.UserName == username);
-            return res;
-        }
+            using var connection = _dbContext.CreateConnection();
+            var query = QueryCollection.LoadQuery("Task", "GetTaskById");
 
-        public async Task<List<string>> GetUserRoles(string GuidId)
-        {
-            var user = await _context
-                .Set<UserEntity>()
-                .Where(u => u.UserGuidId == GuidId)
-                .Select(u => u.UserRole)
-                .ToListAsync();
-            return user;
-        }
-
-        public async Task<UserEntity> GetUserById(string GuidId)
-        {
-            var res = await _context
-                .Set<UserEntity>()
-                .FirstOrDefaultAsync(u => u.UserGuidId == GuidId);
-
-            return res;
-        }
-
-        public async Task<UserEntity> CreateUser(UserEntity user)
-        {
-            var entity = await _context.Set<UserEntity>().AddAsync(user);
-            await _context.SaveChangesAsync();
-            return entity.Entity;
-        }
-
-        public async Task<UserEntity> UpdateUser(UserUpdateRequestDto user)
-        {
-            var entity = await _context
-                .Set<UserEntity>()
-                .FirstOrDefaultAsync(u => u.UserGuidId == user.GuidId);
-            if (entity == null)
+            try
             {
-                return null;
+                var res = await connection.QueryFirstOrDefaultAsync<UserRecord>(query, new
+                {
+                    Id = userId
+                });
+                return res;
             }
-            entity.UserName = user.Username;
-            entity.UserEmail = user.Email;
-            entity.UserRole = user.Role;
-            await _context.SaveChangesAsync();
-            return entity;
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
-        public async Task DeleteUser(int id)
+
+        public async Task<bool> UpdateUser(UserRecord userRecord)
         {
-            var user = await GetUserById("");
-            _context.Set<UserEntity>().Remove(new UserEntity { Id = id });
-            await _context.SaveChangesAsync();
+            using var connection = _dbContext.CreateConnection();
+            var query = QueryCollection.LoadQuery("Task", "UpdateUser");
+
+            try
+            {
+                await connection.ExecuteAsync(query, userRecord);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public async Task<bool> DeleteUser(int userId)
+        {
+            using var connection = _dbContext.CreateConnection();
+            var query = QueryCollection.LoadQuery("Task", "DeleteUser");
+
+            try
+            {
+                await connection.ExecuteAsync(query, new
+                {
+                    Id = userId
+                });
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

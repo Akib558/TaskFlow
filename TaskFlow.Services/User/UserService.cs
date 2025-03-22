@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TaskFlow.Core.DTOs;
-using TaskFlow.Data.Entities;
-using TaskFlow.Helpers;
-using TaskFlow.Repositories;
+using TaskFlow.Core.Records;
+using TaskFlow.Repositories.User;
 
 namespace TaskFlow.Services
 {
@@ -18,70 +13,55 @@ namespace TaskFlow.Services
             _userRepository = userRepository;
         }
 
-        public async Task<UserInfoResponseDto> GetUserByUsername(string username)
+        //
+        // public async Task<UserInfoResponseDto> GetUserByUsername(string username)
+        // {
+        //     var res = await _userRepository.GetUserByUsername(username);
+        //     return new UserInfoResponseDto
+        //     {
+        //         Id = res.Id,
+        //         GuidId = res.UserGuidId,
+        //         Username = res.UserName,
+        //         Email = res.UserEmail,
+        //         Role = res.UserRole,
+        //         CreatedDate = res.CreatedDate,
+        //     };
+        // }
+
+        public async Task<UserInfoResponseDto> GetUserById(int UserId)
         {
-            var res = await _userRepository.GetUserByUsername(username);
+            var res = await _userRepository.GetUserByUserId(UserId);
             return new UserInfoResponseDto
             {
                 Id = res.Id,
-                GuidId = res.UserGuidId,
                 Username = res.UserName,
                 Email = res.UserEmail,
-                Role = res.UserRole,
-                CreatedDate = res.CreatedDate,
+                CreatedDate = res.CreatedDate
             };
         }
 
-        public async Task<UserInfoResponseDto> GetUserById(string GuidId)
-        {
-            var res = await _userRepository.GetUserById(GuidId);
-            return new UserInfoResponseDto
-            {
-                Id = res.Id,
-                GuidId = res.UserGuidId,
-                Username = res.UserName,
-                Email = res.UserEmail,
-                Role = res.UserRole,
-                CreatedDate = res.CreatedDate,
-            };
-        }
 
-        public async Task<UserInfoResponseDto> CreateUser(UserAddRequestDto user)
+        public async Task<bool> UpdateUser(UserUpdateRequestDto user)
         {
-            var addUserObj = new UserEntity
-            {
-                UserGuidId = Guid.NewGuid().ToString(),
-                UserName = user.Username,
-                UserPasswordHash = PasswordHelper.HashPassword(user.Password),
-                UserEmail = user.Email,
-                UserRole = user.Role,
-                CreatedDate = DateTime.Now,
-            };
+            var obj = new UserRecord(
+                0,
+                user.Username,
+                user.Email,
+                "",
+                false,
+                user.CreatedDate
+            );
+            var res = await _userRepository.UpdateUser(obj);
 
-            var res = await _userRepository.CreateUser(addUserObj);
-            return new UserInfoResponseDto
-            {
-                Id = res.Id,
-                GuidId = res.UserGuidId,
-                Username = res.UserName,
-                Email = res.UserEmail,
-                Role = res.UserRole,
-                CreatedDate = res.CreatedDate,
-            };
-        }
+            return res;
 
-        public async Task<UserInfoResponseDto> UpdateUser(UserUpdateRequestDto user)
-        {
-            var res = await _userRepository.UpdateUser(user);
-            return new UserInfoResponseDto
-            {
-                Id = res.Id,
-                GuidId = res.UserGuidId,
-                Username = res.UserName,
-                Email = res.UserEmail,
-                Role = res.UserRole,
-                CreatedDate = res.CreatedDate,
-            };
+            // return new UserInfoResponseDto
+            // {
+            //     Id = res.Id,
+            //     Username = res.UserName,
+            //     Email = res.UserEmail,
+            //     CreatedDate = res.CreatedDate
+            // };
         }
 
         // public async Task DeleteUser(int id)

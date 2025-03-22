@@ -1,5 +1,10 @@
 namespace TaskFlow.Core.Records;
 
-public class UserRecords
-{
-}
+public record UserRecord(
+    int Id,
+    string UserName,
+    string UserEmail,
+    string UserPasswordHash,
+    bool UserDeleted,
+    DateTime CreatedDate
+);

@@ -1,118 +1,188 @@
-using System;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
+using Dapper;
+using TaskFlow.Core.Records;
 using TaskFlow.Data;
-using TaskFlow.Data.Entities;
 
 namespace TaskFlow.Repositories.Project;
 
 public class ProjectRepository : IProjectRepository
 {
-    private readonly TaskFlowDbContext _context;
+    private readonly TaskFlowDbContext _dbContext;
 
-    public ProjectRepository(TaskFlowDbContext context)
+    public ProjectRepository(TaskFlowDbContext dbContext)
     {
-        _context = context;
+        _dbContext = dbContext;
     }
 
-    public async Task<ProjectEntity> AddProject(ProjectEntity projectEntity)
+    public async Task<ProjectRecord> AddProject(ProjectRecord projectRecord)
     {
-        var res = await _context.Set<ProjectEntity>().AddAsync(projectEntity);
-        await _context.SaveChangesAsync();
-        return res.Entity;
-    }
+        using var connection = _dbContext.CreateConnection();
 
-    public async Task<ProjectEntity> GetProject(string projectGuidId)
-    {
-        var res = await _context.Projects.FirstAsync(x => x.ProjectGuidId == projectGuidId);
+        var query = QueryCollection.LoadQuery("Project", "InsertProject");
+
+        var res = await connection.QueryFirstOrDefaultAsync<ProjectRecord>(query, projectRecord);
+
         return res;
     }
 
-    public async Task<ProjectEntity> UpdateProject(ProjectEntity projectEntity)
+    public async Task<ProjectRecord> GetProject(int projectId)
     {
-        var res = await _context.Projects.FirstAsync(x =>
-            x.ProjectGuidId == projectEntity.ProjectGuidId
-        );
-        res = projectEntity;
-        await _context.SaveChangesAsync();
-        return res;
-    }
+        using var connection = _dbContext.CreateConnection();
 
-    public async Task<ProjectMembers> AddMmeberToProject(ProjectMembers projectMemebers)
-    {
-        var res = await _context.Set<ProjectMembers>().AddAsync(projectMemebers);
-        await _context.SaveChangesAsync();
-        return res.Entity;
-    }
+        var query = QueryCollection.LoadQuery("Project", "GetProject");
 
-    public async Task<ProjectMembers> UpdateMemeberToProject(ProjectMembers projectMemebers)
-    {
-        var res = await _context.ProjectMembers.FirstAsync(x =>
-            x.UserGuidId == projectMemebers.UserGuidId
-        );
-        res = projectMemebers;
-        await _context.SaveChangesAsync();
-        return res;
-    }
-
-    public async Task<List<ProjectMembers>> GetAllProjectMembers(string projectGuidId)
-    {
-        var res = await _context
-            .Set<ProjectMembers>()
-            .Where(x => x.ProjectGuidId == projectGuidId)
-            .Select(x => x)
-            .ToListAsync();
-        return res;
-    }
-
-    /*
-        TODOD:
-        * Add Role to Projects
-        * Add ProjectRoles to Members
-    */
-
-
-    public async Task<bool> AddRoleToProjects(ProjectAndRoles projectAndRoles)
-    {
-        var res = await _context.ProjectAndRoles.AddAsync(projectAndRoles);
-        await _context.SaveChangesAsync();
-        if (res != null)
+        var res = await connection.QueryFirstOrDefaultAsync<ProjectRecord>(query, new
         {
+            ProjectId = projectId
+        });
+
+        return res;
+    }
+
+    public async Task<ProjectRecord> UpdateProject(ProjectRecord projectRecord)
+    {
+        using var connection = _dbContext.CreateConnection();
+
+        var query = QueryCollection.LoadQuery("Project", "UpdateProject");
+
+        var res = await connection.QueryFirstOrDefaultAsync<ProjectRecord>(query, projectRecord);
+
+        return res;
+    }
+
+    public async Task<List<ProjectMemberRecord>> AddMmeberToProject(List<ProjectMemberRecord> projectMembers)
+    {
+        using var connection = _dbContext.CreateConnection();
+        using var transaction = connection.BeginTransaction();
+        var query = QueryCollection.LoadQuery("ProjectMembers", "InsertProjectMember");
+
+        try
+        {
+            foreach (var projectMember in projectMembers)
+            {
+                await connection.ExecuteAsync(query, projectMember, transaction: transaction);
+            }
+
+            transaction.Commit();
+        }
+        catch (Exception e)
+        {
+            transaction.Rollback();
+            Console.WriteLine(e);
+            throw;
+        }
+
+        return await GetAllProjectMembers(projectMembers.First().ProjectId);
+    }
+
+    public async Task<bool> UpdateMemeberToProject(ProjectMemberRecord projectMember)
+    {
+        using var connection = _dbContext.CreateConnection();
+
+        var query = QueryCollection.LoadQuery("ProjectMembers", "UpdateProjectMember");
+
+        try
+        {
+            await connection.ExecuteAsync(query, projectMember);
             return true;
         }
-        return false;
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
-    public async Task<List<ProjectRolesEntity>> GetAllProjetRoles(string projectGuidId)
+    public async Task<List<ProjectMemberRecord>> GetAllProjectMembers(int projectId)
     {
-        var res = await _context
-            .ProjectAndRoles.Where(pr => pr.ProjectGuidId == projectGuidId)
-            .Select(pp => pp.ProjectRoles)
-            .ToListAsync();
-        return res;
+        using var connection = _dbContext.CreateConnection();
+
+        var query = QueryCollection.LoadQuery("Project", "GetProjectMember");
+
+        var res = await connection.QueryAsync<ProjectMemberRecord>(query, new
+        {
+            ProjectId = projectId
+        });
+
+        return res.ToList();
     }
 
-    // public async Task<ProjectRolesEntity>
 
-    public async Task<bool> AddProjectRolesToMembers(ProjectMembersAndRoles projectMembersAndRoles)
+    public async Task<bool> AddRoleToProjects(ProjectRoleProjectWiseRecord projectAndRoles)
     {
-        var res = await _context.ProjectMembersAndRoles.AddAsync(projectMembersAndRoles);
-        await _context.SaveChangesAsync();
-        return res != null;
+        using var connection = _dbContext.CreateConnection();
+
+        var query = QueryCollection.LoadQuery("ProjectRole", "InsertProjectRole");
+
+        try
+        {
+            await connection.ExecuteAsync(query, projectAndRoles);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
-    public async Task<List<ProjectEntity>> GetAllProjectByUser(string userGuidId)
+    public async Task<List<ProjectRoleProjectWiseRecord>> GetAllProjetRoles(int projectId)
     {
-        var res = await _context
-            .ProjectMembers.Where(x => x.UserGuidId == userGuidId)
-            .Select(x => x.ProjectEntity)
-            .ToListAsync();
-        return res;
+        using var connection = _dbContext.CreateConnection();
+
+        var query = QueryCollection.LoadQuery("ProjectRole", "GetProjectRole");
+
+        try
+        {
+            var res = await connection.QueryAsync<ProjectRoleProjectWiseRecord>(query, new
+            {
+                ProjectId = projectId
+            });
+            return res.ToList();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
-    // TODO:
-    // GetALLChildProject
-    // GetALLChildProjectRecursive
-    // GetALLParentProjext
-    // GetALLParentProjextRecursive
+
+    public async Task<bool> AddProjectRolesToMembers(ProjectMemberRecord projectMemberRecord)
+    {
+        using var connection = _dbContext.CreateConnection();
+
+        var query = QueryCollection.LoadQuery("ProjectMembers", "AddProjectRoleToMember");
+
+        try
+        {
+            await connection.ExecuteAsync(query, projectMemberRecord);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<List<ProjectRecord>> GetAllProjectByUser(int userId)
+    {
+        using var connection = _dbContext.CreateConnection();
+
+        var query = QueryCollection.LoadQuery("ProjectRole", "GetAllProjectForUser");
+
+        try
+        {
+            var res = await connection.QueryAsync<ProjectRecord>(query, new
+            {
+                UserId = userId
+            });
+            return res.ToList();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

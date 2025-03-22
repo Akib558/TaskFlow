@@ -1,12 +1,11 @@
-using System;
-using TaskFlow.Data.Entities;
+using TaskFlow.Core.Records;
 
-namespace TaskFlow.Repositories;
+namespace TaskFlow.Repositories.Task;
 
 public interface ITaskRepository
 {
-    Task<TaskEntity> GetTaskResponseByGuidId(string UserGuidId, string TaskGuidId);
-    Task<List<TaskEntity>> GetAllTaskResponseByAuthorGuidId(string AuthorGuidId);
-    Task<TaskEntity> AddTask(TaskEntity TaskEntity);
-    Task<TaskEntity> UpdateTask(TaskEntity TaskEntity);
+    Task<TaskRecord> GetTaskResponseByGuidId(int userId, int taskId);
+    Task<List<TaskRecord>> GetAllTaskResponseByAuthorGuidId(int userId);
+    Task<bool> AddTask(TaskRecord taskRecord);
+    Task<bool> UpdateTask(TaskRecord taskRecord);
 }

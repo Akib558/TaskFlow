@@ -46,6 +46,7 @@ public class ProjectAddMemberRequestDto
     [Required] public int ProjectId { get; set; }
 
     [Required] public int ProjectRoleId { get; set; }
+    public List<ProjectAddMemberRequestDto> projectAddMemberRequestDto { get; set; }
 }
 
 public class ProjectUpdateMemberRequestDto

@@ -2,6 +2,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TaskFlow.Core.DTOs;
 
+public class GetAllPathForRoleResponseDto
+{
+    public List<PathDto> paths { get; set; }
+}
+
 public class RoleAddResponseDto
 {
     public int Id { get; set; }
@@ -27,16 +32,19 @@ public class RoleAddOperationResponseDto
 
 public class AddPathToRoleRequestDto
 {
-    [Required] public int ProjectRoleId { get; set; }
+    // [Required] public int ProjectRoleId { get; set; }
+    //
+    // [Required] public int PathId { get; set; }
 
-    [Required] public int PathId { get; set; }
+    public List<PathProjectRoleDto> pathProjectRoleDto { get; set; }
 }
 
 public class PathAddRequestDto
 {
-    [Required] public string PathName { get; set; } = String.Empty;
-
-    [Required] public string PathValue { get; set; } = String.Empty;
+    // [Required] public string PathName { get; set; } = String.Empty;
+    //
+    // [Required] public string PathValue { get; set; } = String.Empty;
+    public List<PathDto> pathDtos { get; set; }
 }
 
 public class PathInfoDto
@@ -48,7 +56,5 @@ public class PathInfoDto
 
 public class GetAllowedPathForRoleDto
 {
-    public string RoleName { get; set; } = String.Empty;
-    public int ProjectRoleId { get; set; }
-    public List<PathInfoDto> PathInfoList { get; set; } = new List<PathInfoDto>();
+    public List<PathDto> paths { get; set; }
 }

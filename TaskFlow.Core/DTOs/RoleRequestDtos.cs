@@ -4,6 +4,25 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TaskFlow.Core.DTOs;
 
+public class PathDto
+{
+    public int Id { get; set; }
+    public string PathName { get; set; }
+    public string PathValue { get; set; }
+}
+
+public class GetAllowedPathForRoleRequestDto
+{
+    public int ProjectId { get; set; }
+    public int ProjectRoleId { get; set; }
+}
+
+public class PathProjectRoleDto
+{
+    public int PathId { get; set; }
+    public int ProjectRoleId { get; set; }
+}
+
 public class RoleAddRequestDto
 {
     [Required] public string RoleName { get; set; } = String.Empty;

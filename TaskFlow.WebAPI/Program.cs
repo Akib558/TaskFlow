@@ -57,8 +57,8 @@ builder.Host.UseSerilog();
 builder.Services.AddControllers();
 builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
 
-builder.Services.AddValidatorsFromAssemblyContaining<UserLoginAuthValidator>();
-ApiModelValidation.AddValidationForModel(builder.Services);
+// builder.Services.AddValidatorsFromAssemblyContaining<UserLoginAuthValidator>();
+// ApiModelValidation.AddValidationForModel(builder.Services);
 
 builder.Services.AddSingleton<TaskFlowDbContext>();
 

@@ -1,11 +1,11 @@
 using System;
 using System.Data;
 using FluentValidation;
-using static TaskFlow.Core.DTOs.AuthRequestDto;
+using TaskFlow.Core.DTOs;
 
 namespace TaskFlow.Core.Validators;
 
-public class UserLoginAuthValidator : AbstractValidator<UserLoginAuthRequestDto>
+public class UserLoginAuthValidator : AbstractValidator<UserRegisterAuthRequestDto>
 {
     public UserLoginAuthValidator()
     {
@@ -16,11 +16,11 @@ public class UserLoginAuthValidator : AbstractValidator<UserLoginAuthRequestDto>
 
 public class UserRegisterAuthValidator : AbstractValidator<UserRegisterAuthRequestDto>
 {
-
     public UserRegisterAuthValidator()
     {
         RuleFor(usr => usr.Username).NotEmpty().WithMessage("Username is empty");
-        RuleFor(usr => usr.Password).Must(CheckValidPassword).WithMessage((usr, password) => GetPasswordErrorMessage(password));
+        RuleFor(usr => usr.Password).Must(CheckValidPassword)
+            .WithMessage((usr, password) => GetPasswordErrorMessage(password));
         RuleFor(usr => usr.Email).EmailAddress().WithMessage("Email address is not valid");
         RuleFor(usr => usr.Email).NotEmpty().WithMessage("Email address cannot be empty");
     }

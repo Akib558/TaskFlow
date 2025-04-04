@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TaskFlow.Core.DTOs;
-using TaskFlow.Data.Entities;
 using TaskFlow.Services;
 
 namespace TaskFlow.WebAPI.Controllers
@@ -26,20 +25,20 @@ namespace TaskFlow.WebAPI.Controllers
         }
 
 
-        [Authorize]
-        [HttpGet("GetUserByName")]
-        public async Task<IActionResult> GetUserByUsername(
-            UserGetByUsernameRequestDto userGetByUsernameRequestDto
-        )
-        {
-            var user = await _userService.GetUserByUsername(userGetByUsernameRequestDto.Username);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(user);
-        }
+        // [Authorize]
+        // [HttpGet("GetUserByName")]
+        // public async Task<IActionResult> GetUserByUsername(
+        //     UserGetByUsernameRequestDto userGetByUsernameRequestDto
+        // )
+        // {
+        //     var user = await _userService.GetUserByUsername(userGetByUsernameRequestDto.Username);
+        //     if (user == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //
+        //     return Ok(user);
+        // }
 
         // Get user by id
         [Authorize]

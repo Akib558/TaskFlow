@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TaskFlow.Core.DTOs;
-using TaskFlow.Data.Entities;
 using TaskFlow.Services;
 using TaskFlow.Services.Project;
 
@@ -51,7 +50,7 @@ namespace TaskFlow.WebAPI.Controllers
             ProjectAddMemberRequestDto projectAddMemberRequestDto
         )
         {
-            var res = await _projectService.AddMemeberToProject(projectAddMemberRequestDto);
+            var res = await _projectService.AddMemberToProject(projectAddMemberRequestDto.projectAddMemberRequestDto);
             return Ok(res);
         }
 

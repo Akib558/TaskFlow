@@ -24,12 +24,12 @@ namespace TaskFlow.WebAPI.Controllers
             _actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
         }
 
-        [HttpPost("AddRole")]
-        public async Task<IActionResult> AddRole(RoleAddRequestDto roleAddRequestDto)
-        {
-            var res = await _roleService.AddRole(roleAddRequestDto);
-            return Ok(res);
-        }
+        // [HttpPost("AddRole")]
+        // public async Task<IActionResult> AddRole(RoleAddRequestDto roleAddRequestDto)
+        // {
+        //     var res = await _roleService.AddRole(roleAddRequestDto);
+        //     return Ok(res);
+        // }
 
         // [HttpPut("UpdateRole")]
         // public async Task<IActionResult> RoleUpdate(RoleUpdateRequestDto roleUpdateRequestDto)
@@ -38,12 +38,12 @@ namespace TaskFlow.WebAPI.Controllers
         //     return Ok(res);
         // }
 
-        [HttpGet("GetAllRole")]
-        public async Task<IActionResult> GetAllRole()
-        {
-            var res = await _roleService.GetAllRole();
-            return Ok(res);
-        }
+        // [HttpGet("GetAllRole")]
+        // public async Task<IActionResult> GetAllRole()
+        // {
+        //     var res = await _roleService.GetAllRole();
+        //     return Ok(res);
+        // }
 
         // [HttpPost("RoleAddOperation")]
         // public async Task<IActionResult> RoleAddOperation(
@@ -68,23 +68,23 @@ namespace TaskFlow.WebAPI.Controllers
         //     return Ok(res);
         // }
 
-        [HttpGet("routes")]
-        public IActionResult GetAvailableApiPaths()
-        {
-            var routes = _actionDescriptorCollectionProvider
-                .ActionDescriptors.Items.Where(ad => ad is ControllerActionDescriptor)
-                .Cast<ControllerActionDescriptor>()
-                .Select(ad => new
-                {
-                    Path = $"/{ad.AttributeRouteInfo?.Template}",
-                    HttpMethods = ad.ActionConstraints?.OfType<HttpMethodActionConstraint>()
-                        .FirstOrDefault()
-                        ?.HttpMethods ?? new List<string>(),
-                })
-                .ToList();
-
-            return Ok(routes);
-        }
+        // [HttpGet("routes")]
+        // public IActionResult GetAvailableApiPaths()
+        // {
+        //     var routes = _actionDescriptorCollectionProvider
+        //         .ActionDescriptors.Items.Where(ad => ad is ControllerActionDescriptor)
+        //         .Cast<ControllerActionDescriptor>()
+        //         .Select(ad => new
+        //         {
+        //             Path = $"/{ad.AttributeRouteInfo?.Template}",
+        //             HttpMethods = ad.ActionConstraints?.OfType<HttpMethodActionConstraint>()
+        //                 .FirstOrDefault()
+        //                 ?.HttpMethods ?? new List<string>(),
+        //         })
+        //         .ToList();
+        //
+        //     return Ok(routes);
+        // }
 
         [HttpPost("AddPathToRole")]
         public async Task<IActionResult> AddPathToRole(
@@ -110,9 +110,10 @@ namespace TaskFlow.WebAPI.Controllers
         }
 
         [HttpPost("GetAllowrdPathForRole")]
-        public async Task<IActionResult> GetAllowrdPathForRole(string roleGuidId)
+        public async Task<IActionResult> GetAllowrdPathForRole(
+            GetAllowedPathForRoleRequestDto getAllowedPathForRoleRequestDto)
         {
-            var res = await _roleService.GetAllowedPathForRole(roleGuidId);
+            var res = await _roleService.GetAllowedPathForRole(getAllowedPathForRoleRequestDto);
             return Ok(res);
         }
     }

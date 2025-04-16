@@ -3,6 +3,7 @@ using System.Text;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -53,12 +54,13 @@ builder.Services.AddCors(options =>
             .AllowCredentials());
 });
 
+
 builder.Host.UseSerilog();
 builder.Services.AddControllers();
 builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
 
-// builder.Services.AddValidatorsFromAssemblyContaining<UserLoginAuthValidator>();
-// ApiModelValidation.AddValidationForModel(builder.Services);
+builder.Services.AddValidatorsFromAssemblyContaining<UserLoginAuthValidator>();
+ApiModelValidation.AddValidationForModel(builder.Services);
 
 builder.Services.AddSingleton<TaskFlowDbContext>();
 
@@ -159,7 +161,8 @@ else
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseMiddleware<ApiResponseMiddleware>();
+app.UseMiddleware<GlobalExceptionMiddleware>();
+// app.UseMiddleware<ApiResponseMiddleware>();
 app.UseMiddleware<LoggingMiddleware>();
 
 // Map Controllers

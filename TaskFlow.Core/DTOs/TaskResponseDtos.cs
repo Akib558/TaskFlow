@@ -18,4 +18,11 @@ public class TaskResponseDtos
         public DateTime? TaskUpdatedDate { get; set; }
         public DateTime? TaskDueDate { get; set; }
     }
+
+    public class TaskStatusResponseDto
+    {
+        public int Id { get; set; }
+        public int ProjectId { get; set; }
+        public string Status { get; set; }
+    }
 }

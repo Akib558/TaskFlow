@@ -84,7 +84,8 @@ public class AuthService : IAuthService
     {
         try
         {
-            var res = await _authRepository.Login(user.Email, PasswordHelper.HashPassword(user.Password));
+            var res = await _authRepository.Login(new LoginUserRecord(user.Email,
+                PasswordHelper.HashPassword(user.Password)));
 
             if (
                 res == null

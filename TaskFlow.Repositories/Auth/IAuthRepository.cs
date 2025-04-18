@@ -5,7 +5,7 @@ namespace TaskFlow.Repositories.Auth;
 public interface IAuthRepository
 {
     Task<RegisterUserRecord?> Register(RegisterUserRecord user);
-    Task<RegisterUserRecord?> Login(string email, string password);
+    Task<RegisterUserRecord?> Login(LoginUserRecord user);
     Task<RefreshTokenInfoRecord?> ValidateRefreshToken(string refreshToken);
 
     Task<RefreshTokenInfoRecord?> DeactivateAndAddRefreshToken(

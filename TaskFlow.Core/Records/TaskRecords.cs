@@ -15,3 +15,21 @@ public record TaskRecord(
     DateTime? TaskUpdatedDate,
     DateTime? TaskDueDate
 );
+
+public record TaskStatusRecord(
+    int Id,
+    int ProjectId,
+    string Status
+);
+
+public record TaskTypesRecord(
+    int Id,
+    int ProjectId,
+    string Type
+);
+
+public record TaskPriorityRecord(
+    int Id,
+    int ProjectId,
+    string Priority
+);

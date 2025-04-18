@@ -45,4 +45,11 @@ public class TaskRequestDtos
         public int? TaskTypeId { get; set; }
         public int? TaskPriorityId { get; set; }
     }
+
+    public class TaskStatusAddRequestDto
+    {
+        public int Id { get; set; }
+        public int ProjectId { get; set; }
+        public string Status { get; set; }
+    }
 }

@@ -145,7 +145,7 @@ app.UseCors("AllowAngularApp");
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    // app.UseSwaggerUI();
     /*app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "TaskFlow API V1");
@@ -163,7 +163,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<GlobalExceptionMiddleware>();
 // app.UseMiddleware<ApiResponseMiddleware>();
-app.UseMiddleware<LoggingMiddleware>();
+// app.UseMiddleware<LoggingMiddleware>();
 
 // Map Controllers
 app.MapControllers();

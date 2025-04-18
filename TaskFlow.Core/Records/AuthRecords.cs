@@ -8,7 +8,7 @@ public record RegisterUserRecord(
     int Role = 0
 );
 
-public record UserLoginAuthRequestDto(
+public record LoginUserRecord(
     string Email = "",
     string Password = ""
 );

@@ -1,7 +1,9 @@
 using Dapper;
 using Microsoft.Data.SqlClient;
+using TaskFlow.Core.Entities;
 using TaskFlow.Core.Records;
 using TaskFlow.Data;
+using TaskFlow.Helpers.Extensions;
 
 namespace TaskFlow.Repositories.Auth;
 
@@ -16,28 +18,28 @@ public class AuthRepository : IAuthRepository
 
     public async Task<RegisterUserRecord?> Register(RegisterUserRecord user)
     {
+        var parameters = user.ToRegisterUserEntity();
+
         using var connection = _dbContext.CreateConnection();
 
         var query = QueryCollection.LoadQuery("Auth", "AuthRegister");
 
-        var res = await connection.QueryFirstOrDefaultAsync<RegisterUserRecord>(query, user);
+        var res = await connection.QueryFirstOrDefaultAsync<RegisterUserEntity>(query, parameters);
 
-        return res;
+        return res?.ToRegisterUserRecord();
     }
 
-    public async Task<RegisterUserRecord?> Login(string email, string password)
+    public async Task<RegisterUserRecord?> Login(LoginUserRecord user)
     {
+        var parameters = user.ToLoginUserEntity();
+
         using var connection = _dbContext.CreateConnection();
 
         var query = QueryCollection.LoadQuery("Auth", "AuthLogin");
 
-        var res = await connection.QueryFirstOrDefaultAsync<RegisterUserRecord>(query, new
-        {
-            UserEmail = email,
-            UserPasswordHash = password
-        });
+        var res = await connection.QueryFirstOrDefaultAsync<RegisterUserEntity>(query, parameters);
 
-        return res;
+        return res?.ToRegisterUserRecord();
     }
 
     public async Task<RefreshTokenInfoRecord?> ValidateRefreshToken(string refreshToken)

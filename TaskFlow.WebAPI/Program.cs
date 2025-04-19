@@ -1,17 +1,13 @@
-using System.Diagnostics;
 using System.Text;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using TaskFlow.Core.Validators;
 using TaskFlow.Data;
 using TaskFlow.Middlewares;
-using TaskFlow.Repositories;
 using TaskFlow.Repositories.Auth;
 using TaskFlow.Repositories.Project;
 using TaskFlow.Repositories.Role;

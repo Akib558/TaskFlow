@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -35,11 +36,17 @@ namespace TaskFlow.WebAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("GetAllTaskForUser")]
-        public async Task<IActionResult> GetAllTaskByAuthorId(
-            TaskGetAllForUserRequestDto taskGetAllForUserRequestDto)
+        [HttpGet("GetAllTaskForUser")]
+        public async Task<IActionResult> GetAllTaskByAuthorId()
         {
-            var res = await _taskService.GetAllTaskByAuthorId(taskGetAllForUserRequestDto.UserId);
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized(ApiResponse<string>.ErrorResponse("", "User ID not found in token"));
+            }
+
+            var userId = int.Parse(userIdClaim.Value);
+            var res = await _taskService.GetAllTaskByAuthorId(userId);
             return Ok(ApiResponse<IEnumerable<TaskGetResponseDto>>.SuccessResponse(res,
                 "Tasks retrieved successfully"));
         }

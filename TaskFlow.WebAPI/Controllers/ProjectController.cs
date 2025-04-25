@@ -35,7 +35,15 @@ namespace TaskFlow.WebAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("UpdateProject")]
+        [HttpGet("GetAllProjectForUser")]
+        public async Task<IActionResult> GetAllProjectByUser()
+        {
+            var res = await _projectService.GetAllProjectByUser();
+            return Ok(res);
+        }
+
+        [Authorize]
+        [HttpPut("UpdateProject")]
         public async Task<IActionResult> UpdateProject(
             ProjectUpdateRequestDto projectUpdateRequestDto
         )
@@ -45,12 +53,21 @@ namespace TaskFlow.WebAPI.Controllers
         }
 
         [Authorize]
+        [HttpDelete("DeleteProject/{projectId}")]
+        public async Task<IActionResult> DeleteProject(int projectId)
+        {
+            var res = await _projectService.DeleteProject(projectId);
+            return Ok(res);
+        }
+
+        [Authorize]
         [HttpPost("AddMemeberToProject")]
         public async Task<IActionResult> AddMemeberToProject(
             ProjectAddMemberRequestDto projectAddMemberRequestDto
         )
         {
-            var res = await _projectService.AddMemberToProject(projectAddMemberRequestDto.projectAddMemberRequestDto);
+            var res = await _projectService.AddMemberToProject(
+                projectAddMemberRequestDto.projectAddMemberListRequestDto);
             return Ok(res);
         }
 
@@ -100,16 +117,6 @@ namespace TaskFlow.WebAPI.Controllers
         {
             var res = await _projectService.AddProjectRolesToMembers(projectMembersAndRoles);
             return Ok(res != null);
-        }
-
-        [Authorize]
-        [HttpPost("GetAllProjectForUser")]
-        public async Task<IActionResult> GetAllProjectByUser(
-            GetAllProjectsByUserRequestDto gettAllProjectByUser
-        )
-        {
-            var res = await _projectService.GetAllProjectByUser(gettAllProjectByUser);
-            return Ok(res);
         }
     }
 }

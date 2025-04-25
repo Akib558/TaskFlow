@@ -19,6 +19,7 @@ using TaskFlow.Services.Auth;
 using TaskFlow.Services.Project;
 using TaskFlow.Services.Role;
 using TaskFlow.Services.Task;
+using TaskFlow.Services.User;
 using TaskFlow.Utilites;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -71,6 +72,9 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IUserContextService, UserContextService>();
+
 
 // Add Authentication and Authorization
 builder
@@ -141,7 +145,7 @@ app.UseCors("AllowAngularApp");
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    // app.UseSwaggerUI();
+    app.UseSwaggerUI();
     /*app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "TaskFlow API V1");

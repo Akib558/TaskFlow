@@ -5,12 +5,13 @@ namespace TaskFlow.Services.Project;
 
 public interface IProjectService
 {
-    Task<ProjectAddResponseDto> AddProject(ProjectAddRequestDto addRequestDto);
+    Task<bool> AddProject(ProjectAddRequestDto addRequestDto);
     Task<ProjectGetResponseDto> GetProject(ProjectGetRequestDto projectGetRequestDto);
-    Task<ProjectUpdateResponseDto> UpdateProject(ProjectUpdateRequestDto projectUpdateRequestDto);
+    Task<bool> UpdateProject(ProjectUpdateRequestDto projectUpdateRequestDto);
+    Task<bool> DeleteProject(int projectId);
 
     Task<List<ProjectAddMemberResponseDto>> AddMemberToProject(
-        List<ProjectAddMemberRequestDto> projectAddMemberRequestDto
+        List<ProjectMemeberRequestDto> projectAddMemberRequestDto
     );
 
     Task<bool> UpdateMmeberOfProject(
@@ -28,5 +29,7 @@ public interface IProjectService
         GetAllProjectRolesRequestDto getAllProjectRolesRequestDto
     );
 
-    Task<List<ProjectShortInfoDto>> GetAllProjectByUser(GetAllProjectsByUserRequestDto gettAllProjectByUser);
+    Task<List<ProjectShortInfoDto>> GetAllProjectByUser(
+        // GetAllProjectsByUserRequestDto gettAllProjectByUser
+    );
 }

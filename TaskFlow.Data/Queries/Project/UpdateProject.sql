@@ -1,15 +1,23 @@
 BEGIN TRANSACTION;
 
-UPDATE Projects
-SET ProjectName        = @ProjectName,
-    ProjectDescription = @ProjectDescription,
-    StartDate          = @StartDate,
-    EndDate            = @EndDate,
-    ProjectStatus      = @ProjectStatus
-WHERE Id = @Id;
+IF ((SELECT COUNT(Id)
+     FROM Projects
+     WHERE Id = @ID
+       AND IsDeleted = 0) = 0)
+    BEGIN
+        ROLLBACK TRANSACTION;
+        SELECT 0;
+        RETURN;
+    END
 
-SELECT *
-FROM Projects
-WHERE Id = @Id;
+UPDATE Projects
+SET ProjectName        = @Title,
+    ProjectDescription = @Description,
+    StartDate          = @Created,
+    EndDate            = @EndDate,
+    ProjectStatus      = @Status,
+    ModifiedDate       = GETDATE()
+WHERE Id = @Id
+  AND CreatedBy = @CreatedBy;
 
 COMMIT TRANSACTION;

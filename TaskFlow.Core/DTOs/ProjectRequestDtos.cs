@@ -14,9 +14,7 @@ public class ProjectAddRequestDto
 
     public DateTime? EndDate { get; set; }
 
-    public string? ProjectStatus { get; set; }
-
-    [Required] public int CreatedBy { get; set; }
+    public int? ProjectStatus { get; set; }
 }
 
 public class ProjectGetRequestDto
@@ -36,17 +34,21 @@ public class ProjectUpdateRequestDto
 
     public DateTime? EndDate { get; set; }
 
-    public string? ProjectStatus { get; set; }
+    public int ProjectStatus { get; set; }
 }
 
 public class ProjectAddMemberRequestDto
+{
+    public List<ProjectMemeberRequestDto> projectAddMemberListRequestDto { get; set; }
+}
+
+public class ProjectMemeberRequestDto
 {
     [Required] public int UserId { get; set; }
 
     [Required] public int ProjectId { get; set; }
 
     [Required] public int ProjectRoleId { get; set; }
-    public List<ProjectAddMemberRequestDto> projectAddMemberRequestDto { get; set; }
 }
 
 public class ProjectUpdateMemberRequestDto

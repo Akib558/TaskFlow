@@ -1,5 +1,6 @@
 using System;
 using TaskFlow.Core.DTOs;
+using TaskFlow.Core.Entities;
 using TaskFlow.Core.Records;
 using TaskFlow.Repositories.Roles;
 
@@ -12,6 +13,11 @@ public class RoleService : IRoleService
     public RoleService(IRoleRepository roleRepository)
     {
         _roleRepository = roleRepository;
+    }
+
+    public async Task<List<PathEntity>> GetPermissionList()
+    {
+        return await _roleRepository.GetPermissionList();
     }
 
     // public async Task<RoleAddResponseDto> AddRole(RoleAddRequestDto roleAddRequestDto)

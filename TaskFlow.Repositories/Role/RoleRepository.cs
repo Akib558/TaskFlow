@@ -1,4 +1,5 @@
 using Dapper;
+using TaskFlow.Core.Entities;
 using TaskFlow.Core.Records;
 using TaskFlow.Data;
 using TaskFlow.Repositories.Roles;
@@ -12,6 +13,14 @@ public class RoleRepository : IRoleRepository
     public RoleRepository(TaskFlowDbContext dbContext)
     {
         _dbContext = dbContext;
+    }
+
+
+    public async Task<List<PathEntity>> GetPermissionList()
+    {
+        using var connection = _dbContext.CreateConnection();
+        var res = connection.QueryAsync<PathEntity>("SELECT Id, PathName FROM Paths");
+        return res.Result.ToList();
     }
 
     public async Task<bool> AddPathToRole(List<PathProjectRoleRecord> pathProjectRoleRecords)

@@ -75,7 +75,7 @@ public class ProjectGetMemberByIdRequestDto
 public class ProjectAndRoleRequestDto
 {
     [Required] public int ProjectRoleId { get; set; }
-
+    [Required] public string ProjectRoleName { get; set; }
     [Required] public int ProjectId { get; set; }
 }
 
@@ -96,4 +96,10 @@ public class GetAllProjectRolesRequestDto
 public class GetAllProjectsByUserRequestDto
 {
     [Required] public int UserId { get; set; }
+}
+
+public class GetPermissionsForRoleDto
+{
+    [Required] public int ProjectId { get; set; }
+    [Required] public int RoleId { get; set; }
 }

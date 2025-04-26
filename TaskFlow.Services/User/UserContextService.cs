@@ -13,5 +13,5 @@ public class UserContextService : IUserContextService
     }
 
     public int UserId =>
-        Int32.Parse(_httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+        Int32.Parse(_httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
 }

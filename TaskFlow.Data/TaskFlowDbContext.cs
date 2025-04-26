@@ -17,4 +17,11 @@ public class TaskFlowDbContext
     {
         return new SqlConnection(_connectionString);
     }
+
+    public async Task<IDbConnection> CreateOpenConnectionAsync()
+    {
+        var connection = new SqlConnection(_connectionString);
+        await connection.OpenAsync();
+        return connection;
+    }
 }

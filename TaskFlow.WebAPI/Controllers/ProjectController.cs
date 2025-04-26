@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using TaskFlow.Core.DTOs;
+using TaskFlow.Core.Entities;
 using TaskFlow.Services;
 using TaskFlow.Services.Project;
 
@@ -12,10 +15,31 @@ namespace TaskFlow.WebAPI.Controllers
     public class ProjectController : ControllerBase
     {
         private readonly IProjectService _projectService;
+        private readonly IApiDescriptionGroupCollectionProvider _apiExplorer;
 
-        public ProjectController(IProjectService projectService)
+
+        public ProjectController(IProjectService projectService, IApiDescriptionGroupCollectionProvider apiExplorer)
         {
             _projectService = projectService;
+            _apiExplorer = apiExplorer;
+        }
+
+
+        [HttpGet("all-routes")]
+        public IActionResult GetAllRoutes()
+        {
+            var routes = _apiExplorer.ApiDescriptionGroups.Items
+                .SelectMany(group => group.Items)
+                .Select(apiDescription => new
+                {
+                    Path = apiDescription.RelativePath,
+                    Method = apiDescription.HttpMethod,
+                    Action = (apiDescription.ActionDescriptor as ControllerActionDescriptor)?.ActionName,
+                    Controller = (apiDescription.ActionDescriptor as ControllerActionDescriptor)?.ControllerName
+                })
+                .ToList();
+
+            return Ok(routes);
         }
 
         [Authorize]
@@ -110,13 +134,30 @@ namespace TaskFlow.WebAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("AddProjectRolesToMembers")]
-        public async Task<IActionResult> AddProjectRolesToMembers(
-            ProjectMemberAndRolesRequestDto projectMembersAndRoles
-        )
+        [HttpPost("AddPermissionToRole")]
+        public async Task<IActionResult> AddPermissionToRole(List<RolePathRequestDto> rolePathRequestDtoList)
         {
-            var res = await _projectService.AddProjectRolesToMembers(projectMembersAndRoles);
-            return Ok(res != null);
+            var res = await _projectService.AddPermissionsToRole(rolePathRequestDtoList);
+            return Ok(res);
         }
+
+        [Authorize]
+        [HttpPost("GetPermissionsForRole")]
+        public async Task<IActionResult> GetPermissionsForRole(
+            GetPermissionsForRoleDto getPermissionsForRoleDto)
+        {
+            var res = await _projectService.GetPermissionsForRole(getPermissionsForRoleDto);
+            return Ok(res);
+        }
+
+        // [Authorize]
+        // [HttpPost("AddProjectRolesToMembers")]
+        // public async Task<IActionResult> AddProjectRolesToMembers(
+        //     ProjectMemberAndRolesRequestDto projectMembersAndRoles
+        // )
+        // {
+        //     var res = await _projectService.AddProjectRolesToMembers(projectMembersAndRoles);
+        //     return Ok(res != null);
+        // }
     }
 }

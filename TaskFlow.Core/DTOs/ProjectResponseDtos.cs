@@ -44,8 +44,10 @@ public class ProjectMemberResponseDto
 {
     public int Id { get; set; } // Primary Key from the table
     public int UserId { get; set; }
+    public string UserName { get; set; }
     public int ProjectId { get; set; }
     public int ProjectRoleId { get; set; }
+    public string ProjectRoleName { get; set; }
 }
 
 public class ProjectShortInfoDto
@@ -53,4 +55,10 @@ public class ProjectShortInfoDto
     public int Id { get; set; } // Primary Key from the table
     public string ProjectName { get; set; } = String.Empty;
     public string? ProjectDescription { get; set; }
+}
+
+public class RolePathRequestDto
+{
+    public int ProjectRoleId { get; set; }
+    public int PathId { get; set; }
 }

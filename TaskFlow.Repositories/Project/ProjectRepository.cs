@@ -119,32 +119,34 @@ public class ProjectRepository : IProjectRepository
         }
     }
 
-
     public async Task<bool> UpdateMemeberToProject(ProjectMemberEntity projectMemberEntity)
     {
         using var connection = _dbContext.CreateConnection();
+        using var transaction = connection.BeginTransaction();
 
         var query = QueryCollection.LoadQuery("ProjectMembers", "UpdateProjectMember");
 
         try
         {
-            await connection.ExecuteAsync(query, projectMemberEntity);
+            await connection.ExecuteAsync(query, projectMemberEntity, transaction: transaction);
+            transaction.Commit();
             return true;
         }
         catch (Exception e)
         {
+            transaction.Rollback();
             Console.WriteLine(e);
             throw;
         }
     }
 
-    public async Task<List<ProjectMemberEntity>> GetAllProjectMembers(int projectId)
+    public async Task<List<ProjectUserEntity>> GetAllProjectMembers(int projectId)
     {
         using var connection = _dbContext.CreateConnection();
 
-        var query = QueryCollection.LoadQuery("Project", "GetProjectMember");
+        var query = QueryCollection.LoadQuery("ProjectMembers", "GetProjectMember");
 
-        var res = await connection.QueryAsync<ProjectMemberEntity>(query, new
+        var res = await connection.QueryAsync<ProjectUserEntity>(query, new
         {
             ProjectId = projectId
         });
@@ -153,7 +155,7 @@ public class ProjectRepository : IProjectRepository
     }
 
 
-    public async Task<List<ProjectRoleProjectWiseRecord>> GetAllProjetRoles(int projectId)
+    public async Task<List<ProjectRoleEntity>> GetAllProjetRoles(int projectId)
     {
         using var connection = _dbContext.CreateConnection();
 
@@ -161,7 +163,7 @@ public class ProjectRepository : IProjectRepository
 
         try
         {
-            var res = await connection.QueryAsync<ProjectRoleProjectWiseRecord>(query, new
+            var res = await connection.QueryAsync<ProjectRoleEntity>(query, new
             {
                 ProjectId = projectId
             });
@@ -175,54 +177,78 @@ public class ProjectRepository : IProjectRepository
     }
 
 
-    public async Task<bool> AddRoleToProjects(ProjectRoleProjectWiseRecord projectAndRoles)
+    public async Task<bool> AddRoleToProjects(ProjectRoleEntity projectRoleEntity)
     {
-        using var connection = _dbContext.CreateConnection();
+        using var connection = await _dbContext.CreateOpenConnectionAsync();
+        var transaction = connection.BeginTransaction();
+
 
         var query = QueryCollection.LoadQuery("ProjectRole", "InsertProjectRole");
 
         try
         {
-            await connection.ExecuteAsync(query, projectAndRoles);
+            await connection.ExecuteAsync(query, projectRoleEntity, transaction: transaction);
+            transaction.Commit();
             return true;
         }
         catch (Exception e)
         {
+            transaction.Rollback();
             Console.WriteLine(e);
             throw;
         }
     }
 
 
-    public async Task<bool> UpdateRoleToProjects(ProjectRoleProjectWiseRecord projectAndRoles)
+    // public async Task<bool> UpdateRoleToProjects(ProjectRoleProjectWiseRecord projectAndRoles)
+    // {
+    //     using var connection = _dbContext.CreateConnection();
+    //
+    //     var query = QueryCollection.LoadQuery("ProjectRole", "InsertProjectRole");
+    //
+    //     try
+    //     {
+    //         await connection.ExecuteAsync(query, projectAndRoles);
+    //         return true;
+    //     }
+    //     catch (Exception e)
+    //     {
+    //         Console.WriteLine(e);
+    //         throw;
+    //     }
+    // }
+    //
+    //
+    // public async Task<bool> DeleteRoleToProjects(ProjectRoleProjectWiseRecord projectAndRoles)
+    // {
+    //     using var connection = _dbContext.CreateConnection();
+    //
+    //     var query = QueryCollection.LoadQuery("ProjectRole", "InsertProjectRole");
+    //
+    //     try
+    //     {
+    //         await connection.ExecuteAsync(query, projectAndRoles);
+    //         return true;
+    //     }
+    //     catch (Exception e)
+    //     {
+    //         Console.WriteLine(e);
+    //         throw;
+    //     }
+    // }
+
+    public async Task<List<ProjectRoleFlatDto>> GetPermissionsForRole(int projectId, int roleId)
     {
         using var connection = _dbContext.CreateConnection();
-
-        var query = QueryCollection.LoadQuery("ProjectRole", "InsertProjectRole");
-
+        var query = QueryCollection.LoadQuery("ProjectRole", "GetPermissionsForRole");
         try
         {
-            await connection.ExecuteAsync(query, projectAndRoles);
-            return true;
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
-    }
-
-
-    public async Task<bool> DeleteRoleToProjects(ProjectRoleProjectWiseRecord projectAndRoles)
-    {
-        using var connection = _dbContext.CreateConnection();
-
-        var query = QueryCollection.LoadQuery("ProjectRole", "InsertProjectRole");
-
-        try
-        {
-            await connection.ExecuteAsync(query, projectAndRoles);
-            return true;
+            var res = await connection.QueryAsync<ProjectRoleFlatDto>(query, new
+            {
+                ProjectId = projectId,
+                RoleId = roleId
+            });
+            return res.ToList();
         }
         catch (Exception e)
         {
@@ -232,36 +258,41 @@ public class ProjectRepository : IProjectRepository
     }
 
     //TODO: NEED TO IMPLEMENT
-    public async Task<bool> AddPermissionsToRoles(ProjectRoleProjectWiseRecord projectAndRoles)
+    public async Task<bool> AddPermissionsToRoles(List<RolePathEntity> rolePathEntity)
     {
-        using var connection = _dbContext.CreateConnection();
-        var query = QueryCollection.LoadQuery("ProjectRole", "GetProjectRole");
+        using var connection = await _dbContext.CreateOpenConnectionAsync();
+        var transaction = connection.BeginTransaction();
+        var query = QueryCollection.LoadQuery("PathRole", "InsertPathToRole");
         try
         {
-            await connection.ExecuteAsync(query, projectAndRoles);
+            await connection.ExecuteAsync(query, rolePathEntity, transaction: transaction);
+            transaction.Commit();
             return true;
         }
         catch (Exception e)
         {
+            transaction.Rollback();
             Console.WriteLine(e);
             throw;
         }
     }
 
-
-    public async Task<bool> AddProjectRolesToMembers(ProjectMemberRecord projectMemberRecord)
+    public async Task<bool> AddProjectRolesToMembers(ProjectMemberEntity projectMemberEntity)
     {
         using var connection = _dbContext.CreateConnection();
+        using var transaction = connection.BeginTransaction();
 
         var query = QueryCollection.LoadQuery("ProjectMembers", "AddProjectRoleToMember");
 
         try
         {
-            await connection.ExecuteAsync(query, projectMemberRecord);
+            await connection.ExecuteAsync(query, projectMemberEntity, transaction: transaction);
+            transaction.Commit();
             return true;
         }
         catch (Exception e)
         {
+            transaction.Rollback();
             Console.WriteLine(e);
             throw;
         }

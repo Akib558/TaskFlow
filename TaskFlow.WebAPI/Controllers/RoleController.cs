@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using TaskFlow.Core.DTOs;
+using TaskFlow.Core.Entities;
 using TaskFlow.Services.Role;
 
 namespace TaskFlow.WebAPI.Controllers
@@ -22,6 +24,13 @@ namespace TaskFlow.WebAPI.Controllers
         {
             _roleService = roleService;
             _actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
+        }
+
+        [Authorize]
+        [HttpGet("GetPermissionList")]
+        public async Task<List<PathEntity>> GetPermissionList()
+        {
+            return await _roleService.GetPermissionList();
         }
 
         // [HttpPost("AddRole")]

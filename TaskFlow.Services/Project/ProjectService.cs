@@ -106,39 +106,31 @@ public class ProjectService : IProjectService
         }
     }
 
-    public async Task<List<ProjectAddMemberResponseDto>> AddMemberToProject(
+    public async Task<bool> AddMemberToProject(
         List<ProjectMemeberRequestDto> projectMemeberListDto
     )
     {
-        var obj = projectMemeberListDto.Select(x => new ProjectMemberRecord
-        (
-            0,
-            x.UserId,
-            x.ProjectId,
-            x.ProjectRoleId
-        )).ToList();
-        var res = await ProjectRepository.AddMmeberToProject(obj);
-        var mainRes = res.Select(x => new ProjectAddMemberResponseDto
+        var obj = projectMemeberListDto.Select(x => new ProjectMemberEntity
         {
-            Id = x.Id,
             UserId = x.UserId,
             ProjectId = x.ProjectId,
-            ProjectRoleId = x.ProjectRoleId,
+            ProjectRoleId = x.ProjectRoleId
         }).ToList();
-        return mainRes;
+        var res = await ProjectRepository.AddMemberToProject(obj);
+
+        return res;
     }
 
     public async Task<bool> UpdateMmeberOfProject(
         ProjectUpdateMemberRequestDto projectUpdateMemberRequestDto
     )
     {
-        var obj = new ProjectMemberRecord
-        (
-            0,
-            projectUpdateMemberRequestDto.UserId,
-            projectUpdateMemberRequestDto.ProjectId,
-            projectUpdateMemberRequestDto.ProjectRoleId
-        );
+        var obj = new ProjectMemberEntity
+        {
+            UserId = projectUpdateMemberRequestDto.UserId,
+            ProjectId = projectUpdateMemberRequestDto.ProjectId,
+            ProjectRoleId = projectUpdateMemberRequestDto.ProjectRoleId
+        };
         var res = await ProjectRepository.UpdateMemeberToProject(obj);
 
         return res;
@@ -154,10 +146,11 @@ public class ProjectService : IProjectService
 
         var res2 = res.Select(x => new ProjectMemberResponseDto
             {
-                Id = x.Id,
-                UserId = x.UserId,
+                UserId = x.Id,
+                UserName = x.UserName,
                 ProjectId = x.ProjectId,
                 ProjectRoleId = x.ProjectRoleId,
+                ProjectRoleName = x.ProjectRoleName
             })
             .ToList();
 
@@ -167,17 +160,17 @@ public class ProjectService : IProjectService
 
     public async Task<bool> AddRoleToProjects(ProjectAndRoleRequestDto projectAndRoleRequest)
     {
-        var newObj = new ProjectRoleProjectWiseRecord
-        (
-            0,
-            projectAndRoleRequest.ProjectRoleId,
-            projectAndRoleRequest.ProjectId
-        );
+        var newObj = new ProjectRoleEntity
+        {
+            ProjectId = projectAndRoleRequest.ProjectId,
+            Id = projectAndRoleRequest.ProjectRoleId,
+            ProjectRoleName = projectAndRoleRequest.ProjectRoleName
+        };
         var res = await ProjectRepository.AddRoleToProjects(newObj);
         return res;
     }
 
-    public async Task<List<ProjectRoleProjectWiseRecord>> GetAllProjetRoles(
+    public async Task<List<ProjectRoleEntity>> GetAllProjetRoles(
         GetAllProjectRolesRequestDto getAllProjectRolesRequestDto
     )
     {
@@ -187,18 +180,37 @@ public class ProjectService : IProjectService
         return res.ToList();
     }
 
-    public async Task<bool> AddProjectRolesToMembers(
-        ProjectMemberAndRolesRequestDto projectMemberAndRolesRequestDto
-    )
+    public async Task<bool> AddPermissionsToRole(List<RolePathRequestDto> rolePathRequestDtoList)
     {
-        var newObj = new ProjectMemberRecord
-        (
-            0,
-            projectMemberAndRolesRequestDto.ProjectMemberId,
-            projectMemberAndRolesRequestDto.ProjectId,
-            projectMemberAndRolesRequestDto.ProjectRoleId
-        );
-        var res = await ProjectRepository.AddProjectRolesToMembers(newObj);
+        var obj = rolePathRequestDtoList.Select(x => new RolePathEntity
+        {
+            ProjectRoleId = x.ProjectRoleId,
+            PathId = x.PathId
+        }).ToList();
+        var res = await ProjectRepository.AddPermissionsToRoles(obj);
         return res;
     }
+
+
+    public async Task<List<ProjectRoleFlatDto>> GetPermissionsForRole(GetPermissionsForRoleDto getPermissionsForRoleDto)
+    {
+        var res = await ProjectRepository.GetPermissionsForRole(getPermissionsForRoleDto.ProjectId,
+            getPermissionsForRoleDto.RoleId);
+        return res;
+    }
+
+    // public async Task<bool> AddProjectRolesToMembers(
+    //     ProjectMemberAndRolesRequestDto projectMemberAndRolesRequestDto
+    // )
+    // {
+    //     var newObj = new ProjectMemberRecord
+    //     (
+    //         0,
+    //         projectMemberAndRolesRequestDto.ProjectMemberId,
+    //         projectMemberAndRolesRequestDto.ProjectId,
+    //         projectMemberAndRolesRequestDto.ProjectRoleId
+    //     );
+    //     var res = await ProjectRepository.AddProjectRolesToMembers(newObj);
+    //     return res;
+    // }
 }

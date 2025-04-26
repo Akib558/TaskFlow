@@ -1,6 +1,6 @@
 # 🚀 TaskFlow
 
-A clean, scalable **Task Management System** built with **.NET 7**, following best practices in architecture, authentication, and API development.  
+A clean, scalable **Task Management System** built with **.NET 8**, following best practices in architecture, authentication, and API development.  
 Designed for professional use and future extension with a full **Angular frontend**.
 
 ---
@@ -52,7 +52,7 @@ TaskFlow/
 
 ### Prerequisites
 
-- [.NET 7 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
+- [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 - [Docker](https://www.docker.com/products/docker-desktop)
 - SQL Server Docker image
 

@@ -22,7 +22,7 @@ Designed for professional use and future extension with a full **Angular fronten
 
 | Layer            | Technology                 |
 | ---------------- | --------------------------- |
-| Backend API      | .NET 7 Web API               |
+| Backend API      | .NET 8 Web API               |
 | Database         | SQL Server (via Docker)      |
 | ORM              | Dapper (raw SQL queries)     |
 | Authentication   | JWT Tokens                   |

@@ -36,22 +36,6 @@ namespace TaskFlow.WebAPI.Controllers
         }
 
         [Authorize]
-        [HttpGet("GetAllTaskForUser")]
-        public async Task<IActionResult> GetAllTaskByAuthorId()
-        {
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (userIdClaim == null)
-            {
-                return Unauthorized(ApiResponse<string>.ErrorResponse("", "User ID not found in token"));
-            }
-
-            var userId = int.Parse(userIdClaim.Value);
-            var res = await _taskService.GetAllTaskByAuthorId(userId);
-            return Ok(ApiResponse<IEnumerable<TaskGetResponseDto>>.SuccessResponse(res,
-                "Tasks retrieved successfully"));
-        }
-
-        [Authorize]
         [HttpPost("AddTask")]
         public async Task<IActionResult> AddTask(
             TaskAddRequestDto addRequestDto)
@@ -69,8 +53,39 @@ namespace TaskFlow.WebAPI.Controllers
             return Ok(ApiResponse<object>.SuccessResponse(res, "Task updated successfully"));
         }
 
+        [Authorize]
+        [HttpGet("GetAllTaskForUser")]
+        public async Task<IActionResult> GetAllTaskByAuthorId()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized(ApiResponse<string>.ErrorResponse("", "User ID not found in token"));
+            }
 
-        [HttpPost]
+            var userId = int.Parse(userIdClaim.Value);
+            var res = await _taskService.GetAllTaskByAuthorId(userId);
+            return Ok(ApiResponse<IEnumerable<TaskGetResponseDto>>.SuccessResponse(res,
+                "Tasks retrieved successfully"));
+        }
+
+
+        [HttpGet("GetTaskStatusToProject/{id}")]
+        public async Task<ActionResult<TaskStatusResponseDto>> GetTaskStatusById(int id)
+        {
+            var result = await _taskService.GetTaskStatusByIdAsync(id);
+
+            return Ok(result);
+        }
+
+        [HttpGet("GetAllTaskStatusByProjectId/{projectId}")]
+        public async Task<ActionResult<IEnumerable<TaskStatusResponseDto>>> GetTaskStatusesByProjectId(int projectId)
+        {
+            var results = await _taskService.GetTaskStatusesByProjectIdAsync(projectId);
+            return Ok(results);
+        }
+
+        [HttpPost("AddTaskStatusToProject")]
         public async Task<IActionResult> AddTaskStatus([FromBody] TaskStatusAddRequestDto dto)
         {
             var result = await _taskService.AddTaskStatusAsync(dto);
@@ -80,22 +95,7 @@ namespace TaskFlow.WebAPI.Controllers
             return Ok("Task status added successfully.");
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<TaskStatusResponseDto>> GetTaskStatusById(int id)
-        {
-            var result = await _taskService.GetTaskStatusByIdAsync(id);
-
-            return Ok(result);
-        }
-
-        [HttpGet("project/{projectId}")]
-        public async Task<ActionResult<IEnumerable<TaskStatusResponseDto>>> GetTaskStatusesByProjectId(int projectId)
-        {
-            var results = await _taskService.GetTaskStatusesByProjectIdAsync(projectId);
-            return Ok(results);
-        }
-
-        [HttpPut]
+        [HttpPut("UpdateTaskStatusToProject")]
         public async Task<IActionResult> UpdateTaskStatus([FromBody] TaskStatusAddRequestDto taskStatusAddRequestDto)
         {
             var updated = await _taskService.UpdateTaskStatusAsync(taskStatusAddRequestDto);
@@ -105,7 +105,7 @@ namespace TaskFlow.WebAPI.Controllers
             return Ok("Task status updated successfully.");
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteTaskStatusToProject/{id}")]
         public async Task<IActionResult> DeleteTaskStatus(int id)
         {
             var deleted = await _taskService.DeleteTaskStatusAsync(id);

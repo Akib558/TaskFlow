@@ -56,9 +56,9 @@ public class ProjectService : IProjectService
         return res;
     }
 
-    public async Task<ProjectGetResponseDto> GetProject(ProjectGetRequestDto projectGetRequestDto)
+    public async Task<ProjectGetResponseDto> GetProject(int projectId)
     {
-        var res = await ProjectRepository.GetProject(projectGetRequestDto.ProjectId, _userId);
+        var res = await ProjectRepository.GetProject(projectId, _userId);
         if (res == null)
         {
             throw new NotFoundException("Project not found");

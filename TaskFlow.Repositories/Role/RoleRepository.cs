@@ -19,8 +19,8 @@ public class RoleRepository : IRoleRepository
     public async Task<List<PathEntity>> GetPermissionList()
     {
         using var connection = _dbContext.CreateConnection();
-        var res = connection.QueryAsync<PathEntity>("SELECT Id, PathName FROM Paths");
-        return res.Result.ToList();
+        var res = await connection.QueryAsync<PathEntity>("SELECT Id, PathName FROM Paths");
+        return res.ToList();
     }
 
     public async Task<bool> AddPathToRole(List<PathProjectRoleRecord> pathProjectRoleRecords)

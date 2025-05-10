@@ -7,7 +7,7 @@ namespace TaskFlow.Services.Project;
 public interface IProjectService
 {
     Task<bool> AddProject(ProjectAddRequestDto addRequestDto);
-    Task<ProjectGetResponseDto> GetProject(ProjectGetRequestDto projectGetRequestDto);
+    Task<ProjectGetResponseDto> GetProject(int projectId);
     Task<bool> UpdateProject(ProjectUpdateRequestDto projectUpdateRequestDto);
     Task<bool> DeleteProject(int projectId);
 
